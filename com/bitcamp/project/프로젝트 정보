@@ -2,8 +2,12 @@
 
 ex)
 com.bitcamp.project.lsy
-com.bitcamp.project.kms
-com.bitcamp.project.khj
-com.bitcamp.project.kyr
+com.bitcamp.project.lsy.DAO
+com.bitcamp.project.lsy.DTO
+com.bitcamp.project.lsy.XXXXX
+
+와 같은 형태로 패키지 및 CLASS 생성
+ 
+
 
 
