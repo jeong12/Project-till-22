@@ -2,7 +2,7 @@ package com.bitcamp.project.kyr.DAO;
 
 public class screenDAO {
 
-	public insert()
+	/*public insert()
 	{
 		
 	}
@@ -13,5 +13,5 @@ public class screenDAO {
 	public retu()
 	{
 		
-	}
+	}*/
 }
