@@ -1,10 +1,14 @@
-package com.bitcamp.project.kms.screen;
+package com.bitcamp.project.kms;
 
-public class screenTest {
+public class jframe {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-//asdasdasd
+
+		
+		
+	
+		
 		
 	}
 
