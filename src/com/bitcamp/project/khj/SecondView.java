@@ -13,9 +13,11 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JTextArea;
+import javax.swing.JRadioButton;
 
 public class SecondView extends JFrame {
 
@@ -140,72 +142,25 @@ public class SecondView extends JFrame {
 		lblNewLabel_11.setBounds(580, 369, 57, 15);
 		contentPane.add(lblNewLabel_11);
 		
-		JCheckBox chckbxNewCheckBox = new JCheckBox("\uC608\uC57D\uD558\uAE30");
-		chckbxNewCheckBox.setBounds(22, 396, 88, 23);
-		contentPane.add(chckbxNewCheckBox);
-		
 		JButton btnNewButton_1 = new JButton("\uC5ED \uAC80\uC0C9");
 		btnNewButton_1.setBounds(446, 84, 97, 23);
 		contentPane.add(btnNewButton_1);
 		
-		JTextArea textArea = new JTextArea();
-		textArea.setBounds(115, 396, 708, 24);
-		contentPane.add(textArea);
 		
-		JTextArea textArea_1 = new JTextArea();
-		textArea_1.setBounds(115, 425, 708, 24);
-		contentPane.add(textArea_1);
-		
-		JCheckBox checkBox = new JCheckBox("\uC608\uC57D\uD558\uAE30");
-		checkBox.setBounds(22, 425, 88, 23);
-		contentPane.add(checkBox);
-		
-		JTextArea textArea_2 = new JTextArea();
-		textArea_2.setBounds(115, 454, 708, 24);
-		contentPane.add(textArea_2);
-		
-		JTextArea textArea_3 = new JTextArea();
-		textArea_3.setBounds(115, 482, 708, 24);
-		contentPane.add(textArea_3);
-		
-		JCheckBox checkBox_1 = new JCheckBox("\uC608\uC57D\uD558\uAE30");
-		checkBox_1.setBounds(22, 454, 88, 23);
-		contentPane.add(checkBox_1);
-		
-		JCheckBox checkBox_2 = new JCheckBox("\uC608\uC57D\uD558\uAE30");
-		checkBox_2.setBounds(22, 482, 88, 23);
-		contentPane.add(checkBox_2);
-		
-		JTextArea textArea_4 = new JTextArea();
-		textArea_4.setBounds(115, 509, 708, 24);
-		contentPane.add(textArea_4);
-		
-		JTextArea textArea_5 = new JTextArea();
-		textArea_5.setBounds(115, 538, 708, 24);
-		contentPane.add(textArea_5);
-		
-		JTextArea textArea_6 = new JTextArea();
-		textArea_6.setBounds(115, 567, 708, 24);
-		contentPane.add(textArea_6);
-		
-		JTextArea textArea_7 = new JTextArea();
-		textArea_7.setBounds(115, 595, 708, 24);
-		contentPane.add(textArea_7);
-		
-		JCheckBox checkBox_3 = new JCheckBox("\uC608\uC57D\uD558\uAE30");
-		checkBox_3.setBounds(22, 509, 88, 23);
-		contentPane.add(checkBox_3);
-		
-		JCheckBox checkBox_4 = new JCheckBox("\uC608\uC57D\uD558\uAE30");
-		checkBox_4.setBounds(22, 538, 88, 23);
-		contentPane.add(checkBox_4);
-		
-		JCheckBox checkBox_5 = new JCheckBox("\uC608\uC57D\uD558\uAE30");
-		checkBox_5.setBounds(22, 567, 88, 23);
-		contentPane.add(checkBox_5);
-		
-		JCheckBox checkBox_6 = new JCheckBox("\uC608\uC57D\uD558\uAE30");
-		checkBox_6.setBounds(22, 595, 88, 23);
-		contentPane.add(checkBox_6);
+		int y=410;		
+		String[]btname= {"a","b","c"};	
+		JRadioButton[]rb=new JRadioButton[3];
+		ButtonGroup bg=new ButtonGroup();
+		for(int i=0; i<=2;i++) {
+		rb[i]=new JRadioButton(btname[i]);
+		rb[i].setBounds(16, y, 860, 23);
+		bg.add(rb[i]);
+		contentPane.add(rb[i]);
+		y+=21;
+					}
+/*		
+		JRadioButton rdbtnNewRadioButton = new JRadioButton("New radio button");
+		rdbtnNewRadioButton.setBounds(16, 410, 860, 23);
+		contentPane.add(rdbtnNewRadioButton);*/
 	}
 }
