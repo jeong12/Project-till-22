@@ -7,7 +7,7 @@ import java.util.List;
 import javax.swing.JComboBox;
 
 public class FirstActionYear implements ActionListener {
-	DAO dao=new DAO();
+	FirstDAO dao=new FirstDAO();
 	FirstDTO fdto=new FirstDTO();
 	private JComboBox comboBox_y;
 	

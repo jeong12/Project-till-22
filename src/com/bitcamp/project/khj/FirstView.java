@@ -88,7 +88,7 @@ public class FirstView extends JFrame {
 		this.textField_a = textField_a;
 	}
 
-	DAO dao=new DAO();
+	FirstDAO dao=new FirstDAO();
 	List<String> arr=dao.Cal();
 	String[] year=dao.year(arr);
 	String[] month=dao.month(arr);

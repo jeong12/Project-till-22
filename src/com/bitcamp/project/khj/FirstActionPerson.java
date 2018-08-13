@@ -7,7 +7,7 @@ import javax.swing.JComboBox;
 
 public class FirstActionPerson implements ActionListener{
 	
-	DAO dao=new DAO();
+	FirstDAO dao=new FirstDAO();
 	FirstDTO fdto=new FirstDTO();
 	private JComboBox comboBox_p;
 	

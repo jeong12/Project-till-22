@@ -10,7 +10,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-public class DAO {
+public class FirstDAO {
 
 	public Connection getConnection() {
 
@@ -165,21 +165,14 @@ public class DAO {
 		return person;
 	}
 	
-	/*	public List<ResultSet> show(){
-		PreparedStatement pst=null;
-		Connection conn= getConnection();
-		ArrayList<ResultSet> arr=new ArrayList<>();
-		ResultSet rs=null;
-		StringBuilder sb=new StringBuilder();
-
-		return List<ResultSet>
-	}*/
-
-/*	public List<String> Goto(){
-		ArrayList<String> go=new ArrayList<>();
+	/*public List<ResultSet> go(FirstDTO fdto){
+		
 		*/
 		
+		
 	}
+		
+	
 
 
 
