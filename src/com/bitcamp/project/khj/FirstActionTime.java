@@ -2,25 +2,23 @@ package com.bitcamp.project.khj;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.JComboBox;
 
-public class FirstActionPerson implements ActionListener{
-	
+public class FirstActionTime implements ActionListener{
+
 	FirstDAO dao=new FirstDAO();
 	FirstDTO fdto=new FirstDTO();
-	private JComboBox comboBox_p;
+	private JComboBox comboBox_t;
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {	
 		JComboBox cb = (JComboBox) e.getSource();
 		int index = cb.getSelectedIndex();
-		String[]person=dao.Person();
-		String personnel=person[index];
-		fdto.setPerson(personnel);
-		
-		
+		String[]t=dao.time();
+		String time=t[index];
+		fdto.setTime(time);
 	}
-
-	
 }
+	

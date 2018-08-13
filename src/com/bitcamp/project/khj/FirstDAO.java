@@ -10,7 +10,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-public class DAO {
+public class FirstDAO {
 
 	public Connection getConnection() {
 
@@ -88,30 +88,30 @@ public class DAO {
 	}
 
 
-	public String[] date (List<String> arr){
-		ArrayList<String> d =new ArrayList<>();
+	public String[] month (List<String> arr){
+		ArrayList<String> m =new ArrayList<>();
 
 		String s=arr.get(0).toString().substring(4, 6);
 		int c=0;
 		int id=1;
-		d.add(0, s);
+		m.add(0, s);
 		while(c<31) {
 		if(arr.get(c).toString().substring(4, 6).equals(arr.get(c+1).toString().substring(4, 6))) {
 			c++;
 		}
 		else{
-			d.add(id,arr.get(c+1).toString().substring(4, 6));
+			m.add(id,arr.get(c+1).toString().substring(4, 6));
 			c++;
 			id++;
 		}
 		}
 
-		String[]date=new String[d.size()];
+		String[]month=new String[m.size()];
 		int idx=0;
-		for(String result:d) {
-			date[idx++]=result;
+		for(String result:m) {
+			month[idx++]=result;
 		}
-		return date;
+		return month;
 	}
 
 	public String[] day (List<String> arr){
@@ -164,20 +164,16 @@ public class DAO {
 
 		return person;
 	}
-
-	/*	public List<ResultSet> show(){
-		PreparedStatement pst=null;
-		Connection conn= getConnection();
-		ArrayList<ResultSet> arr=new ArrayList<>();
-		ResultSet rs=null;
-		StringBuilder sb=new StringBuilder();
-
-		return List<ResultSet>
-	}*/
-
+	
+	/*public List<ResultSet> go(FirstDTO fdto){
+		
+		*/
+		
+		
+	}
+		
+	
 
 
 
 
-
-}

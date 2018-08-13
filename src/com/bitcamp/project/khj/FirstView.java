@@ -19,12 +19,59 @@ import java.util.List;
 import java.awt.event.ActionEvent;
 
 
-public class Firstview extends JFrame {
+public class FirstView extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField_d;
 	private JTextField textField_a;
+	private JComboBox comboBox_t;
+	private JComboBox comboBox_p;
+	private JComboBox comboBox_d;
+	private JComboBox comboBox_y;
+	private JComboBox comboBox_m;
 	
+	
+	
+	public JComboBox getComboBox_t() {
+		return comboBox_t;
+	}
+
+	public void setComboBox_t(JComboBox comboBox_t) {
+		this.comboBox_t = comboBox_t;
+	}
+
+	public JComboBox getComboBox_d() {
+		return comboBox_d;
+	}
+
+	public void setComboBox_d(JComboBox comboBox_d) {
+		this.comboBox_d = comboBox_d;
+	}
+
+	public JComboBox getComboBox_y() {
+		return comboBox_y;
+	}
+
+	public void setComboBox_y(JComboBox comboBox_y) {
+		this.comboBox_y = comboBox_y;
+	}
+
+	public JComboBox getComboBox_m() {
+		return comboBox_m;
+	}
+
+	public void setComboBox_m(JComboBox comboBox_m) {
+		this.comboBox_m = comboBox_m;
+	}
+
+	public JComboBox getComboBox_p() {
+		return comboBox_p;
+	}
+
+	public void setComboBox_p(JComboBox comboBox_p) {
+		this.comboBox_p = comboBox_p;
+	}
+
 	public JTextField getTextField_d() {
 		return textField_d;
 	}
@@ -41,10 +88,10 @@ public class Firstview extends JFrame {
 		this.textField_a = textField_a;
 	}
 
-	DAO dao=new DAO();
+	FirstDAO dao=new FirstDAO();
 	List<String> arr=dao.Cal();
 	String[] year=dao.year(arr);
-	String[] month=dao.date(arr);
+	String[] month=dao.month(arr);
 	String[] date=dao.day(arr);
 	String[] time=dao.time();
 	String[] person=dao.Person();
@@ -57,7 +104,7 @@ public class Firstview extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Firstview frame = new Firstview();
+					FirstView frame = new FirstView();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -69,7 +116,7 @@ public class Firstview extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Firstview() {
+	public FirstView() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 900, 400);
 		contentPane = new JPanel();
