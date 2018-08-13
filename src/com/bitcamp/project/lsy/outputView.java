@@ -11,9 +11,12 @@ import javax.swing.JButton;
 import java.awt.GridBagConstraints;
 import javax.swing.JLabel;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JTextPane;
 
-public class outputView extends JFrame {
+public class outputView extends JFrame implements ActionListener{
 
 	private JPanel contentPane;
 
@@ -44,73 +47,89 @@ public class outputView extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("월요일");
-		lblNewLabel.setBounds(65, 38, 59, 15);
-		contentPane.add(lblNewLabel);
+		JLabel monlabel = new JLabel("월요일");
+		monlabel.setBounds(65, 38, 59, 15);
+		contentPane.add(monlabel);
 		
-		JTextPane textPane = new JTextPane();
-		textPane.setBounds(136, 35, 137, 22);
-		contentPane.add(textPane);
+		JTextPane montext = new JTextPane();
+		montext.setBounds(136, 35, 137, 22);
+		contentPane.add(montext);
 		
-		JLabel lblNewLabel_1 = new JLabel("화요일");
-		lblNewLabel_1.setBounds(65, 95, 59, 15);
-		contentPane.add(lblNewLabel_1);
+		JLabel tuelabel = new JLabel("화요일");
+		tuelabel.setBounds(65, 95, 59, 15);
+		contentPane.add(tuelabel);
 		
-		JTextPane textPane_1 = new JTextPane();
-		textPane_1.setBounds(136, 92, 137, 22);
-		contentPane.add(textPane_1);
+		JTextPane tuetext = new JTextPane();
+		tuetext.setBounds(136, 92, 137, 22);
+		contentPane.add(tuetext);
 		
-		JLabel lblNewLabel_2 = new JLabel("수요일");
-		lblNewLabel_2.setBounds(65, 152, 59, 15);
-		contentPane.add(lblNewLabel_2);
+		JLabel wedlabel = new JLabel("수요일");
+		wedlabel.setBounds(65, 152, 59, 15);
+		contentPane.add(wedlabel);
 		
-		JTextPane textPane_2 = new JTextPane();
-		textPane_2.setBounds(136, 149, 137, 22);
-		contentPane.add(textPane_2);
+		JTextPane wedtext = new JTextPane();
+		wedtext.setBounds(136, 149, 137, 22);
+		contentPane.add(wedtext);
 		
-		JLabel lblNewLabel_3 = new JLabel("목요일");
-		lblNewLabel_3.setBounds(65, 209, 59, 15);
-		contentPane.add(lblNewLabel_3);
+		JLabel thulabel = new JLabel("목요일");
+		thulabel.setBounds(65, 209, 59, 15);
+		contentPane.add(thulabel);
 		
-		JTextPane textPane_3 = new JTextPane();
-		textPane_3.setBounds(136, 206, 137, 22);
-		contentPane.add(textPane_3);
+		JTextPane thutext = new JTextPane();
+		thutext.setBounds(136, 206, 137, 22);
+		contentPane.add(thutext);
 		
-		JLabel lblNewLabel_4 = new JLabel("금요일");
-		lblNewLabel_4.setBounds(65, 266, 59, 15);
-		contentPane.add(lblNewLabel_4);
+		JLabel frilabel = new JLabel("금요일");
+		frilabel.setBounds(65, 266, 59, 15);
+		contentPane.add(frilabel);
 		
-		JTextPane textPane_4 = new JTextPane();
-		textPane_4.setBounds(136, 263, 137, 22);
-		contentPane.add(textPane_4);
+		JTextPane fritext = new JTextPane();
+		fritext.setBounds(136, 263, 137, 22);
+		contentPane.add(fritext);
 		
-		JLabel lblNewLabel_5 = new JLabel("토요일");
-		lblNewLabel_5.setBounds(65, 323, 59, 15);
-		contentPane.add(lblNewLabel_5);
+		JLabel satlabel = new JLabel("토요일");
+		satlabel.setBounds(65, 323, 59, 15);
+		contentPane.add(satlabel);
 		
-		JTextPane textPane_5 = new JTextPane();
-		textPane_5.setBounds(136, 320, 137, 22);
-		contentPane.add(textPane_5);
+		JTextPane sattext = new JTextPane();
+		sattext.setBounds(136, 320, 137, 22);
+		contentPane.add(sattext);
 		
-		JLabel lblNewLabel_6 = new JLabel("일요일");
-		lblNewLabel_6.setBounds(65, 380, 59, 15);
-		contentPane.add(lblNewLabel_6);
+		JLabel sunlabel = new JLabel("일요일");
+		sunlabel.setBounds(65, 380, 59, 15);
+		contentPane.add(sunlabel);
 		
-		JTextPane textPane_6 = new JTextPane();
-		textPane_6.setBounds(136, 377, 137, 22);
-		contentPane.add(textPane_6);
+		JTextPane suntext = new JTextPane();
+		suntext.setBounds(136, 377, 137, 22);
+		contentPane.add(suntext);
 		
-		JLabel lblNewLabel_7 = new JLabel("평균 섭취칼로리");
-		lblNewLabel_7.setBounds(65, 439, 111, 15);
-		contentPane.add(lblNewLabel_7);
+		JLabel avglabel = new JLabel("평균 섭취칼로리");
+		avglabel.setBounds(65, 439, 111, 15);
+		contentPane.add(avglabel);
 		
-		JTextPane textPane_7 = new JTextPane();
-		textPane_7.setBounds(188, 434, 85, 26);
-		contentPane.add(textPane_7);
+		JTextPane avgtext = new JTextPane();
+		avgtext.setBounds(188, 434, 85, 26);
+		contentPane.add(avgtext);
 		
-		JButton btnNewButton = new JButton("메인으로");
-		btnNewButton.setBounds(315, 465, 111, 55);
-		contentPane.add(btnNewButton);
+		JButton mainButton = new JButton("메인으로");
+		mainButton.setBounds(315, 465, 111, 55);
+		contentPane.add(mainButton);
+		mainButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				dispose();
+			}
+		});
+		
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		outputView frame = new outputView();
+		frame.setVisible(true);
 	}
 
 }

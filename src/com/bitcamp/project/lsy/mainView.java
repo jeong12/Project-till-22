@@ -1,18 +1,14 @@
 package com.bitcamp.project.lsy;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import java.awt.GridLayout;
-import java.awt.GridBagLayout;
-import javax.swing.JButton;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
-import javax.swing.JTextField;
 import javax.swing.JTextPane;
+import javax.swing.border.EmptyBorder;
 
 public class mainView extends JFrame {
 
@@ -38,6 +34,7 @@ public class mainView extends JFrame {
 	 * Create the frame.
 	 */
 	public mainView() {
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 480, 600);
 		contentPane = new JPanel();
@@ -49,13 +46,18 @@ public class mainView extends JFrame {
 		textPane.setBounds(35, 35, 389, 426);
 		contentPane.add(textPane);
 		
-		JButton btnNewButton = new JButton("칼로리입력");
-		btnNewButton.setBounds(35, 496, 105, 60);
-		contentPane.add(btnNewButton);
+		JButton inputCalButton = new JButton("칼로리입력");
+		inputCalButton.setBounds(35, 496, 105, 60);
+		contentPane.add(inputCalButton);
+		inputCalButton.addActionListener(new inputView());
 		
-		JButton btnNewButton_1 = new JButton("지난칼로리");
-		btnNewButton_1.setBounds(319, 496, 105, 60);
-		contentPane.add(btnNewButton_1);
+		JButton outputCalButton = new JButton("지난칼로리");
+		outputCalButton.setBounds(319, 496, 105, 60);
+		contentPane.add(outputCalButton);
+		outputCalButton.addActionListener(new outputView());
+		
 	}
 
+
+	
 }

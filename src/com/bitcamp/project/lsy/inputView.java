@@ -12,7 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-public class inputView extends JFrame {
+public class inputView extends JFrame implements ActionListener {
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
@@ -42,27 +42,27 @@ public class inputView extends JFrame {
 		setBounds(100, 100, 475, 600);
 		getContentPane().setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("아침");
-		lblNewLabel.setBounds(71, 30, 40, 21);
-		getContentPane().add(lblNewLabel);
+		JLabel morningLabel = new JLabel("아침");
+		morningLabel.setBounds(71, 30, 40, 21);
+		getContentPane().add(morningLabel);
 		
 		textField = new JTextField();
 		textField.setBounds(146, 30, 192, 21);
 		getContentPane().add(textField);
 		textField.setColumns(10);
 		
-		JLabel lblNewLabel_1 = new JLabel("점심");
-		lblNewLabel_1.setBounds(71, 86, 40, 21);
-		getContentPane().add(lblNewLabel_1);
+		JLabel lunchLabel = new JLabel("점심");
+		lunchLabel.setBounds(71, 86, 40, 21);
+		getContentPane().add(lunchLabel);
 		
 		textField_1 = new JTextField();
 		textField_1.setBounds(146, 86, 192, 21);
 		getContentPane().add(textField_1);
 		textField_1.setColumns(10);
 		
-		JLabel lblNewLabel_2 = new JLabel("저녁");
-		lblNewLabel_2.setBounds(71, 142, 40, 21);
-		getContentPane().add(lblNewLabel_2);
+		JLabel dinnerlabel = new JLabel("저녁");
+		dinnerlabel.setBounds(71, 142, 40, 21);
+		getContentPane().add(dinnerlabel);
 		
 		textField_2 = new JTextField();
 		textField_2.setBounds(146, 142, 192, 21);
@@ -78,17 +78,33 @@ public class inputView extends JFrame {
 		getContentPane().add(textField_3);
 		textField_3.setColumns(10);
 		
-		JButton btnNewButton_3 = new JButton("입력");
-		btnNewButton_3.setBounds(30, 326, 394, 55);
-		getContentPane().add(btnNewButton_3);
+		JButton inputButton = new JButton("입력");
+		inputButton.setBounds(30, 326, 394, 55);
+		getContentPane().add(inputButton);
 		
-		JButton btnNewButton_1 = new JButton("전체삭제");
-		btnNewButton_1.setBounds(30, 432, 102, 60);
-		getContentPane().add(btnNewButton_1);
+		JButton deleteButton = new JButton("전체삭제");
+		deleteButton.setBounds(30, 432, 102, 60);
+		getContentPane().add(deleteButton);
 		
-		JButton btnNewButton_2 = new JButton("메인으로");
-		btnNewButton_2.setBounds(322, 432, 102, 60);
-		getContentPane().add(btnNewButton_2);
+		JButton mainButton = new JButton("메인으로");
+		mainButton.setBounds(322, 432, 102, 60);
+		getContentPane().add(mainButton);
+		mainButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				dispose();
+			}
+		});
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
+		inputView frame = new inputView();
+		frame.setVisible(true);
 	}
 
 }
