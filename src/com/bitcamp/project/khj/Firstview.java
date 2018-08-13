@@ -19,7 +19,7 @@ import java.util.List;
 import java.awt.event.ActionEvent;
 
 
-public class FirstView extends JFrame {
+public class Firstview extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField_d;
@@ -45,11 +45,11 @@ public class FirstView extends JFrame {
 	List<String> arr=dao.Cal();
 	String[] year=dao.year(arr);
 	String[] month=dao.date(arr);
-	String[] day=dao.day(arr);	
+	String[] date=dao.day(arr);
 	String[] time=dao.time();
 	String[] person=dao.Person();
 	
-	
+
 	/**
 	 * Launch the application.
 	 */
@@ -57,7 +57,7 @@ public class FirstView extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					FirstView frame = new FirstView();
+					Firstview frame = new Firstview();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -69,7 +69,7 @@ public class FirstView extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public FirstView() {
+	public Firstview() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 900, 400);
 		contentPane = new JPanel();
@@ -91,7 +91,7 @@ public class FirstView extends JFrame {
 		
 		textField_d = new JTextField();
 		GridBagConstraints gbc_textField_d = new GridBagConstraints();
-		gbc_textField_d.gridwidth = 3;
+		gbc_textField_d.gridwidth = 2;
 		gbc_textField_d.insets = new Insets(0, 0, 5, 5);
 		gbc_textField_d.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textField_d.gridx = 4;
@@ -104,6 +104,13 @@ public class FirstView extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
+		
+		JLabel label = new JLabel("\uC5ED");
+		GridBagConstraints gbc_label = new GridBagConstraints();
+		gbc_label.insets = new Insets(0, 0, 5, 5);
+		gbc_label.gridx = 6;
+		gbc_label.gridy = 3;
+		contentPane.add(label, gbc_label);
 		GridBagConstraints gbc_btnNewButton_1 = new GridBagConstraints();
 		gbc_btnNewButton_1.insets = new Insets(0, 0, 5, 5);
 		gbc_btnNewButton_1.gridx = 8;
@@ -119,7 +126,7 @@ public class FirstView extends JFrame {
 		
 		textField_a = new JTextField();
 		GridBagConstraints gbc_textField_a = new GridBagConstraints();
-		gbc_textField_a.gridwidth = 3;
+		gbc_textField_a.gridwidth = 2;
 		gbc_textField_a.insets = new Insets(0, 0, 5, 5);
 		gbc_textField_a.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textField_a.gridx = 4;
@@ -132,6 +139,13 @@ public class FirstView extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
+		
+		JLabel lblNewLabel_5 = new JLabel("\uC5ED");
+		GridBagConstraints gbc_lblNewLabel_5 = new GridBagConstraints();
+		gbc_lblNewLabel_5.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_5.gridx = 6;
+		gbc_lblNewLabel_5.gridy = 4;
+		contentPane.add(lblNewLabel_5, gbc_lblNewLabel_5);
 		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
 		gbc_btnNewButton.insets = new Insets(0, 0, 5, 5);
 		gbc_btnNewButton.gridx = 8;
@@ -146,6 +160,10 @@ public class FirstView extends JFrame {
 		contentPane.add(lblNewLabel_2, gbc_lblNewLabel_2);
 		
 		JComboBox comboBox_y = new JComboBox(year);
+		comboBox_y.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		GridBagConstraints gbc_comboBox_y = new GridBagConstraints();
 		gbc_comboBox_y.insets = new Insets(0, 0, 5, 5);
 		gbc_comboBox_y.fill = GridBagConstraints.HORIZONTAL;
@@ -154,6 +172,10 @@ public class FirstView extends JFrame {
 		contentPane.add(comboBox_y, gbc_comboBox_y);
 		
 		JComboBox comboBox_m = new JComboBox(month);
+		comboBox_m.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		GridBagConstraints gbc_comboBox_m = new GridBagConstraints();
 		gbc_comboBox_m.insets = new Insets(0, 0, 5, 5);
 		gbc_comboBox_m.fill = GridBagConstraints.HORIZONTAL;
@@ -161,7 +183,11 @@ public class FirstView extends JFrame {
 		gbc_comboBox_m.gridy = 5;
 		contentPane.add(comboBox_m, gbc_comboBox_m);
 		
-		JComboBox comboBox_d = new JComboBox(day);
+		JComboBox comboBox_d = new JComboBox(date);
+		comboBox_d.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		GridBagConstraints gbc_comboBox_d = new GridBagConstraints();
 		gbc_comboBox_d.insets = new Insets(0, 0, 5, 5);
 		gbc_comboBox_d.fill = GridBagConstraints.HORIZONTAL;
@@ -177,6 +203,10 @@ public class FirstView extends JFrame {
 		contentPane.add(lblNewLabel_3, gbc_lblNewLabel_3);
 		
 		JComboBox comboBox_t = new JComboBox(time);
+		comboBox_t.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		GridBagConstraints gbc_comboBox_t = new GridBagConstraints();
 		gbc_comboBox_t.gridwidth = 3;
 		gbc_comboBox_t.insets = new Insets(0, 0, 5, 5);
@@ -193,6 +223,10 @@ public class FirstView extends JFrame {
 		contentPane.add(lblNewLabel_4, gbc_lblNewLabel_4);
 		
 		JComboBox comboBox_p = new JComboBox(person);
+		comboBox_p.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		GridBagConstraints gbc_comboBox_p = new GridBagConstraints();
 		gbc_comboBox_p.gridwidth = 3;
 		gbc_comboBox_p.insets = new Insets(0, 0, 5, 5);

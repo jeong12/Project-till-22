@@ -6,8 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import java.awt.GridBagLayout;
 
-public class Table extends JFrame {
+public class StationTable extends JFrame {
 
 	private JPanel contentPane;
 
@@ -18,7 +19,7 @@ public class Table extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Table frame = new Table();
+					StationTable frame = new StationTable();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -30,13 +31,18 @@ public class Table extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Table() {
+	public StationTable() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		GridBagLayout gbl_contentPane = new GridBagLayout();
+		gbl_contentPane.columnWidths = new int[]{0};
+		gbl_contentPane.rowHeights = new int[]{0};
+		gbl_contentPane.columnWeights = new double[]{Double.MIN_VALUE};
+		gbl_contentPane.rowWeights = new double[]{Double.MIN_VALUE};
+		contentPane.setLayout(gbl_contentPane);
 	}
 
 }
