@@ -30,7 +30,6 @@ public class FirstDAO {
 			System.out.println(e);
 		} 
 		return conn;
-
 	}
 
 	public void close(Connection conn, PreparedStatement pst) {
@@ -38,7 +37,6 @@ public class FirstDAO {
 		if(conn!=null) try {conn.close();} catch(Exception e) {System.out.println(e);}
 
 	}
-
 
 	public List<String> Cal(){
 
@@ -60,7 +58,6 @@ public class FirstDAO {
 		}
 		return arr;
 	}
-
 
 	public String[] year(List<String> arr){
 		ArrayList<String> y=new ArrayList<>();
@@ -86,7 +83,6 @@ public class FirstDAO {
 		}
 		return year;
 	}
-
 
 	public String[] month (List<String> arr){
 		ArrayList<String> m =new ArrayList<>();
@@ -139,7 +135,6 @@ public class FirstDAO {
 
 		return day;
 	}
-
 
 	public String[]time(){
 
