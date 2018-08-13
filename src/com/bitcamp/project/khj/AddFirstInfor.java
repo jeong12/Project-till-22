@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 public class AddFirstInfor implements ActionListener{
 
 	
-	
+	//
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
