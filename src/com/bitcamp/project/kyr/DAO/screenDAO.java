@@ -106,7 +106,7 @@ public class screenDAO {
 		}
 		return result ;
 	}
-			
+		/*
 			public rent()
 			{
 				Connection conn=null;
@@ -118,7 +118,6 @@ public class screenDAO {
 				try {
 				sbl.append(str);
 				pstmt=conn.prepareStatement(sbl.toString());
-				//���� �κ��� �뿩�� ��� �ؾ����� ������ �ȵǼ� ������̶� ��� ��ž
 					
 				}catch() {
 					
@@ -137,10 +136,10 @@ public class screenDAO {
 				try {
 					sbl.append(str)
 					pstmt=conn.prepareStatement(sql);
-					//���� �κ��� �뿩�� ��� �ؾ����� ������ �ȵǼ� ������̶� ��� ��ž
 					
 				}catch() {
 					
 				}
 			}
+		*/
 		}
