@@ -43,11 +43,13 @@ public class FirstView extends JFrame {
 
 	DAO dao=new DAO();
 	List<String> arr=dao.Cal();
-	List<String> year=dao.year(arr);
-	List<String> date=dao.date(arr);
-	List<String> day=dao.day(arr);
+	String[] year=dao.year(arr);
+	String[] month=dao.date(arr);
+	String[] day=dao.day(arr);	
+	String[] time=dao.time();
+	String[] person=dao.Person();
 	
-
+	
 	/**
 	 * Launch the application.
 	 */
@@ -143,7 +145,7 @@ public class FirstView extends JFrame {
 		gbc_lblNewLabel_2.gridy = 5;
 		contentPane.add(lblNewLabel_2, gbc_lblNewLabel_2);
 		
-		JComboBox comboBox_y = new JComboBox();
+		JComboBox comboBox_y = new JComboBox(year);
 		GridBagConstraints gbc_comboBox_y = new GridBagConstraints();
 		gbc_comboBox_y.insets = new Insets(0, 0, 5, 5);
 		gbc_comboBox_y.fill = GridBagConstraints.HORIZONTAL;
@@ -151,7 +153,7 @@ public class FirstView extends JFrame {
 		gbc_comboBox_y.gridy = 5;
 		contentPane.add(comboBox_y, gbc_comboBox_y);
 		
-		JComboBox comboBox_m = new JComboBox();
+		JComboBox comboBox_m = new JComboBox(month);
 		GridBagConstraints gbc_comboBox_m = new GridBagConstraints();
 		gbc_comboBox_m.insets = new Insets(0, 0, 5, 5);
 		gbc_comboBox_m.fill = GridBagConstraints.HORIZONTAL;
@@ -159,7 +161,7 @@ public class FirstView extends JFrame {
 		gbc_comboBox_m.gridy = 5;
 		contentPane.add(comboBox_m, gbc_comboBox_m);
 		
-		JComboBox comboBox_d = new JComboBox();
+		JComboBox comboBox_d = new JComboBox(day);
 		GridBagConstraints gbc_comboBox_d = new GridBagConstraints();
 		gbc_comboBox_d.insets = new Insets(0, 0, 5, 5);
 		gbc_comboBox_d.fill = GridBagConstraints.HORIZONTAL;
@@ -174,7 +176,7 @@ public class FirstView extends JFrame {
 		gbc_lblNewLabel_3.gridy = 6;
 		contentPane.add(lblNewLabel_3, gbc_lblNewLabel_3);
 		
-		JComboBox comboBox_t = new JComboBox();
+		JComboBox comboBox_t = new JComboBox(time);
 		GridBagConstraints gbc_comboBox_t = new GridBagConstraints();
 		gbc_comboBox_t.gridwidth = 3;
 		gbc_comboBox_t.insets = new Insets(0, 0, 5, 5);
@@ -190,7 +192,7 @@ public class FirstView extends JFrame {
 		gbc_lblNewLabel_4.gridy = 7;
 		contentPane.add(lblNewLabel_4, gbc_lblNewLabel_4);
 		
-		JComboBox comboBox_p = new JComboBox();
+		JComboBox comboBox_p = new JComboBox(person);
 		GridBagConstraints gbc_comboBox_p = new GridBagConstraints();
 		gbc_comboBox_p.gridwidth = 3;
 		gbc_comboBox_p.insets = new Insets(0, 0, 5, 5);
