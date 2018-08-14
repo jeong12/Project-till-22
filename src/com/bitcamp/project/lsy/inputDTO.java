@@ -5,7 +5,7 @@ import java.sql.Date;
 public class inputDTO {
 	
 	// 필드
-	String inid;
+	String id;
 	int indate;
 	String inmeal;
 	String icode;
@@ -13,10 +13,10 @@ public class inputDTO {
 	
 	// get, set
 	public String getInid() {
-		return inid;
+		return id;
 	}
-	public void setInid(String inid) {
-		this.inid = inid;
+	public void setInid(String id) {
+		this.id = id;
 	}
 	public int getIndate() {
 		return indate;
@@ -43,8 +43,8 @@ public class inputDTO {
 		
 	}
 	
-	public inputDTO(String inid, int indate, String inmeal, String icode) {
-		this.inid = inid;
+	public inputDTO(String id, int indate, String inmeal, String icode) {
+		this.id = id;
 		this.indate = indate;
 		this.inmeal = inmeal;
 		this.icode = icode;
