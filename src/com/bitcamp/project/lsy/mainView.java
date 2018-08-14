@@ -46,12 +46,12 @@ public class mainView extends JFrame {
 		textPane.setBounds(35, 35, 389, 426);
 		contentPane.add(textPane);
 		
-		JButton inputCalButton = new JButton("ì¹¼ë¡œë¦¬ìž…ë ¥");
+		JButton inputCalButton = new JButton("Ä®·Î¸® ÀÔ·Â");
 		inputCalButton.setBounds(35, 496, 105, 60);
 		contentPane.add(inputCalButton);
 		inputCalButton.addActionListener(new inputView());
 		
-		JButton outputCalButton = new JButton("ì§€ë‚œì¹¼ë¡œë¦¬");
+		JButton outputCalButton = new JButton("Áö³­ Ä®·Î¸®");
 		outputCalButton.setBounds(319, 496, 105, 60);
 		contentPane.add(outputCalButton);
 		outputCalButton.addActionListener(new outputView());
