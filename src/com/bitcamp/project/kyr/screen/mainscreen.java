@@ -1,26 +1,13 @@
 package com.bitcamp.project.kyr.screen;
 
-import java.awt.BorderLayout;
+
 import java.awt.EventQueue;
-import java.sql.Connection;
-import java.sql.DriverManager;
-
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
-import com.bitcamp.project.kyr.screenDTO;
-import com.bitcamp.project.kyr.DAO.screenDAO;
-import java.awt.GridBagLayout;
 import javax.swing.JButton;
-import java.awt.GridBagConstraints;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.awt.Insets;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
 
-public class mainscreen extends JFrame {
+public class mainscreen extends JFrame implements ActionListener{
 
 	/**
 	 * Launch the application.
@@ -61,6 +48,12 @@ public class mainscreen extends JFrame {
 		});
 		button_2.setBounds(38, 129, 97, 23);
 		getContentPane().add(button_2);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
