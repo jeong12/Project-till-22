@@ -10,7 +10,7 @@ import java.awt.event.ActionEvent;
 public class mainscreen extends JFrame implements ActionListener{
 
 	/**
-	 *    Launch the application.
+	 *   Launch the application.
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
