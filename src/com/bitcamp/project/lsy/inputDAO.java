@@ -50,9 +50,9 @@ public class inputDAO {
 				inputDTO dto = new inputDTO();
 				
 				dto.setInid(rs.getString("inid"));
-				dto.setIndate(rs.getDate("indate"));
-				dto.setInitem(rs.getString("initem"));
+				dto.setIndate(rs.getInt("indate"));
 				dto.setInmeal(rs.getString("inmeal"));
+				dto.setIcode(rs.getString("icode"));
 				arr.add(dto);
 				
 			}
@@ -73,5 +73,33 @@ public class inputDAO {
 		
 		
 	}// end getList
-	
+		
+	public int InsertData(inputDTO dto) {
+		Connection conn = null;
+		PreparedStatement pst = null;
+		int a = 0;
+		try {
+			conn = getConnetction();
+			StringBuilder br = new StringBuilder();
+			br.append(    "     insert in to pro3_input     "    );
+			br.append(    "     value (?,?,?,?)     "    );
+			
+			pst = conn.prepareStatement(br.toString());
+			
+			pst.setString(1, dto.getInid());
+			pst.setInt(2, dto.getIndate());
+			pst.setString(3, dto.getInmeal());
+			pst.setString(4, dto.getIcode());
+			
+			a = pst.executeUpdate();
+		}catch(SQLException e) {
+			System.out.println(e);
+			
+		}finally {
+			close(conn,pst);
+		}
+		return a;
+		
+	}// end insertdata
+
 }// end class
