@@ -35,7 +35,7 @@ public class MemberDAO {
 			System.out.println(e+">>연결실패");
 		}
 	    
-	
+	  
 	}
 	
 		public void closeMethod() //닫기
@@ -55,43 +55,41 @@ public class MemberDAO {
 			{
 				System.out.println(e+">>닫기실패");
 			}
-
-			
+  
+	    
 		}//close
 		
 
-}//memberdao
+
 	
-	
-	public boolean JoinUser(memberDTO dto)
+	public void JoinUser(memberDTO dto)//가입
 	{
-		boolean ok = false;
+	
 		
 		try {
 			String sql = "insert into mydb.pro3_userinfo("+
-		                 "id,pw,name,cellphone,jumin,joindate,number"+
+		                 "id,pw,name,cellphone,jumin,"+
 					     ",age geder,height,weight)"+
-		                 "values(?,?,?,?,?,?,?,?,?,?,?)";
+		                 "values(?,?,?,?,?,?,?,?,?)";
 			
 			ps=con.prepareStatement(sql);
+			
 			ps.setString(1, dto.getId());
 			ps.setString(2, dto.getPw());
 			ps.setString(3, dto.getName());
 			ps.setString(4, dto.getCellphone());
 			ps.setString(5, dto.getJumin());
-			ps.setString(6, dto.getJoindate());
-			ps.setString(7, dto.getNumber());
 			ps.setString(8, dto.getAge());
 			ps.setString(9, dto.getGender());
 			ps.setString(10, dto.getHeight());
 			ps.setString(11, dto.getWeight());
 			
-			int r = ps.executeUpdate(sql);
+			int r = ps.executeUpdate();
 			
 			if(r>0)
 			{
 				System.out.println("가입성공");
-			    ok= true;
+			   
 			}
 			else
 			{
@@ -106,6 +104,79 @@ public class MemberDAO {
 			closeMethod();
 		}
 		
-	}
-}
+	}//joinuser
+
+
+ public void DeleteUser(memberDTO dto)//삭제
+ {
 	
+	 try { 
+		  String sql = "delete from mydb.pro3_userinfo where id=? pw=?";
+		  
+		  ps = con.prepareStatement(sql);
+		  ps.setString(1, id);
+		  ps.setString(2, pw);
+		  
+		  int r = ps.executeUpdate();
+		   
+		  if(r>0)
+		  {
+			  System.out.println("삭제되었습니다.");
+		  }
+		  else
+		  {
+			  System.out.println("다시 입력해주세요");
+		  }
+		 
+	 }catch(Exception e)
+	 {
+		 System.out.println(e+">>오류발생");
+	 }finally
+	 {
+		 closeMethod();
+	 }
+	 
+  }
+
+
+public void UpdateUser(memberDTO dto)//수정
+{
+	try {
+		String sql = "update mydb.pro3_userinfo set id=?,pw=?,name=?"+
+	                 ",cellphone=?,jumin=?,age=?,gender=?,height=?,weight=?";
+
+	   ps= con.prepareStatement(sql);
+	   ps.setString(1, dto.getId());
+	   ps.setString(2, dto.getPw());
+	   ps.setString(3, dto.getName());
+		ps.setString(4, dto.getCellphone());
+		ps.setString(5, dto.getJumin());
+		ps.setString(8, dto.getAge());
+		ps.setString(9, dto.getGender());
+		ps.setString(10, dto.getHeight());
+		ps.setString(11, dto.getWeight());
+	
+	   int r = ps.executeUpdate();
+	   
+	    if(r>0)
+	    {
+	    	System.out.println("수정 성공");
+	    }
+	    else
+	    {
+	    	System.out.println("수정 실패");
+	    }
+	      
+	  }catch(Exception e)
+	{
+		 System.out.println(e+">>오류발생");
+	}finally
+	{
+		closeMethod();
+	}
+	
+	
+ }
+ 
+ 
+}
