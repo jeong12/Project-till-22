@@ -24,7 +24,7 @@ public class insertscreen extends JFrame implements ActionListener{
 
 	/**
 	 * Launch the application.
-	 */
+	  */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
