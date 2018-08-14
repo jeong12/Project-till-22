@@ -12,6 +12,12 @@ public class FirstActionDay implements ActionListener {
 	FirstDTO fdto=new FirstDTO();
 	private JComboBox comboBox_m;
 	
+	
+	public FirstActionDay(JComboBox comboBox_d) {
+		this.comboBox_m=comboBox_m;
+	}
+
+
 	@Override
 	public void actionPerformed(ActionEvent e) {	
 		JComboBox cb = (JComboBox) e.getSource();

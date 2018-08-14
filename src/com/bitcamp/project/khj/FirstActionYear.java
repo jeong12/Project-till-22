@@ -11,6 +11,10 @@ public class FirstActionYear implements ActionListener {
 	FirstDTO fdto=new FirstDTO();
 	private JComboBox comboBox_y;
 	
+	public FirstActionYear(JComboBox comboBox_y) {
+		this.comboBox_y=comboBox_y;
+	}
+
 	@Override
 	public void actionPerformed(ActionEvent e) {	
 		JComboBox cb = (JComboBox) e.getSource();

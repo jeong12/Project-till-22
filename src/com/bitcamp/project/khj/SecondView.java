@@ -148,10 +148,10 @@ public class SecondView extends JFrame {
 		
 		
 		int y=410;		
-		String[]btname= {"a","b","c"};	
-		JRadioButton[]rb=new JRadioButton[3];
+		String[]btname= {"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21"};	
+		JRadioButton[]rb=new JRadioButton[21];
 		ButtonGroup bg=new ButtonGroup();
-		for(int i=0; i<=2;i++) {
+		for(int i=0; i<21;i++) {
 		rb[i]=new JRadioButton(btname[i]);
 		rb[i].setBounds(16, y, 860, 23);
 		bg.add(rb[i]);

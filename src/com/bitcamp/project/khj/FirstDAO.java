@@ -3,6 +3,7 @@ package com.bitcamp.project.khj;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -85,8 +86,8 @@ public class FirstDAO {
 	}
 
 	public String[] month (List<String> arr){
+		
 		ArrayList<String> m =new ArrayList<>();
-
 		String s=arr.get(0).toString().substring(4, 6);
 		int c=0;
 		int id=1;
@@ -160,10 +161,21 @@ public class FirstDAO {
 		return person;
 	}
 	
-	/*public List<ResultSet> go(FirstDTO fdto){
+	/*public List<ResultSet> show(Connection conn, FirstDTO fdto){
+		PreparedStatement pst=null;
+		ResultSet rs=null;
+		try {
+			StringBuilder sb=new StringBuilder();
+			sb.append(    "   select   " );
+			
+			
+		}catch(SQLException e) {
+			System.out.println(e);
+		}finally {
+			close(conn, pst);
 		
-		*/
-		
+		}
+	}*/
 		
 	}
 		
