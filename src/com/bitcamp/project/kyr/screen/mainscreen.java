@@ -34,16 +34,30 @@ public class mainscreen extends JFrame implements ActionListener{
 		getContentPane().setLayout(null);
 		
 		JButton button = new JButton("책 대여");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				rentscreen ren=new rentscreen();
+				ren.setVisible(true);
+			}
+		});
 		button.setBounds(38, 37, 97, 23);
 		getContentPane().add(button);
 		
 		JButton button_1 = new JButton("책 반납");
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				returnscreen ret=new returnscreen();
+				ret.setVisible(true);
+			}
+		});
 		button_1.setBounds(38, 82, 97, 23);
 		getContentPane().add(button_1);
 		
 		JButton button_2 = new JButton("책 추가");
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				insertscreen ins=new insertscreen();
+				ins.setVisible(true);
 			}
 		});
 		button_2.setBounds(38, 129, 97, 23);

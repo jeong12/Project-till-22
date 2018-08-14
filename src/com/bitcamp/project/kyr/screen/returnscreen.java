@@ -68,6 +68,12 @@ public class returnscreen extends JFrame implements ActionListener {
 		textField_1.setColumns(10);
 		
 		JButton btnNewButton_1 = new JButton("뒤로 가기");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				mainscreen mai=new mainscreen();
+				setVisible(false);
+			}
+		});
 		btnNewButton_1.setBounds(258, 97, 97, 23);
 		contentPane.add(btnNewButton_1);
 	}

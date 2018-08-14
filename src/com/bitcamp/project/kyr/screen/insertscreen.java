@@ -19,7 +19,6 @@ public class insertscreen extends JFrame implements ActionListener{
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_3;
-	private JButton button;
 	private JLabel label;
 
 	/**
@@ -69,6 +68,16 @@ public class insertscreen extends JFrame implements ActionListener{
 		btnNewButton.setBounds(337, 26, 97, 23);
 		contentPane.add(btnNewButton);
 		
+		JButton btnNewButton_1 = new JButton("뒤로 가기");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				mainscreen mai=new mainscreen();
+				setVisible(false);
+			}
+		});
+		btnNewButton_1.setBounds(337, 81, 97, 23);
+		contentPane.add(btnNewButton_1);
+		
 		textField = new JTextField();
 		textField.setBounds(0, 55, 74, 21);
 		contentPane.add(textField);
@@ -89,13 +98,10 @@ public class insertscreen extends JFrame implements ActionListener{
 		contentPane.add(textField_3);
 		textField_3.setColumns(10);
 		
-		button = new JButton("뒤로 가기");
-		button.setBounds(337, 91, 97, 23);
-		contentPane.add(button);
-		
 		label = new JLabel("yyyy-mm-dd");
 		label.setBounds(168, 10, 73, 15);
 		contentPane.add(label);
+	
 	}
 
 	@Override
@@ -103,5 +109,4 @@ public class insertscreen extends JFrame implements ActionListener{
 		// TODO Auto-generated method stub
 		
 	}
-
 }
