@@ -17,8 +17,8 @@ public class screenDAO {
 
 		String className = "com.mysql.jdbc.Driver";
 		String url = "jdbc:mysql://192.168.0.73:3306/mydb";
-		String user = "";
-		String password = "";
+		String user = "bit504";
+		String password = "bitcamp504*";
 		Connection conn = null;
 
 		try {
