@@ -5,23 +5,23 @@ import java.sql.Date;
 public class inputDTO {
 	
 	// 필드
-	String inid;
-	Date indate;
+	String id;
+	int indate;
 	String inmeal;
-	String initem;
+	String icode;
 	
 	
 	// get, set
 	public String getInid() {
-		return inid;
+		return id;
 	}
-	public void setInid(String inid) {
-		this.inid = inid;
+	public void setInid(String id) {
+		this.id = id;
 	}
-	public Date getIndate() {
+	public int getIndate() {
 		return indate;
 	}
-	public void setIndate(Date indate) {
+	public void setIndate(int indate) {
 		this.indate = indate;
 	}
 	public String getInmeal() {
@@ -30,11 +30,11 @@ public class inputDTO {
 	public void setInmeal(String inmeal) {
 		this.inmeal = inmeal;
 	}
-	public String getInitem() {
-		return initem;
+	public String getIcode() {
+		return icode;
 	}
-	public void setInitem(String initem) {
-		this.initem = initem;
+	public void setIcode(String icode) {
+		this.icode = icode;
 			
 	}
 	
@@ -43,11 +43,11 @@ public class inputDTO {
 		
 	}
 	
-	public inputDTO(String inid, Date indate, String inmeal, String initem) {
-		this.inid = inid;
+	public inputDTO(String id, int indate, String inmeal, String icode) {
+		this.id = id;
 		this.indate = indate;
 		this.inmeal = inmeal;
-		this.initem = initem;
+		this.icode = icode;
 	}
 
 }//end class

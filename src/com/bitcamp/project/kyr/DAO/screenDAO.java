@@ -17,8 +17,8 @@ public class screenDAO {
 
 		String className = "com.mysql.jdbc.Driver";
 		String url = "jdbc:mysql://192.168.0.73:3306/mydb";
-		String user = "";
-		String password = "";
+		String user = "bit504";
+		String password = "bitcamp504*";
 		Connection conn = null;
 
 		try {
@@ -106,7 +106,7 @@ public class screenDAO {
 		}
 		return result ;
 	}
-			
+		/*
 			public rent()
 			{
 				Connection conn=null;
@@ -118,7 +118,6 @@ public class screenDAO {
 				try {
 				sbl.append(str);
 				pstmt=conn.prepareStatement(sbl.toString());
-				//���� �κ��� �뿩�� ��� �ؾ����� ������ �ȵǼ� ������̶� ��� ��ž
 					
 				}catch() {
 					
@@ -137,10 +136,10 @@ public class screenDAO {
 				try {
 					sbl.append(str)
 					pstmt=conn.prepareStatement(sql);
-					//���� �κ��� �뿩�� ��� �ؾ����� ������ �ȵǼ� ������̶� ��� ��ž
 					
 				}catch() {
 					
 				}
 			}
+		*/
 		}

@@ -47,7 +47,7 @@ public class outputView extends JFrame implements ActionListener{
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel monlabel = new JLabel("ì›”ìš”ì¼");
+		JLabel monlabel = new JLabel("¿ù¿äÀÏ");
 		monlabel.setBounds(65, 38, 59, 15);
 		contentPane.add(monlabel);
 		
@@ -55,7 +55,7 @@ public class outputView extends JFrame implements ActionListener{
 		montext.setBounds(136, 35, 137, 22);
 		contentPane.add(montext);
 		
-		JLabel tuelabel = new JLabel("í™”ìš”ì¼");
+		JLabel tuelabel = new JLabel("È­¿äÀÏ");
 		tuelabel.setBounds(65, 95, 59, 15);
 		contentPane.add(tuelabel);
 		
@@ -63,7 +63,7 @@ public class outputView extends JFrame implements ActionListener{
 		tuetext.setBounds(136, 92, 137, 22);
 		contentPane.add(tuetext);
 		
-		JLabel wedlabel = new JLabel("ìˆ˜ìš”ì¼");
+		JLabel wedlabel = new JLabel("¼ö¿äÀÏ");
 		wedlabel.setBounds(65, 152, 59, 15);
 		contentPane.add(wedlabel);
 		
@@ -71,7 +71,7 @@ public class outputView extends JFrame implements ActionListener{
 		wedtext.setBounds(136, 149, 137, 22);
 		contentPane.add(wedtext);
 		
-		JLabel thulabel = new JLabel("ëª©ìš”ì¼");
+		JLabel thulabel = new JLabel("¸ñ¿äÀÏ");
 		thulabel.setBounds(65, 209, 59, 15);
 		contentPane.add(thulabel);
 		
@@ -79,7 +79,7 @@ public class outputView extends JFrame implements ActionListener{
 		thutext.setBounds(136, 206, 137, 22);
 		contentPane.add(thutext);
 		
-		JLabel frilabel = new JLabel("ê¸ˆìš”ì¼");
+		JLabel frilabel = new JLabel("±İ¿äÀÏ");
 		frilabel.setBounds(65, 266, 59, 15);
 		contentPane.add(frilabel);
 		
@@ -87,7 +87,7 @@ public class outputView extends JFrame implements ActionListener{
 		fritext.setBounds(136, 263, 137, 22);
 		contentPane.add(fritext);
 		
-		JLabel satlabel = new JLabel("í† ìš”ì¼");
+		JLabel satlabel = new JLabel("Åä¿äÀÏ");
 		satlabel.setBounds(65, 323, 59, 15);
 		contentPane.add(satlabel);
 		
@@ -95,7 +95,7 @@ public class outputView extends JFrame implements ActionListener{
 		sattext.setBounds(136, 320, 137, 22);
 		contentPane.add(sattext);
 		
-		JLabel sunlabel = new JLabel("ì¼ìš”ì¼");
+		JLabel sunlabel = new JLabel("ÀÏ¿äÀÏ");
 		sunlabel.setBounds(65, 380, 59, 15);
 		contentPane.add(sunlabel);
 		
@@ -103,7 +103,7 @@ public class outputView extends JFrame implements ActionListener{
 		suntext.setBounds(136, 377, 137, 22);
 		contentPane.add(suntext);
 		
-		JLabel avglabel = new JLabel("í‰ê·  ì„­ì·¨ì¹¼ë¡œë¦¬");
+		JLabel avglabel = new JLabel("Æò±Õ Ä®·Î¸®");
 		avglabel.setBounds(65, 439, 111, 15);
 		contentPane.add(avglabel);
 		
@@ -111,7 +111,7 @@ public class outputView extends JFrame implements ActionListener{
 		avgtext.setBounds(188, 434, 85, 26);
 		contentPane.add(avgtext);
 		
-		JButton mainButton = new JButton("ë©”ì¸ìœ¼ë¡œ");
+		JButton mainButton = new JButton("¸ŞÀÎÀ¸·Î");
 		mainButton.setBounds(315, 465, 111, 55);
 		contentPane.add(mainButton);
 		mainButton.addActionListener(new ActionListener() {

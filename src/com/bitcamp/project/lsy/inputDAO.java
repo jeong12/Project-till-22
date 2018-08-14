@@ -9,10 +9,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class inputDAO {
+	// 연결하기
 	private Connection getConnetction() {
 		
-		String className = "com.mysql.jdbc.Driver";
-		String url = "jdbc:mysql://my5509.gabiadb.com:3306/mydb";
+		String className = /*"com.mysql.jdbc.Driver"*/"com.mysql.cj.jdbc.Driver";
+		String url = "jdbc:mysql://my5509.gabiadb.com:3306/mydb?characterEncoding=UTF-8&serverTimezone=UTC";
 		String user = "bit504";
 		String password = "bitcamp504*";
 		Connection conn = null;
@@ -32,6 +33,8 @@ public class inputDAO {
 		
 	}//end getConnection
 
+	
+	// select
 	public List<inputDTO> getList(){
 		ArrayList<inputDTO> arr = new ArrayList<>();
 		Connection conn = null;
@@ -49,10 +52,10 @@ public class inputDAO {
 			while(rs.next()) {
 				inputDTO dto = new inputDTO();
 				
-				dto.setInid(rs.getString("inid"));
-				dto.setIndate(rs.getDate("indate"));
-				dto.setInitem(rs.getString("initem"));
+				dto.setInid(rs.getString("id"));
+				dto.setIndate(rs.getInt("indate"));
 				dto.setInmeal(rs.getString("inmeal"));
+				dto.setIcode(rs.getString("icode"));
 				arr.add(dto);
 				
 			}
@@ -74,4 +77,32 @@ public class inputDAO {
 		
 	}// end getList
 	
+	// insert
+	public void InsertData(inputDTO dto) {
+		Connection conn = null;
+		PreparedStatement pst = null;
+		try {
+			conn = getConnetction();
+			StringBuilder br = new StringBuilder();
+			br.append(    "     insert into pro3_input     "    );
+			br.append(    "     value (?,?,?,?)             "    );
+			
+			pst = conn.prepareStatement(br.toString());
+			
+			pst.setString(1, dto.getInid());
+			pst.setInt(2, dto.getIndate());
+			pst.setString(3, dto.getInmeal());
+			pst.setString(4, dto.getIcode());
+			
+			pst.executeUpdate();
+		}catch(SQLException e) {
+			System.out.println(e);
+			
+		}finally {
+			close(conn,pst);
+		}
+	
+		
+	}// end insertdata
+
 }// end class

@@ -42,7 +42,7 @@ public class inputView extends JFrame implements ActionListener {
 		setBounds(100, 100, 475, 600);
 		getContentPane().setLayout(null);
 		
-		JLabel morningLabel = new JLabel("ÏïÑÏπ®");
+		JLabel morningLabel = new JLabel("æ∆ƒß");
 		morningLabel.setBounds(71, 30, 40, 21);
 		getContentPane().add(morningLabel);
 		
@@ -51,7 +51,7 @@ public class inputView extends JFrame implements ActionListener {
 		getContentPane().add(textField);
 		textField.setColumns(10);
 		
-		JLabel lunchLabel = new JLabel("Ï†êÏã¨");
+		JLabel lunchLabel = new JLabel("¡°Ω…");
 		lunchLabel.setBounds(71, 86, 40, 21);
 		getContentPane().add(lunchLabel);
 		
@@ -60,33 +60,33 @@ public class inputView extends JFrame implements ActionListener {
 		getContentPane().add(textField_1);
 		textField_1.setColumns(10);
 		
-		JLabel dinnerlabel = new JLabel("Ï†ÄÎÖÅ");
-		dinnerlabel.setBounds(71, 142, 40, 21);
-		getContentPane().add(dinnerlabel);
+		JLabel dinnerLabel = new JLabel("¿˙≥·");
+		dinnerLabel.setBounds(71, 142, 40, 21);
+		getContentPane().add(dinnerLabel);
 		
 		textField_2 = new JTextField();
 		textField_2.setBounds(146, 142, 192, 21);
 		getContentPane().add(textField_2);
 		textField_2.setColumns(10);
 		
-		JLabel lblNewLabel_3 = new JLabel("Í∞ÑÏãù");
-		lblNewLabel_3.setBounds(71, 198, 40, 21);
-		getContentPane().add(lblNewLabel_3);
+		JLabel foodLabel = new JLabel("∞£Ωƒ");
+		foodLabel.setBounds(71, 198, 40, 21);
+		getContentPane().add(foodLabel);
 		
 		textField_3 = new JTextField();
 		textField_3.setBounds(146, 198, 192, 21);
 		getContentPane().add(textField_3);
 		textField_3.setColumns(10);
 		
-		JButton inputButton = new JButton("ÏûÖÎ†•");
+		JButton inputButton = new JButton("¿‘∑¬");
 		inputButton.setBounds(30, 326, 394, 55);
 		getContentPane().add(inputButton);
 		
-		JButton deleteButton = new JButton("Ï†ÑÏ≤¥ÏÇ≠Ï†ú");
+		JButton deleteButton = new JButton("√ ±‚»≠");
 		deleteButton.setBounds(30, 432, 102, 60);
 		getContentPane().add(deleteButton);
 		
-		JButton mainButton = new JButton("Î©îÏù∏ÏúºÎ°ú");
+		JButton mainButton = new JButton("∏ﬁ¿Œ¿∏∑Œ");
 		mainButton.setBounds(322, 432, 102, 60);
 		getContentPane().add(mainButton);
 		mainButton.addActionListener(new ActionListener() {
