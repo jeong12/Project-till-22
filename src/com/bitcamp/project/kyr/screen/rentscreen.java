@@ -19,7 +19,7 @@ public class rentscreen extends JFrame implements ActionListener {
 	private JTextField textField_1;
 
 	/**
-	  *  Launch the application.
+	  *   Launch the application.
 	 * /
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {

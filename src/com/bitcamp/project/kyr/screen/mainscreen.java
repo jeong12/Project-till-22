@@ -26,7 +26,7 @@ public class mainscreen extends JFrame implements ActionListener{
 	}
 
 	/**
-	 * Create the frame.
+	 *  Create the frame.
 	 */
 	public mainscreen() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

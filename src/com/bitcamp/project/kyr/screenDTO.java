@@ -9,7 +9,7 @@ public class screenDTO {
 	// 출시일과 반납예정,반납 시일 은 지금 string으로 할지 무슨타입으로 할지 고민중입니다.
 	private int member;  //회원번호
 	private String rtdate;   //반납예정일  
-	private String rdate; //반납시일
+	private String rdate; //반납시일  sysdate로 할 예정
 	public screenDTO(String bname,String publish,int bnum,String redate,int member,String rtdate
 			,String rdate)
 	{
