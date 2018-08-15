@@ -42,7 +42,7 @@ public class insertscreen extends JFrame implements ActionListener{
 	 */
 	public insertscreen() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 153);
+		setBounds(100, 100, 261, 257);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -53,19 +53,19 @@ public class insertscreen extends JFrame implements ActionListener{
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("출판사");
-		lblNewLabel_1.setBounds(93, 30, 57, 15);
+		lblNewLabel_1.setBounds(12, 65, 57, 15);
 		contentPane.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("출판일 ");
-		lblNewLabel_2.setBounds(177, 30, 57, 15);
+		lblNewLabel_2.setBounds(12, 103, 57, 15);
 		contentPane.add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_3 = new JLabel("책 번호");
-		lblNewLabel_3.setBounds(257, 30, 57, 15);
+		lblNewLabel_3.setBounds(12, 142, 57, 15);
 		contentPane.add(lblNewLabel_3);
 		
 		JButton btnNewButton = new JButton("책 추가");
-		btnNewButton.setBounds(337, 26, 97, 23);
+		btnNewButton.setBounds(12, 181, 97, 23);
 		contentPane.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("뒤로 가기");
@@ -75,31 +75,31 @@ public class insertscreen extends JFrame implements ActionListener{
 				setVisible(false);
 			}
 		});
-		btnNewButton_1.setBounds(337, 81, 97, 23);
+		btnNewButton_1.setBounds(121, 181, 97, 23);
 		contentPane.add(btnNewButton_1);
 		
 		textField = new JTextField();
-		textField.setBounds(0, 55, 74, 21);
+		textField.setBounds(100, 27, 97, 21);
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
 		textField_1 = new JTextField();
-		textField_1.setBounds(86, 55, 70, 21);
+		textField_1.setBounds(100, 100, 97, 21);
 		contentPane.add(textField_1);
 		textField_1.setColumns(10);
 		
 		textField_2 = new JTextField();
-		textField_2.setBounds(168, 55, 73, 21);
+		textField_2.setBounds(100, 62, 97, 21);
 		contentPane.add(textField_2);
 		textField_2.setColumns(10);
 		
 		textField_3 = new JTextField();
-		textField_3.setBounds(253, 55, 74, 21);
+		textField_3.setBounds(100, 139, 97, 21);
 		contentPane.add(textField_3);
 		textField_3.setColumns(10);
 		
 		label = new JLabel("yyyy-mm-dd");
-		label.setBounds(168, 10, 73, 15);
+		label.setBounds(12, 115, 73, 15);
 		contentPane.add(label);
 	
 	}

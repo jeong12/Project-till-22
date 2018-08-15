@@ -1,11 +1,13 @@
 package com.bitcamp.project.kyr.DAO;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import com.bitcamp.project.kyr.screenDTO;
 
@@ -56,7 +58,7 @@ public class screenDAO {
 		ArrayList<screenDTO> arr=new ArrayList<>();
 		ResultSet rs = null;
 		StringBuilder sql = new StringBuilder();
-		sql.append(  " select deptno, dname, loc from dept_copy " );
+		sql.append(  " select bname , publish , redate from pro3_book " );
 			
 		try {
 			pstmt = conn.prepareStatement(sql.toString());
@@ -106,40 +108,60 @@ public class screenDAO {
 		}
 		return result ;
 	}
-		/*
-			public rent()
+		
+			public int rent(screenDTO dto)
 			{
 				Connection conn=null;
 				StringBuilder sbl=new StringBuilder();
 				PreparedStatement pstmt=null;
-				
+				int result=0;
 				conn=getCon();
 				
+				Calendar Cal = Calendar.getInstance(); 
+				
+				
 				try {
-				sbl.append(str);
+				sbl.append(" INSERT INTO PRO3_RENT VALUES (?,?,Cal.add(Calendar.DATE, 7))");
 				pstmt=conn.prepareStatement(sbl.toString());
-					
-				}catch() {
-					
+				pstmt.setInt(1, dto.getBnum());
+				pstmt.setInt(2, dto.getNumber());
+				
+				sbl.append(" DELETE PRO3_BOOK WHERE BNUM = ?");
+				pstmt=conn.prepareStatement(sbl.toString());
+				pstmt.setInt(1, dto.getBnum());
+				
+				}catch(SQLException e) {
+					e.printStackTrace();
+					System.out.println("입력을 잘못하셨거나 대여할 수 있는 책이 없습니다.");
 				}
+				return result;
 			}
 			
 			
-			public retu()
+			public int retu(screenDTO dto)
 			{
 				Connection conn=null;
 				StringBuilder sbl=new StringBuilder();
 				PreparedStatement pstmt=null;
-				
+				int result=0;
 				conn=getCon();
 				
+				Calendar cal=Calendar.getInstance();
+				
 				try {
-					sbl.append(str)
-					pstmt=conn.prepareStatement(sql);
+					sbl.append(" INSERT INTO PRO3_RETU VALUES (?,?,sysdate)");
+					pstmt=conn.prepareStatement(sbl.toString());
+					pstmt.setInt(1, dto.getBnum());
+					pstmt.setInt(2, dto.getNumber());
 					
-				}catch() {
+					sbl.append(" DELETE PRO3_RENT WHERE BNUM = ?");
+					pstmt=conn.prepareStatement(sbl.toString());
+					pstmt.setInt(1, dto.getBnum());
 					
+				}catch(SQLException e) {
+					e.printStackTrace();
 				}
+				return result;
 			}
-		*/
+		
 		}

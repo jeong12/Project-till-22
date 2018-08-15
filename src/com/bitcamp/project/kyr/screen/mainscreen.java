@@ -40,7 +40,7 @@ public class mainscreen extends JFrame implements ActionListener{
 				ren.setVisible(true);
 			}
 		});
-		button.setBounds(38, 37, 97, 23);
+		button.setBounds(12, 20, 187, 62);
 		getContentPane().add(button);
 		
 		JButton button_1 = new JButton("책 반납");
@@ -50,7 +50,7 @@ public class mainscreen extends JFrame implements ActionListener{
 				ret.setVisible(true);
 			}
 		});
-		button_1.setBounds(38, 82, 97, 23);
+		button_1.setBounds(12, 82, 187, 66);
 		getContentPane().add(button_1);
 		
 		JButton button_2 = new JButton("책 추가");
@@ -60,7 +60,7 @@ public class mainscreen extends JFrame implements ActionListener{
 				ins.setVisible(true);
 			}
 		});
-		button_2.setBounds(38, 129, 97, 23);
+		button_2.setBounds(12, 145, 187, 62);
 		getContentPane().add(button_2);
 	}
 

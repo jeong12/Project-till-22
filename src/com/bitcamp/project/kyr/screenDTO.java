@@ -2,22 +2,23 @@ package com.bitcamp.project.kyr;
 
 public class screenDTO {
 
+	
 	private String bname; //책이름
 	private String publish; //출판사
 	private int bnum;  //책번호
 	private String redate;  //출시일
 	// 출시일과 반납예정,반납 시일 은 지금 string으로 할지 무슨타입으로 할지 고민중입니다.
-	private int member;  //회원번호
+	private int number;  //회원번호
 	private String rtdate;   //반납예정일  
 	private String rdate; //반납시일  sysdate로 할 예정
-	public screenDTO(String bname,String publish,int bnum,String redate,int member,String rtdate
+	public screenDTO(String bname,String publish,int bnum,String redate,int number,String rtdate
 			,String rdate)
 	{
 		this.bname=bname;
 		this.publish=publish;
 		this.bnum=bnum;
 		this.redate=redate;
-		this.member=member;
+		this.number=number;
 		this.rtdate=rtdate;
 		this.rdate=rdate;
 	}
@@ -57,12 +58,12 @@ public class screenDTO {
 		this.redate = redate;
 	}
 
-	public int getMember() {
-		return member;
+	public int getNumber() {
+		return number;
 	}
 
-	public void setMember(int member) {
-		this.member = member;
+	public void setNumber(int number) {
+		this.number = number;
 	}
 
 	public String getRtdate() {
