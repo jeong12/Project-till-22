@@ -20,8 +20,13 @@ public class MemberDAO {
     ResultSet rs = null;
     PreparedStatement ps=null;
 	
-	public MemberDAO() // 서버 연결 
-	{
+	public MemberDAO() { 
+	
+	 }
+	
+		
+		
+		public Connection getcon() {
 		try {
 			Class.forName(ClassName);
 			con = DriverManager.getConnection(url, id, pw);
@@ -34,8 +39,8 @@ public class MemberDAO {
 		{
 			System.out.println(e+">>연결실패");
 		}
+		return con;
 	    
-	  
 	}
 	
 		public void closeMethod() //닫기
@@ -60,7 +65,37 @@ public class MemberDAO {
 		}//close
 		
 
-
+    public memberDTO getmemberDTO(String id, String pw)
+    {
+    	memberDTO dto = new memberDTO();
+    	
+    	try {
+            
+            con = getcon();
+            String sql = "select * from mydb.pro3_userinfo where id=? , pw=?";
+            ps = con.prepareStatement(sql);
+            ps.setString(1, id);
+            ps.setString(2, pw);
+            
+            rs = ps.executeQuery();
+           
+            if() // 여기서 계속 에러가 나는데 이부분을 어떻게 해야할지 고민입니다
+            {
+      
+               
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }      
+       
+        return dto;    
+    }
+    	
+    }
+		
+		
+		
+		
 	
 	public void JoinUser(memberDTO dto)//가입
 	{
@@ -106,77 +141,5 @@ public class MemberDAO {
 		
 	}//joinuser
 
-
- public void DeleteUser(memberDTO dto)//삭제
- {
-	
-	 try { 
-		  String sql = "delete from mydb.pro3_userinfo where id=? pw=?";
-		  
-		  ps = con.prepareStatement(sql);
-		  ps.setString(1, id);
-		  ps.setString(2, pw);
-		  
-		  int r = ps.executeUpdate();
-		   
-		  if(r>0)
-		  {
-			  System.out.println("삭제되었습니다.");
-		  }
-		  else
-		  {
-			  System.out.println("다시 입력해주세요");
-		  }
-		 
-	 }catch(Exception e)
-	 {
-		 System.out.println(e+">>오류발생");
-	 }finally
-	 {
-		 closeMethod();
-	 }
-	 
-  }
-
-
-public void UpdateUser(memberDTO dto)//수정
-{
-	try {
-		String sql = "update mydb.pro3_userinfo set id=?,pw=?,name=?"+
-	                 ",cellphone=?,jumin=?,age=?,gender=?,height=?,weight=?";
-
-	   ps= con.prepareStatement(sql);
-	   ps.setString(1, dto.getId());
-	   ps.setString(2, dto.getPw());
-	   ps.setString(3, dto.getName());
-		ps.setString(4, dto.getCellphone());
-		ps.setString(5, dto.getJumin());
-		ps.setString(8, dto.getAge());
-		ps.setString(9, dto.getGender());
-		ps.setString(10, dto.getHeight());
-		ps.setString(11, dto.getWeight());
-	
-	   int r = ps.executeUpdate();
-	   
-	    if(r>0)
-	    {
-	    	System.out.println("수정 성공");
-	    }
-	    else
-	    {
-	    	System.out.println("수정 실패");
-	    }
-	      
-	  }catch(Exception e)
-	{
-		 System.out.println(e+">>오류발생");
-	}finally
-	{
-		closeMethod();
 	}
-	
-	
- }
  
- 
-}
