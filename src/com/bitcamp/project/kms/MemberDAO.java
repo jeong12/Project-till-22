@@ -65,7 +65,7 @@ public class MemberDAO {
 		}//close
 		
 
-    public memberDTO getmemberDTO(String id, String pw)
+  public memberDTO getmemberDTO(String id, String pw)
     {
     	memberDTO dto = new memberDTO();
     	
@@ -73,16 +73,25 @@ public class MemberDAO {
             
             con = getcon();
             String sql = "select * from mydb.pro3_userinfo where id=? , pw=?";
+     
             ps = con.prepareStatement(sql);
             ps.setString(1, id);
             ps.setString(2, pw);
             
             rs = ps.executeQuery();
            
-            if() // 여기서 계속 에러가 나는데 이부분을 어떻게 해야할지 고민입니다
+            if(rs.next()) // 여기서 계속 에러가 나는데 이부분을 어떻게 해야할지 고민입니다
             {
-      
-               
+             dto.setId(rs.getString(id));
+             dto.setPw(rs.getString(pw));
+             dto.setName(rs.getString(name));
+             dto.setCellphone(rs.getString(cellphone));
+             dto.setJumin(rs.getString(jumin));
+             dto.setAge(rs.getString(age));
+             dto.setGender(rs.getString(gender));
+             dto.setHeight(rs.getString(height));
+             dto.setWeight(rs.getString(weight));
+             
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -91,8 +100,8 @@ public class MemberDAO {
         return dto;    
     }
     	
-    }
-		
+   
+	
 		
 		
 		
