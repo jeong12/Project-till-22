@@ -11,15 +11,18 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.JTable;
+import javax.swing.JScrollPane;
 
 public class rentscreen extends JFrame implements ActionListener {
 
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;
+	private JTable table;
 
 	/**
-	  *     Launch the application.
+	  *   Launch the application.
 	 * /
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -39,37 +42,51 @@ public class rentscreen extends JFrame implements ActionListener {
 	 */
 	public rentscreen() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 380, 176);
+		setBounds(100, 100, 379, 325);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("회원 번호");
-		lblNewLabel.setBounds(43, 43, 57, 15);
-		contentPane.add(lblNewLabel);
-		
 		JLabel lblNewLabel_1 = new JLabel("책 번호");
-		lblNewLabel_1.setBounds(141, 43, 57, 15);
+		lblNewLabel_1.setBounds(27, 26, 57, 15);
 		contentPane.add(lblNewLabel_1);
 		
+		JLabel lblNewLabel = new JLabel("회원 번호");
+		lblNewLabel.setBounds(27, 51, 57, 15);
+		contentPane.add(lblNewLabel);
+		
 		textField = new JTextField();
-		textField.setBounds(27, 68, 95, 21);
+		textField.setBounds(109, 23, 95, 21);
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
 		textField_1 = new JTextField();
-		textField_1.setBounds(128, 68, 88, 21);
+		textField_1.setBounds(109, 48, 95, 21);
 		contentPane.add(textField_1);
 		textField_1.setColumns(10);
 		
 		JButton btnNewButton = new JButton("책 대여");
-		btnNewButton.setBounds(246, 39, 97, 23);
+		btnNewButton.setBounds(234, 22, 97, 23);
 		contentPane.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("뒤로 가기");
-		btnNewButton_1.setBounds(246, 91, 97, 23);
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				mainscreen mai=new mainscreen();
+				setVisible(false);
+			}
+		});
+		btnNewButton_1.setBounds(234, 47, 97, 23);
 		contentPane.add(btnNewButton_1);
+		
+		table = new JTable();
+		table.setBounds(27, 93, 269, 179);
+		contentPane.add(table);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(297, 93, 22, 179);
+		contentPane.add(scrollPane);
 	}
 
 	@Override
@@ -77,5 +94,4 @@ public class rentscreen extends JFrame implements ActionListener {
 		// TODO Auto-generated method stub
 		
 	}
-
 }

@@ -19,7 +19,7 @@ public class returnscreen extends JFrame implements ActionListener {
 	private JTextField textField_1;
 
 	/**
-	    *   Launch the application.
+	    *    Launch the application.
 	  */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -39,36 +39,42 @@ public class returnscreen extends JFrame implements ActionListener {
 	 */
 	public returnscreen() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 387, 189);
+		setBounds(100, 100, 363, 125);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("회원 번호");
-		lblNewLabel.setBounds(48, 43, 57, 15);
+		lblNewLabel.setBounds(12, 43, 57, 15);
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("책 번호");
-		lblNewLabel_1.setBounds(143, 43, 57, 15);
+		lblNewLabel_1.setBounds(12, 10, 57, 15);
 		contentPane.add(lblNewLabel_1);
 		
 		JButton btnNewButton = new JButton("책 반납");
-		btnNewButton.setBounds(258, 39, 97, 23);
+		btnNewButton.setBounds(221, 6, 97, 23);
 		contentPane.add(btnNewButton);
 		
 		textField = new JTextField();
-		textField.setBounds(29, 68, 91, 21);
+		textField.setBounds(96, 7, 91, 21);
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
 		textField_1 = new JTextField();
-		textField_1.setBounds(132, 68, 91, 21);
+		textField_1.setBounds(96, 40, 91, 21);
 		contentPane.add(textField_1);
 		textField_1.setColumns(10);
 		
 		JButton btnNewButton_1 = new JButton("뒤로 가기");
-		btnNewButton_1.setBounds(258, 97, 97, 23);
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				setVisible(false);
+			}
+		});
+		btnNewButton_1.setBounds(221, 39, 97, 23);
 		contentPane.add(btnNewButton_1);
 	}
 

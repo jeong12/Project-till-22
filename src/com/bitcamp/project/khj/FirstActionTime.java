@@ -12,9 +12,13 @@ public class FirstActionTime implements ActionListener{
 	FirstDTO fdto=new FirstDTO();
 	private JComboBox comboBox_t;
 	
+	public FirstActionTime(JComboBox comboBox_t) {
+		this.comboBox_t=comboBox_t;
+	}
+
 	@Override
 	public void actionPerformed(ActionEvent e) {	
-		JComboBox cb = (JComboBox) e.getSource();
+		JComboBox cb=(JComboBox)e.getSource();
 		int index = cb.getSelectedIndex();
 		String[]t=dao.time();
 		String time=t[index];

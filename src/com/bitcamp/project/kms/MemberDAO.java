@@ -20,8 +20,13 @@ public class MemberDAO {
     ResultSet rs = null;
     PreparedStatement ps=null;
 	
-	public MemberDAO() // 서버 연결 
-	{
+	public MemberDAO() { 
+	
+	 }
+	
+		
+		
+		public Connection getcon() {
 		try {
 			Class.forName(ClassName);
 			con = DriverManager.getConnection(url, id, pw);
@@ -34,8 +39,8 @@ public class MemberDAO {
 		{
 			System.out.println(e+">>연결실패");
 		}
+		return con;
 	    
-	
 	}
 	
 		public void closeMethod() //닫기
@@ -55,43 +60,80 @@ public class MemberDAO {
 			{
 				System.out.println(e+">>닫기실패");
 			}
-
-			
+  
+	    
 		}//close
 		
 
-}//memberdao
+  public memberDTO getmemberDTO(String id, String pw)
+    {
+    	memberDTO dto = new memberDTO();
+    	
+    	try {
+            
+            con = getcon();
+            String sql = "select * from mydb.pro3_userinfo where id=? , pw=?";
+     
+            ps = con.prepareStatement(sql);
+            ps.setString(1, id);
+            ps.setString(2, pw);
+            
+            rs = ps.executeQuery();
+           
+            /*if(rs.next()) // 여기서 계속 에러가 나는데 이부분을 어떻게 해야할지 고민입니다
+            {
+             dto.setId(rs.getString(id));
+             dto.setPw(rs.getString(pw));
+             dto.setName(rs.getString(name));
+             dto.setCellphone(rs.getString(cellphone));
+             dto.setJumin(rs.getString(jumin));
+             dto.setAge(rs.getString(age));
+             dto.setGender(rs.getString(gender));
+             dto.setHeight(rs.getString(height));
+             dto.setWeight(rs.getString(weight));
+             
+            }*/
+        } catch (Exception e) {
+            e.printStackTrace();
+        }      
+       
+        return dto;    
+    }
+    	
+   
 	
+		
+		
+		
 	
-	public boolean JoinUser(memberDTO dto)
+	public void JoinUser(memberDTO dto)//가입
 	{
-		boolean ok = false;
+	
 		
 		try {
 			String sql = "insert into mydb.pro3_userinfo("+
-		                 "id,pw,name,cellphone,jumin,joindate,number"+
+		                 "id,pw,name,cellphone,jumin,"+
 					     ",age geder,height,weight)"+
-		                 "values(?,?,?,?,?,?,?,?,?,?,?)";
+		                 "values(?,?,?,?,?,?,?,?,?)";
 			
 			ps=con.prepareStatement(sql);
+			
 			ps.setString(1, dto.getId());
 			ps.setString(2, dto.getPw());
 			ps.setString(3, dto.getName());
 			ps.setString(4, dto.getCellphone());
 			ps.setString(5, dto.getJumin());
-			ps.setString(6, dto.getJoindate());
-			ps.setString(7, dto.getNumber());
 			ps.setString(8, dto.getAge());
 			ps.setString(9, dto.getGender());
 			ps.setString(10, dto.getHeight());
 			ps.setString(11, dto.getWeight());
 			
-			int r = ps.executeUpdate(sql);
+			int r = ps.executeUpdate();
 			
 			if(r>0)
 			{
 				System.out.println("가입성공");
-			    ok= true;
+			   
 			}
 			else
 			{
@@ -106,6 +148,7 @@ public class MemberDAO {
 			closeMethod();
 		}
 		
+	}//joinuser
+
 	}
-}
-	
+ 
