@@ -117,6 +117,7 @@ public class FirstView extends JFrame {
 	 * Create the frame.
 	 */
 	public FirstView() {
+		this.setTitle("기차예약시스템인데 경부선밖에 안됨.");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 900, 400);
 		contentPane = new JPanel();
