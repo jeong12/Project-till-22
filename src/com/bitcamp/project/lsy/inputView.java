@@ -6,6 +6,8 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Iterator;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -36,6 +38,8 @@ public class inputView extends JFrame implements ActionListener {
 	 * Create the frame.
 	 */
 	public inputView() {
+	
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 475, 600);
 		getContentPane().setLayout(null);
@@ -69,9 +73,10 @@ public class inputView extends JFrame implements ActionListener {
 		mainButton.setBounds(322, 432, 102, 60);
 		getContentPane().add(mainButton);
 		
-		JComboBox morBox1 = new JComboBox();
+		JComboBox<String> morBox1 = new JComboBox();
 		morBox1.setBounds(82, 30, 82, 21);
 		getContentPane().add(morBox1);
+		
 		
 		JComboBox morBox2 = new JComboBox();
 		morBox2.setBounds(200, 30, 82, 21);
@@ -124,6 +129,26 @@ public class inputView extends JFrame implements ActionListener {
 				dispose();
 			}
 		});
+		
+		calDAO da = new calDAO();
+		calDTO dt = new calDTO();
+		
+		//
+		List<calDTO>arr = da.getList();
+		
+		String[]aname=new String[arr.size()]; 
+		for(int i=0;i<arr.size();i++) {
+			aname[i]=arr.get(i).acode;
+		}
+		
+		for(String r:aname) {
+			System.out.println(r);
+		}
+		
+		/*Iterator<calDTO> itr = arr.iterator();
+		for(int i=0; i<arr.size(); i++) {
+			morBox1.addItem(itr.next().aname);
+		}*/
 	}
 
 	@Override

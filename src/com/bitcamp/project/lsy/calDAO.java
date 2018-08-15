@@ -12,8 +12,8 @@ public class calDAO {
 
 	private Connection getConnection() {
 		
-		String className = "com.mysql.jdbc.Driver";
-		String url = "jdbc:mysql://my5509.gabiadb.com:3306/mydb";
+		String className = "com.mysql.cj.jdbc.Driver";
+		String url = "jdbc:mysql://my5509.gabiadb.com:3306/mydb?characterEncoding=UTF-8&serverTimezone=UTC";
 		String user = "bit504";
 		String password = "bitcamp504*";
 		Connection conn = null;
@@ -52,7 +52,7 @@ public class calDAO {
 			rs = pst.executeQuery();
 			while(rs.next()) {
 				calDTO dto = new calDTO();
-				dto.setAcode(rs.getNString("acode"));
+				dto.setAcode(rs.getString("acode"));
 				dto.setAname(rs.getString("aname"));
 				dto.setBcode(rs.getString("bcode"));
 				dto.setBname(rs.getString("bname"));
