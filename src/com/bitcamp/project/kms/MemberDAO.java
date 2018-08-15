@@ -80,7 +80,7 @@ public class MemberDAO {
             
             rs = ps.executeQuery();
            
-            if(rs.next()) // 여기서 계속 에러가 나는데 이부분을 어떻게 해야할지 고민입니다
+            /*if(rs.next()) // 여기서 계속 에러가 나는데 이부분을 어떻게 해야할지 고민입니다
             {
              dto.setId(rs.getString(id));
              dto.setPw(rs.getString(pw));
@@ -92,7 +92,7 @@ public class MemberDAO {
              dto.setHeight(rs.getString(height));
              dto.setWeight(rs.getString(weight));
              
-            }
+            }*/
         } catch (Exception e) {
             e.printStackTrace();
         }      
