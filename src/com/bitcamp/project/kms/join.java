@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.AbstractButton;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JRadioButton;
@@ -25,6 +26,8 @@ public class join extends JFrame {
 	private JTextField textField_5;
 	private JTextField textField_6;
 	private JTextField textField_7;
+	private JRadioButton rdbtnNewRadioButton;
+	private JRadioButton rdbtnNewRadioButton_1;
 
 	/**
 	 * Launch the application.
@@ -69,16 +72,7 @@ public class join extends JFrame {
 		lblNewLabel_1.setBounds(33, 182, 64, 15);
 		contentPane.add(lblNewLabel_1);
 		
-		JButton btnNewButton = new JButton("가입");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-			}
 
-		
-		});
-		btnNewButton.setBounds(33, 455, 97, 23);
-		contentPane.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("뒤로가기");
 		btnNewButton_1.addActionListener(new ActionListener() {
@@ -158,6 +152,34 @@ public class join extends JFrame {
 		lblNewLabel_2.setBounds(33, 393, 57, 15);
 		contentPane.add(lblNewLabel_2);
 		
+		JButton btnNewButton = new JButton("가입");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MemberDAO dao = new MemberDAO();
+				memberDTO dto = new memberDTO();
+				
+				dto.setId(textField.getText());
+				dto.setPw(textField_1.getText());
+				dto.setName(textField_2.getText());
+				dto.setCellphone(textField_3.getText());
+			dto.setJumin(Integer.parseInt(textField_4.getText()));
+				dto.setAge(Integer.parseInt(textField_5.getText()));
+				dto.setHeight(Integer.parseInt(textField_6.getText()));
+				dto.setWeight(Integer.parseInt(textField_7.getText()));
+			   dto.setGender("");
+		/*    if(rdbtnNewRadioButton.isSelected()){
+		             dto.setGender("M");
+		        }else if(rdbtnNewRadioButton_1.isSelected()){
+		             dto.setGender("W");
+		        }
+				*/ //여기서 에러
+				 dao.JoinUser(dto);
+			}
+
+		
+		});
+		btnNewButton.setBounds(33, 455, 97, 23);
+		contentPane.add(btnNewButton);
 		
 	}
 }
