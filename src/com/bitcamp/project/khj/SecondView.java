@@ -162,6 +162,8 @@ public class SecondView extends JFrame {
 				fdto.setTime(rtime);
 				System.out.println(fdto.getTime());}
 			});
+		contentPane.add(comboBox_t);
+		
 		
 		JLabel lblNewLabel_4 = new JLabel("\uC778\uC6D0");
 		lblNewLabel_4.setBounds(76, 294, 57, 15);
@@ -178,6 +180,7 @@ public class SecondView extends JFrame {
 			fdto.setPerson(personnel);
 			System.out.println(fdto.getPerson());}
 		});
+		contentPane.add(comboBox_p);
 		
 		JButton btnNewButton_g = new JButton("\uAC80\uC0C9");
 		btnNewButton_g.setBounds(446, 290, 97, 23);

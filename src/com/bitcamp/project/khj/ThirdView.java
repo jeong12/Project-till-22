@@ -55,7 +55,7 @@ public class ThirdView extends JFrame {
 		contentPane.add(lblNewLabel);
 		
 		JButton btnNewButton = new JButton("\uC608\uC57D\uD558\uAE30");
-		btnNewButton.setBounds(400,300, 97, 23);
+		btnNewButton.setBounds(463, 365, 97, 23);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
