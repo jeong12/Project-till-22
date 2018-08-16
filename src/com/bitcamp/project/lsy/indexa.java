@@ -45,13 +45,13 @@ private Connection getConnection() {
 			try {
 				conn = getConnection();
 				StringBuilder sql = new StringBuilder();
-				sql.append(    "  select acode  "    );
+				sql.append(    "  select aname  "    );
 				sql.append(    "  from pro3_objecta   "    );
 				
 				pst = conn.prepareStatement(sql.toString());
 				rs = pst.executeQuery();
 				while(rs.next()) {
-					arr.add(rs.getString("acode"));
+					arr.add(rs.getString("aname"));
 				}
 				int size= arr.size();
 				arr1 = new String[size];
