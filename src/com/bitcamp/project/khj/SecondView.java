@@ -262,7 +262,7 @@ public class SecondView extends JFrame {
 					fdto.setResult(st);
 					}
 						
-				}
+				}//
 				ThirdView tv=new ThirdView(fdto);
 				tv.setVisible(true);
 			}
