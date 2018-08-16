@@ -6,6 +6,10 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import com.bitcamp.project.kms.main2;
+import com.bitcamp.project.kyr.screen.returnscreen;
+
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
 import java.awt.GridBagConstraints;
@@ -21,80 +25,24 @@ import java.awt.event.ActionEvent;
 
 public class FirstView extends JFrame {
 
-	private JPanel contentPane;
-	private JTextField textField_d;
-	private JTextField textField_a;
-	private JComboBox comboBox_t;
-	private JComboBox comboBox_p;
-	private JComboBox comboBox_d;
-	private JComboBox comboBox_y;
-	private JComboBox comboBox_m;
+	JPanel contentPane;
+	JTextField textField_d;
+	JTextField textField_a;
+	JComboBox comboBox_t;
+	JComboBox comboBox_p;
+	JComboBox comboBox_d;
+	JComboBox comboBox_y;
+	JComboBox comboBox_m;
 	
+	FirstCal fc=new FirstCal();
+	FirstDTO fdto=new FirstDTO();
+	List<String> arr=fc.Cal();
+	String[] year=fc.year(arr);
+	String[] month=fc.month(arr);
+	String[] date=fc.day(arr);
+	String[] time=fc.time();
+	String[] person=fc.Person();
 	
-	
-	public JComboBox getComboBox_t() {
-		return comboBox_t;
-	}
-
-	public void setComboBox_t(JComboBox comboBox_t) {
-		this.comboBox_t = comboBox_t;
-	}
-
-	public JComboBox getComboBox_d() {
-		return comboBox_d;
-	}
-
-	public void setComboBox_d(JComboBox comboBox_d) {
-		this.comboBox_d = comboBox_d;
-	}
-
-	public JComboBox getComboBox_y() {
-		return comboBox_y;
-	}
-
-	public void setComboBox_y(JComboBox comboBox_y) {
-		this.comboBox_y = comboBox_y;
-	}
-
-	public JComboBox getComboBox_m() {
-		return comboBox_m;
-	}
-
-	public void setComboBox_m(JComboBox comboBox_m) {
-		this.comboBox_m = comboBox_m;
-	}
-
-	public JComboBox getComboBox_p() {
-		return comboBox_p;
-	}
-
-	public void setComboBox_p(JComboBox comboBox_p) {
-		this.comboBox_p = comboBox_p;
-	}
-
-	public JTextField getTextField_d() {
-		return textField_d;
-	}
-
-	public void setTextField_d(JTextField textField_d) {
-		this.textField_d = textField_d;
-	}
-
-	public JTextField getTextField_a() {
-		return textField_a;
-	}
-
-	public void setTextField_a(JTextField textField_a) {
-		this.textField_a = textField_a;
-	}
-
-	FirstDAO dao=new FirstDAO();
-	List<String> arr=dao.Cal();
-	String[] year=dao.year(arr);
-	String[] month=dao.month(arr);
-	String[] date=dao.day(arr);
-	String[] time=dao.time();
-	String[] person=dao.Person();
 	
 
 	/**
@@ -157,17 +105,46 @@ public class FirstView extends JFrame {
 		
 		JComboBox comboBox_y = new JComboBox(year);
 		comboBox_y.setBounds(196, 155, 65, 21);
-		comboBox_y.addActionListener(new FirstActionYear(comboBox_y));
+		comboBox_y.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JComboBox cb = (JComboBox) e.getSource();
+				int index = cb.getSelectedIndex();
+				List<String> arr=fc.Cal();
+				String[]y=fc.year(arr);
+				String year=y[index];
+				fdto.setYear(year);	
+				System.out.println(year);}
+		});
 		contentPane.add(comboBox_y);
+		
+		
 		
 		JComboBox comboBox_m = new JComboBox(month);
 		comboBox_m.setBounds(277, 155, 128, 21);
-		comboBox_m.addActionListener(new FirstActionMonth(comboBox_m));
+		comboBox_m.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JComboBox cb = (JComboBox) e.getSource();
+				int index = cb.getSelectedIndex();
+				List<String> arr=fc.Cal();
+				String[]m=fc.month(arr);
+				String month=m[index];
+				fdto.setMonth(month);
+				System.out.println(fdto.getMonth());}
+		});
 		contentPane.add(comboBox_m);
 		
 		JComboBox comboBox_d = new JComboBox(date);
 		comboBox_d.setBounds(417, 155, 53, 21);
-		comboBox_d.addActionListener(new FirstActionDay(comboBox_d));
+		comboBox_d.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {	
+				JComboBox cb = (JComboBox) e.getSource();
+				int index = cb.getSelectedIndex();
+				List<String> arr=fc.Cal();
+				String[]date=fc.day(arr);
+				String d=date[index];
+				fdto.setDate(d);
+				System.out.println(fdto.getDate());}
+		});
 		contentPane.add(comboBox_d);
 		
 		JLabel lblNewLabel_3 = new JLabel("\uCD9C\uBC1C\uC2DC\uAC04");
@@ -176,7 +153,16 @@ public class FirstView extends JFrame {
 		
 		JComboBox comboBox_t = new JComboBox(time);
 		comboBox_t.setBounds(198, 204, 256, 21);
-		comboBox_t.addActionListener(new FirstActionTime(comboBox_t));
+		comboBox_t.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {	
+				JComboBox cb=(JComboBox)e.getSource();
+				int index = cb.getSelectedIndex();
+				String[]t=fc.time();
+				String time=t[index];
+				String rtime=time.substring(0, 1)+":00:00";
+				fdto.setTime(rtime);
+				System.out.println(fdto.getTime());}
+			});
 		contentPane.add(comboBox_t);
 		
 		JLabel lblNewLabel_4 = new JLabel("\uC778\uC6D0");
@@ -185,13 +171,37 @@ public class FirstView extends JFrame {
 		
 		JComboBox comboBox_p = new JComboBox(person);
 		comboBox_p.setBounds(196, 248, 256, 21);
-		comboBox_p.addActionListener(new FirstActionPerson(comboBox_p));
+		comboBox_p.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {				
+			JComboBox cb = (JComboBox) e.getSource();
+			int index = cb.getSelectedIndex();
+			String[]person=fc.Person();
+			String personnel=person[index];
+			fdto.setPerson(personnel);
+			System.out.println(fdto.getPerson());}
+		});
 		contentPane.add(comboBox_p);
+		
 		
 		JButton btnNewButton_g = new JButton("\uC608\uC57D\uD558\uAE30");
 		btnNewButton_g.setBounds(264, 300, 113, 23);
-		btnNewButton_g.addActionListener(new FirstActionGoto(textField_d,textField_a));
+		btnNewButton_g.addActionListener(new ActionListener() {		
+		public void actionPerformed(ActionEvent e) {			
+			String ds=textField_d.getText();
+			fdto.setDs(ds);
+			String as=textField_a.getText();
+			fdto.setAs(as);
+			System.out.println(fdto.getDs());
+			System.out.println(fdto.getAs());
+			
+			SecondView sc=new SecondView(fdto);
+			sc.setVisible(true);
+			
+		}
+			
+		});				
 		contentPane.add(btnNewButton_g);
-	}
+		
 
+	}
 }
