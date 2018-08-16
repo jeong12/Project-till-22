@@ -9,6 +9,18 @@ public class FirstDTO {
 	private String date;
 	private String time;
 	private String person;
+	private String result;
+	
+	public String getResult() {
+		return result;
+	}
+	public void setResult(String result) {
+		this.result = result;
+	}
+	public FirstDTO() {
+		
+		
+	}
 	public String getDs() {
 		return ds;
 	}
@@ -51,8 +63,5 @@ public class FirstDTO {
 	public void setPerson(String person) {
 		this.person = person;
 	}
-	
-	
-	
-	
+
 }
