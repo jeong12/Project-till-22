@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import com.mysql.cj.x.protobuf.MysqlxConnection.Close;
+
 public class indexb {
 	
 	private Connection getConnection() {
@@ -47,7 +49,7 @@ public class indexb {
 		    sql.append(    "  where  a.acode = b.acode   "      );
 		    sql.append(    "  aname = ?   "      );
 		    pst = conn.prepareStatement(sql.toString());
-		    pst.setString(1, );
+		    pst.setString(1, "getListobb()");
 		    rs = pst.executeQuery();
 		    
 		    while(rs.next()) {
@@ -64,9 +66,11 @@ public class indexb {
 			System.out.println(e);
 			
 		}finally {
-			if(rs!=null) try {rs.close();} catch(SQLException e)
+			if(rs!=null) try {rs.close();} catch(SQLException e) {}
+			Close(conn,pst);
 			
 		}
+		return arr1;
 		
 	}
 
