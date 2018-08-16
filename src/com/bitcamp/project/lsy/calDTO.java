@@ -2,13 +2,13 @@ package com.bitcamp.project.lsy;
 
 public class calDTO {
 	//ÇÊµå
-	String acode ;
-	String aname;
-	String bcode;
-	String bname;
-	String icode;
-	String iname;
-	int kcal;
+	private String acode ;
+	private String aname;
+	private String bcode;
+	private String bname;
+	private String icode;
+	private String iname;
+	private int kcal;
 	
 	
 	//get, set

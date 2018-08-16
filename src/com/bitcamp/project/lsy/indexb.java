@@ -7,8 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import com.mysql.cj.x.protobuf.MysqlxConnection.Close;
-
 public class indexb {
 	
 	private Connection getConnection() {
@@ -34,7 +32,8 @@ public class indexb {
 	}// end getConnection
 	
 	// 소분류 연결하기
-	public String[] getListobb() {
+	public String[] getListobb(String str) {
+		
 		ArrayList<String> arr = new ArrayList<>();
 		Connection conn = null;
 		PreparedStatement pst = null;
@@ -47,9 +46,9 @@ public class indexb {
 			sql.append(    "  select  bname   "      );
 			sql.append(    "  from  pro3_objecta a, pro3_objectb b   "      );
 		    sql.append(    "  where  a.acode = b.acode   "      );
-		    sql.append(    "  aname = ?   "      );
+		    sql.append(    "  and aname = ?   "      );
 		    pst = conn.prepareStatement(sql.toString());
-		    pst.setString(1, "getListobb()");
+		    pst.setString(1,str);
 		    rs = pst.executeQuery();
 		    
 		    while(rs.next()) {
@@ -61,17 +60,22 @@ public class indexb {
 		    for(int i=0; i<size; i++) {
 		    	arr1[i] = arr.get(i);
 		    }
+		    System.out.println(arr1);
 		
 		}catch(SQLException e){
 			System.out.println(e);
 			
 		}finally {
 			if(rs!=null) try {rs.close();} catch(SQLException e) {}
-			Close(conn,pst);
+			close(conn,pst);
 			
 		}
 		return arr1;
 		
+	}
+	private void close(Connection conn, PreparedStatement pst) {
+		if(pst!=null) try {pst.close();} catch(SQLException e) {}
+		if(conn!=null) try {conn.close();} catch(SQLException e) {}
 	}
 
 }

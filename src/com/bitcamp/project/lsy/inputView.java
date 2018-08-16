@@ -1,23 +1,14 @@
 package com.bitcamp.project.lsy;
 
 import java.awt.EventQueue;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JTextField;
-
-import com.bitcamp.project.khj.FirstActionDay;
-
-import javax.swing.JList;
-import javax.swing.JComboBox;
 
 public class inputView extends JFrame implements ActionListener {
 
@@ -40,8 +31,11 @@ public class inputView extends JFrame implements ActionListener {
 	/**
 	 * Create the frame.
 	 */
+	
 	public inputView() {
 		indexa ina = new indexa();
+		indexb inb = new indexb();
+		
 	
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -77,13 +71,34 @@ public class inputView extends JFrame implements ActionListener {
 		mainButton.setBounds(322, 432, 102, 60);
 		getContentPane().add(mainButton);
 		
-		JComboBox<String> morBox1 = new JComboBox(ina.getListoba());
+		JComboBox morBox1 = new JComboBox(ina.getListoba());
 		morBox1.setBounds(82, 30, 82, 21);
-		getContentPane().add(morBox1);
+		calDTO dto = new calDTO();
 		
 		JComboBox morBox2 = new JComboBox();
 		morBox2.setBounds(200, 30, 82, 21);
 		getContentPane().add(morBox2);
+		
+		morBox1.addActionListener(new ActionListener() {
+	         public void actionPerformed(ActionEvent e) {
+	            
+	        	JComboBox cb = (JComboBox) e.getSource();
+	        	String aname = (String)cb.getSelectedItem();
+	        	 dto.setAname(aname);
+	        	 
+	        	 morBox2.removeAllItems();
+	        	 String[] subList = inb.getListobb(aname);
+	        	 for (String subItem : subList) {
+	        		 morBox2.addItem(subItem);
+	        	 }
+	         }
+	      });
+		
+		getContentPane().add(morBox1);
+		
+		
+		
+		
 		
 		JComboBox morBox3 = new JComboBox();
 		morBox3.setBounds(322, 30, 82, 21);
@@ -133,6 +148,7 @@ public class inputView extends JFrame implements ActionListener {
 			}
 		});
 	}
+	
 		
 //		calDAO da = new calDAO();
 //		calDTO dt = new calDTO();
