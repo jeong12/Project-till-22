@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class inputDAO {
-	// 연결하기
+	// �Է�â
 	private Connection getConnetction() {
 		
 		String className = /*"com.mysql.jdbc.Driver"*/"com.mysql.cj.jdbc.Driver";

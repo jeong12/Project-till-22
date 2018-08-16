@@ -1,7 +1,7 @@
 package com.bitcamp.project.lsy;
 
 public class calDTO {
-	//í•„ë“œ
+	//ÇÊµå
 	String acode ;
 	String aname;
 	String bcode;
@@ -55,7 +55,7 @@ public class calDTO {
 		this.kcal = kcal;
 	}
 	
-	// ìƒì„±ì
+	//»ı¼ºÀÚ
 	
 	public calDTO(String acode, String aname, String bcode, String bname, String icode, String iname, int kcal) {
 		super();

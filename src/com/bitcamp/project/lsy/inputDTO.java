@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class inputDTO {
 	
-	// í•„ë“œ
+	// ÇÊµå
 	String id;
 	int indate;
 	String inmeal;
@@ -38,7 +38,7 @@ public class inputDTO {
 			
 	}
 	
-	// ìƒì„±ì
+	// »ı¼ºÀÚ
 	public inputDTO(){
 		
 	}
@@ -51,3 +51,4 @@ public class inputDTO {
 	}
 
 }//end class
+
