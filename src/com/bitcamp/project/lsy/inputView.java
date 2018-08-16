@@ -13,6 +13,9 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+
+import com.bitcamp.project.khj.FirstActionDay;
+
 import javax.swing.JList;
 import javax.swing.JComboBox;
 
@@ -38,6 +41,7 @@ public class inputView extends JFrame implements ActionListener {
 	 * Create the frame.
 	 */
 	public inputView() {
+		indexa ina = new indexa();
 	
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -73,10 +77,9 @@ public class inputView extends JFrame implements ActionListener {
 		mainButton.setBounds(322, 432, 102, 60);
 		getContentPane().add(mainButton);
 		
-		JComboBox<String> morBox1 = new JComboBox();
+		JComboBox<String> morBox1 = new JComboBox(ina.getListoba());
 		morBox1.setBounds(82, 30, 82, 21);
 		getContentPane().add(morBox1);
-		
 		
 		JComboBox morBox2 = new JComboBox();
 		morBox2.setBounds(200, 30, 82, 21);
@@ -86,7 +89,7 @@ public class inputView extends JFrame implements ActionListener {
 		morBox3.setBounds(322, 30, 82, 21);
 		getContentPane().add(morBox3);
 		
-		JComboBox lunBox1 = new JComboBox();
+		JComboBox lunBox1 = new JComboBox(ina.getListoba());
 		lunBox1.setBounds(82, 86, 82, 21);
 		getContentPane().add(lunBox1);
 		
@@ -98,7 +101,7 @@ public class inputView extends JFrame implements ActionListener {
 		lunBox3.setBounds(322, 86, 82, 21);
 		getContentPane().add(lunBox3);
 		
-		JComboBox diBox1 = new JComboBox();
+		JComboBox diBox1 = new JComboBox(ina.getListoba());
 		diBox1.setBounds(82, 142, 82, 21);
 		getContentPane().add(diBox1);
 		
@@ -110,7 +113,7 @@ public class inputView extends JFrame implements ActionListener {
 		diBox3.setBounds(322, 142, 82, 21);
 		getContentPane().add(diBox3);
 		
-		JComboBox foodBox1 = new JComboBox();
+		JComboBox foodBox1 = new JComboBox(ina.getListoba());
 		foodBox1.setBounds(82, 198, 82, 21);
 		getContentPane().add(foodBox1);
 		
@@ -129,27 +132,28 @@ public class inputView extends JFrame implements ActionListener {
 				dispose();
 			}
 		});
+	}
 		
-		calDAO da = new calDAO();
-		calDTO dt = new calDTO();
+//		calDAO da = new calDAO();
+//		calDTO dt = new calDTO();
 		
 		//
-		List<calDTO>arr = da.getList();
+//		List<calDTO>arr = da.getList();
 		
-		String[]aname=new String[arr.size()]; 
-		for(int i=0;i<arr.size();i++) {
-			aname[i]=arr.get(i).acode;
-		}
-		
-		for(String r:aname) {
-			System.out.println(r);
-		}
-		
-		/*Iterator<calDTO> itr = arr.iterator();
-		for(int i=0; i<arr.size(); i++) {
-			morBox1.addItem(itr.next().aname);
-		}*/
-	}
+//		String[]aname=new String[arr.size()]; 
+//		for(int i=0;i<arr.size();i++) {
+//			aname[i]=arr.get(i).acode;
+//		}
+//		
+//		for(String r:aname) {
+//			System.out.println(r);
+//		}
+//		
+//		Iterator<calDTO> itr = arr.iterator();
+//		for(int i=0; i<arr.size(); i++) {
+//			morBox1.addItem(itr.next().aname);
+//		}
+//	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
