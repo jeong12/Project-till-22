@@ -243,7 +243,7 @@ public class SecondView extends JFrame {
 		bg.add(rb[i]);
 		contentPane.add(rb[i]);
 		y+=21;}
-		
+		//
 		JButton button = new JButton("\uC608\uC57D\uD558\uAE30");
 		button.setBounds(775, 828, 97, 23);
 		button.addActionListener(new ActionListener() {		
