@@ -1,23 +1,25 @@
 package com.bitcamp.project.kms;
 
+
+
 public class memberDTO {
 	
-	   private String id;
+	    private String id;
 	    private String pw;
 	    private String name;
 	    private String cellphone;
-	    private String jumin;
+	    private int jumin;
 	    private String joindate;
-	    private String number;
-	    private String age;
+	    private int number;
+	    private int age;
 	    private String gender;
-	    private String height;
-	    private String weight;
+	    private int height;
+	    private int weight;
         private String keepdate;
         private String wdldate;
         private String ajdate;
         private String block;
-       
+		
         
         public String getId() {
 			return id;
@@ -43,10 +45,10 @@ public class memberDTO {
 		public void setCellphone(String cellphone) {
 			this.cellphone = cellphone;
 		}
-		public String getJumin() {
+		public int getJumin() {
 			return jumin;
 		}
-		public void setJumin(String jumin) {
+		public void setJumin(int jumin) {
 			this.jumin = jumin;
 		}
 		public String getJoindate() {
@@ -55,16 +57,16 @@ public class memberDTO {
 		public void setJoindate(String joindate) {
 			this.joindate = joindate;
 		}
-		public String getNumber() {
+		public int getNumber() {
 			return number;
 		}
-		public void setNumber(String number) {
+		public void setNumber(int number) {
 			this.number = number;
 		}
-		public String getAge() {
+		public int getAge() {
 			return age;
 		}
-		public void setAge(String age) {
+		public void setAge(int age) {
 			this.age = age;
 		}
 		public String getGender() {
@@ -73,16 +75,16 @@ public class memberDTO {
 		public void setGender(String gender) {
 			this.gender = gender;
 		}
-		public String getHeight() {
+		public int getHeight() {
 			return height;
 		}
-		public void setHeight(String height) {
+		public void setHeight(int height) {
 			this.height = height;
 		}
-		public String getWeight() {
+		public int getWeight() {
 			return weight;
 		}
-		public void setWeight(String weight) {
+		public void setWeight(int weight) {
 			this.weight = weight;
 		}
 		public String getKeepdate() {
@@ -116,5 +118,11 @@ public class memberDTO {
 					+ ", height=" + height + ", weight=" + weight + ", keepdate=" + keepdate + ", wdldate=" + wdldate
 					+ ", ajdate=" + ajdate + ", block=" + block + "]";
 		}
-
+		
+	
+    public memberDTO()
+    {
+	  
+    }
+        
 }
