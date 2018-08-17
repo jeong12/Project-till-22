@@ -8,7 +8,7 @@ public class memberDTO {
 	    private String pw;
 	    private String name;
 	    private String cellphone;
-	    private int jumin;
+	    private String jumin;
 	    private String joindate;
 	    private int number;
 	    private int age;
@@ -45,10 +45,10 @@ public class memberDTO {
 		public void setCellphone(String cellphone) {
 			this.cellphone = cellphone;
 		}
-		public int getJumin() {
+		public String getJumin() {
 			return jumin;
 		}
-		public void setJumin(int jumin) {
+		public void setJumin(String jumin) {
 			this.jumin = jumin;
 		}
 		public String getJoindate() {
