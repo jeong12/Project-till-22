@@ -26,7 +26,7 @@ import javax.swing.JScrollPane;
 import java.awt.BorderLayout;
 
 public class rentscreen extends JFrame implements ActionListener {
-/*	public static void main(String[] args) {
+	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -37,7 +37,7 @@ public class rentscreen extends JFrame implements ActionListener {
 				}
 			}
 		});
-	}*/
+	}
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;
