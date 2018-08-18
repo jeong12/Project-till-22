@@ -5,7 +5,7 @@ public class screenDTO {
 	
 	private String bname; //책이름
 	private String publish; //출판사
-	private int bnum;  //책번호
+	private float bnum;  //책번호
 	private String redate;  //출시일
 	// 출시일과 반납예정,반납 시일 은 지금 string으로 할지 무슨타입으로 할지 고민중입니다.
 	private int number;  //회원번호
@@ -42,11 +42,11 @@ public class screenDTO {
 		this.publish = publish;
 	}
 
-	public int getBnum() {
+	public float getBnum() {
 		return bnum;
 	}
 
-	public void setBnum(int bnum) {
+	public void setBnum(float bnum) {
 		this.bnum = bnum;
 	}
 

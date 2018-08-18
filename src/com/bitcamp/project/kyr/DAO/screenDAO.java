@@ -1,7 +1,6 @@
 package com.bitcamp.project.kyr.DAO;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,16 +8,17 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+
+import javax.swing.JOptionPane;
+
 import com.bitcamp.project.kyr.screenDTO;
 
-
 public class screenDAO {
-
 
 	private Connection getCon() {
 
 		String className = "com.mysql.jdbc.Driver";
-		String url = "jdbc:mysql://192.168.0.73:3306/mydb";
+		String url = "jdbc:mysql://my5509.gabiadb.com:3306/mydb?characterEncoding=UTF-8&serverTimezone=UTC";
 		String user = "bit504";
 		String password = "bitcamp504*";
 		Connection conn = null;
@@ -30,9 +30,7 @@ public class screenDAO {
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
-
 		return conn;
-
 	}
 	private void close(Connection conn, PreparedStatement pstmt) {
 		if(pstmt!=null) {
@@ -41,7 +39,6 @@ public class screenDAO {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-				
 		}
 		if(conn != null) {
 			try {
@@ -58,7 +55,7 @@ public class screenDAO {
 		ArrayList<screenDTO> arr=new ArrayList<>();
 		ResultSet rs = null;
 		StringBuilder sql = new StringBuilder();
-		sql.append(  " select bname , publish , redate from pro3_book " );
+		sql.append(  " select bname , publish , redate , bnum from pro3_book " );
 			
 		try {
 			pstmt = conn.prepareStatement(sql.toString());
@@ -68,6 +65,7 @@ public class screenDAO {
 				dto.setBname(rs.getString("bname"));
 				dto.setPublish(rs.getString("publish"));
 				dto.setRedate(rs.getString("redate"));
+				dto.setBnum(rs.getInt("bnum"));
 				arr.add(dto);
 			}
 		} catch (SQLException e) {
@@ -84,31 +82,28 @@ public class screenDAO {
 		}
 		return arr;
 	}
-	
-	public int insert(screenDTO dto)
+	public void insert(screenDTO dto)
 	{
 		Connection conn=null;
 		PreparedStatement pstmt=null;
 		StringBuilder sbl=new StringBuilder();
 		conn= getCon();
-		int result=0;
 		try {
-			sbl.append(" INSERT INTO PRO3_BOOK VALUES (?,?,?,?) ");
+			sbl.append(" insert into pro3_book values (?,?,?,?) ");
 			pstmt=conn.prepareStatement(sbl.toString());
 			pstmt.setString(1 , dto.getBname());
 			pstmt.setString(2 , dto.getPublish());
 			pstmt.setString(3 , dto.getRedate());
-			pstmt.setInt(4 , dto.getBnum());
-			result=pstmt.executeUpdate();
+			pstmt.setFloat(4 , dto.getBnum());
+			pstmt.executeUpdate();
 		}catch(SQLException e)
 		{
 			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "입력 형식에 맞지 않습니다.");
 		}finally {
 		close(conn,pstmt);
 		}
-		return result ;
 	}
-		
 			public int rent(screenDTO dto)
 			{
 				Connection conn=null;
@@ -119,24 +114,24 @@ public class screenDAO {
 				
 				Calendar Cal = Calendar.getInstance(); 
 				
-				
 				try {
-				sbl.append(" INSERT INTO PRO3_RENT VALUES (?,?,Cal.add(Calendar.DATE, 7))");
+				sbl.append(" insert into pro3_rent values (?,?,Cal.add(Calendar.DATE, 7))");
 				pstmt=conn.prepareStatement(sbl.toString());
-				pstmt.setInt(1, dto.getBnum());
+				pstmt.setFloat(1, dto.getBnum());
 				pstmt.setInt(2, dto.getNumber());
 				
-				sbl.append(" DELETE PRO3_BOOK WHERE BNUM = ?");
+				sbl.append(" delete pro3_rent where bnum = ?");
 				pstmt=conn.prepareStatement(sbl.toString());
-				pstmt.setInt(1, dto.getBnum());
+				pstmt.setFloat(1, dto.getBnum());
 				
 				}catch(SQLException e) {
 					e.printStackTrace();
-					System.out.println("입력을 잘못하셨거나 대여할 수 있는 책이 없습니다.");
+					JOptionPane.showMessageDialog(null, "입력을 잘못하셨거나 대여할 수 있는 책이 없습니다.");
+				}finally {
+					close(conn,pstmt);
 				}
 				return result;
 			}
-			
 			
 			public int retu(screenDTO dto)
 			{
@@ -149,19 +144,20 @@ public class screenDAO {
 				Calendar cal=Calendar.getInstance();
 				
 				try {
-					sbl.append(" INSERT INTO PRO3_RETU VALUES (?,?,sysdate)");
+					sbl.append(" insert into pro3_retu values (?,?,sysdate)");
 					pstmt=conn.prepareStatement(sbl.toString());
-					pstmt.setInt(1, dto.getBnum());
+					pstmt.setFloat(1, dto.getBnum());
 					pstmt.setInt(2, dto.getNumber());
 					
-					sbl.append(" DELETE PRO3_RENT WHERE BNUM = ?");
+					sbl.append(" delete pro3_rent where bnum = ?");
 					pstmt=conn.prepareStatement(sbl.toString());
-					pstmt.setInt(1, dto.getBnum());
+					pstmt.setFloat(1, dto.getBnum());
 					
 				}catch(SQLException e) {
 					e.printStackTrace();
+				}finally {
+					close(conn,pstmt);
 				}
 				return result;
 			}
-		
 		}
