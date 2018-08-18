@@ -22,7 +22,7 @@ import javax.swing.JTextField;
 
 public class insertscreen extends JFrame{
 
-	public static void main(String[] args) {
+/*	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -33,7 +33,7 @@ public class insertscreen extends JFrame{
 				}
 			}
 		});
-	}
+	}*/
 	
 	private JPanel contentPane;
 	private JTextField textField;
@@ -151,7 +151,7 @@ public class insertscreen extends JFrame{
 		textField_3.setBounds(100, 139, 97, 21);
 		contentPane.add(textField_3);
 		textField_3.setColumns(20);
-		dto.setBnum(textField_3.getColumns());
+		dto.setBnum(textField_3.getText());
 		
 		label = new JLabel("yyyy-mm-dd");
 		label.setBounds(12, 115, 73, 15);

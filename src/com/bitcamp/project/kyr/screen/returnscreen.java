@@ -8,6 +8,10 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import com.bitcamp.project.kyr.screenDTO;
+import com.bitcamp.project.kyr.DAO.screenDAO;
+
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.JTextField;
@@ -17,11 +21,28 @@ public class returnscreen extends JFrame implements ActionListener {
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;
+	private JTextField bnum,number;
+
+	public JTextField getTextField() {
+		return textField;
+	}
+
+	public void setTextField(JTextField textField) {
+		this.textField = textField;
+	}
+
+	public JTextField getTextField_1() {
+		return textField_1;
+	}
+
+	public void setTextField_1(JTextField textField_1) {
+		this.textField_1 = textField_1;
+	}
 
 	/**
 	    *    Launch the application.
 	  */
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -32,11 +53,12 @@ public class returnscreen extends JFrame implements ActionListener {
 				}
 			}
 		});
-	}
+	}*/
 
-	/**
-	 * Create the frame.
-	 */
+	screenDTO dto=new screenDTO();
+	screenDAO dao=new screenDAO();
+	
+	
 	public returnscreen() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 363, 125);
@@ -57,15 +79,17 @@ public class returnscreen extends JFrame implements ActionListener {
 		btnNewButton.setBounds(221, 6, 97, 23);
 		contentPane.add(btnNewButton);
 		
-		textField = new JTextField();
+		textField = new JTextField();  //책번호
 		textField.setBounds(96, 7, 91, 21);
 		contentPane.add(textField);
 		textField.setColumns(10);
+		dto.setBnum(textField.getText());
 		
-		textField_1 = new JTextField();
+		textField_1 = new JTextField();   //회원 번호
 		textField_1.setBounds(96, 40, 91, 21);
 		contentPane.add(textField_1);
 		textField_1.setColumns(10);
+		dto.setNumber(textField_1.getColumns());
 		
 		JButton btnNewButton_1 = new JButton("뒤로 가기");
 		btnNewButton_1.addActionListener(new ActionListener() {
