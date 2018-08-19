@@ -299,7 +299,7 @@ public class SecondView2 extends JFrame {
 					
 					if(jr.isSelected()) {
 					st=jr.getText();
-					fdto.setResult(st);
+					fdto.setTnumber(st);
 					}
 						
 				}//

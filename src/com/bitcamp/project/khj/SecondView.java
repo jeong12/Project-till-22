@@ -85,6 +85,7 @@ public class SecondView extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+
 		
 		JLabel lblNewLabel = new JLabel("\uB2E4\uC2DC\uC608\uB9E4\uD558\uAE30");
 		lblNewLabel.setBounds(50, 35, 111, 15);
@@ -314,7 +315,7 @@ public class SecondView extends JFrame {
 					
 					if(jr.isSelected()) {
 					st=jr.getText();
-					fdto.setResult(st);
+					fdto.setTnumber(st);
 					}
 						
 				}//

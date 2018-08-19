@@ -73,7 +73,7 @@ public class FirstDAO {
 			pst=conn.prepareStatement(sb.toString());
 			pst.setString(1, fdto.getDs());
 			pst.setString(2, fdto.getAs());
-			pst.setString(3, fdto.getTime());
+			pst.setString(3, fdto.getdTime());
 			
 			
 			rs=pst.executeQuery();
