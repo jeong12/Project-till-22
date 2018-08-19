@@ -7,16 +7,14 @@ public class FirstDTO {
 	private String year;
 	private String month;
 	private String date;
-	private String time;
+	private String dtime;
 	private String person;
-	private String result;
+	private String tnumber;
+	private String fair;
+	private String seat;
+	private String atime;
 	
-	public String getResult() {
-		return result;
-	}
-	public void setResult(String result) {
-		this.result = result;
-	}
+	
 	public FirstDTO() {
 		
 		
@@ -51,17 +49,43 @@ public class FirstDTO {
 	public void setDate(String date) {
 		this.date = date;
 	}
-	public String getTime() {
-		return time;
-	}
-	public void setTime(String time) {
-		this.time = time;
-	}
+	
 	public String getPerson() {
 		return person;
 	}
 	public void setPerson(String person) {
 		this.person = person;
+	}
+	public String getTnumber() {
+		return tnumber;
+	}
+	public void setTnumber(String tnumber) {
+		this.tnumber = tnumber;
+	}
+	public String getFair() {
+		return fair;
+	}
+	public void setFair(String fair) {
+		this.fair = fair;
+	}
+	public String getSeat() {
+		return seat;
+	}
+	public void setSeat(String seat) {
+		this.seat = seat;
+	}
+	public String getDtime() {
+		return dtime;
+	}
+	public void setDtime(String dtime) {
+		this.dtime = dtime;
+	}
+	public String getAtime() {
+		return atime;
+	}
+	public void setAtime(String atime) {
+		this.atime = atime;
+		// 
 	}
 
 }

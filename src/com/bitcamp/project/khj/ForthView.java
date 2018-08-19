@@ -10,6 +10,9 @@ import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.awt.event.ActionEvent;
 
 public class ForthView extends JFrame {
@@ -44,20 +47,35 @@ public class ForthView extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("\uC608\uB9E4 \uB0B4\uC5ED \uCD9C\uB825\uD558\uAE30");
-		lblNewLabel.setBounds(26, 20, 122, 15);
+		lblNewLabel.setBounds(141, 23, 122, 15);
 		contentPane.add(lblNewLabel);
 		
 		JTextArea textArea = new JTextArea();
-		textArea.setBounds(12, 50, 398, 179);
+		textArea.setBounds(12, 50, 398, 92);
 		contentPane.add(textArea);
 		
-		JButton btnNewButton = new JButton("\uCD9C\uB825");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton btn_print = new JButton("\uCD9C\uB825");
+		btn_print.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				String text="";
+				String filename="c:\\desktop\\Train_resevation.txt";
+				FileWriter fw = null;
+				File file=new File(filename);
+				try {
+					fw=new FileWriter(file);
+					fw.write(text);
+					fw.flush();//
+				} catch (IOException e) {
+					System.out.println(e);
+				}finally {
+					if(fw!=null) try {}catch(Exception e) {}
+				}
+				
+				
 			}
 		});
-		btnNewButton.setBounds(325, 239, 97, 23);
-		contentPane.add(btnNewButton);
+		btn_print.setBounds(325, 217, 97, 23);
+		contentPane.add(btn_print);
 	}
 
 }

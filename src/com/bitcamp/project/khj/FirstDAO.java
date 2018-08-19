@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 public class FirstDAO {
@@ -18,10 +19,6 @@ public class FirstDAO {
 	
 		public FirstDAO(FirstDTO fdto) {
 			this.fdto=fdto;
-			System.out.println("====================");
-			System.out.println("FirstDAO");
-			System.out.println(fdto.getDs());
-			System.out.println("====================");
 		}
 
 		public Connection getConnection() {
@@ -49,14 +46,17 @@ public class FirstDAO {
 		if(conn!=null) try {conn.close();} catch(Exception e) {System.out.println(e);}
 
 	}
-
-	public List<String> getInfor(){
+	
+	
+	public HashMap<String,String> getInfor(){
 		
 		PreparedStatement pst=null;
 		Connection conn=getConnection();
 		ResultSet rs=null;
-		StringBuilder sb=new StringBuilder();				
-		ArrayList<String> arr=new ArrayList<>();
+		StringBuilder sb=new StringBuilder();
+		HashMap<String, String> hm=new HashMap<>();
+		
+		
 		try {
 			
 			sb.append(   "    select a.tnumber,c.tname,e.sname,a.time,f.sname, b.time,d.fair  "    ); 
@@ -68,20 +68,25 @@ public class FirstDAO {
 			sb.append( 	"            and a.tnumber=c.tnumber                          "    ); 
 			sb.append( 	"            and  (d.section = round(abs((b.snumber-a.snumber))/100,0))      "    ); 
 			sb.append( 	"            and c.tid = d.tcode        "      ); 
-			sb.append( 	"            order by a.time, b.time;       "     );
+			sb.append( 	"            order by a.time;       "     );
 
 			pst=conn.prepareStatement(sb.toString());
 			pst.setString(1, fdto.getDs());
 			pst.setString(2, fdto.getAs());
-			pst.setString(3, fdto.getTime());
+			pst.setString(3, fdto.getdTime());
 			
 			
 			rs=pst.executeQuery();
 			
 			while(rs.next()) {
-			  String s=Integer.toString(rs.getInt("a.tnumber"))+"          "+rs.getString("c.tname")+"          "+rs.getString("e.sname")+"          "
-						+rs.getString("a.time")+ "          "+rs.getString("f.sname")+"          "+rs.getString("b.time")+"          "+Integer.toString(rs.getInt("d.fair"));
-				arr.add(s);			
+			String key=String.valueOf(rs.getInt("a.tnumber"));
+			String tname=rs.getString("c.tname");
+			String dsname=rs.getString("e.sname");
+			String dtime=rs.getString("a.time");
+			String asname=rs.getString("f.sname");
+			String atime=rs.getString("b.time");
+			String fair=String.valueOf(rs.getInt("d.fair"));
+			hm.put(key, tname+","+dsname+","+dtime+","+asname+","+atime+","+fair);
 			}
 			
 		
@@ -90,12 +95,11 @@ public class FirstDAO {
 		}finally {
 			close(conn,pst);
 		}
-		return arr;
+		return hm;
 	}
 
+
 }
-
-
 
 
 
