@@ -2,41 +2,28 @@ package com.bitcamp.project.khj;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
-import javafx.animation.Interpolator;
-
-import java.awt.GridLayout;
-import java.awt.GridBagLayout;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 
-import javax.swing.JTextField;
-import javax.swing.JComboBox;
 import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JTextArea;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JRadioButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
 
-public class SecondView extends JFrame {
+public class SecondView2 extends JFrame {
 
-	
 	private JPanel contentPane;
 	JTextField textField_d;
 	JTextField textField_a;
@@ -75,7 +62,7 @@ public class SecondView extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public SecondView(FirstDTO fdto) {
+	public SecondView2(FirstDTO fdto) {
 		this.fdto=fdto;
 		fdao = new FirstDAO(fdto);
 		this.setTitle("기차예약시스템인데 경부선밖에 안됨.");
@@ -209,7 +196,7 @@ public class SecondView extends JFrame {
 				else {
 					JOptionPane.showMessageDialog(contentPane, "존재하지 않는 역입니다.\n 다시 입력하세요", "오류창!",JOptionPane.ERROR_MESSAGE);
 				}
-
+				
 			}});
 				
 		contentPane.add(btnNewButton_g);
@@ -251,15 +238,13 @@ public class SecondView extends JFrame {
 		Button_next.addActionListener(new ActionListener() {		
 			public void actionPerformed(ActionEvent e) {			
 			
-				SecondView2 sv2=new SecondView2(fdto);
+			/*	SecondView2 sv2=new SecondView2();
 				sv2.setVisible(true);
-				dispose();
-				
+				dispose();*/
+				// 만약에 다음 넘어가면 쓰고 없으면 이전으로 스자.
 			}
 			
 		});
-		
-		
 		
 		
 		HashMap<String, String> hm=fdao.getInfor();
@@ -282,22 +267,22 @@ public class SecondView extends JFrame {
 		int y=410;		
 		JRadioButton[]rb=new JRadioButton[size];
 		ButtonGroup bg=new ButtonGroup();
-		if(size<=20) {
-		for(int i=0; i<size;i++) {
+		if(size<=38) {
+		for(int i=21; i<size;i++) {
 		rb[i]=new JRadioButton(info[i]);
 		rb[i].setBounds(30, y, 60, 23);
 		bg.add(rb[i]);
 		contentPane.add(rb[i]);
 		y+=21;}
+		contentPane.add(Button_next);
 		}
 		
 		else {
-			for(int i=0; i<20;i++) {
+			for(int i=0; i<19;i++) {
 				rb[i]=new JRadioButton(info[i]);
 				rb[i].setBounds(30, y, 60, 23);
 				bg.add(rb[i]);
 				contentPane.add(rb[i]);
-				contentPane.add(Button_next);
 				y+=21;}
 			
 		}
@@ -337,7 +322,19 @@ public class SecondView extends JFrame {
 			String[]atime=new String[size];
 			String[]fair=new String[size];
 			
-							
+			
+			for(int q=0;q<size;q++) {
+				String str=sinfo.get(q);
+				String[] r=str.split(",");
+				tname[q]=r[0];
+				dsname[q]=r[1];
+				dtime[q]=r[2];
+				asname[q]=r[3];
+				atime[q]=r[4];
+				fair[q]=r[5];
+			}
+		
+						
 			JLabel[] tn=new JLabel[size];
 			JLabel[] ds=new JLabel[size];
 			JLabel[] dt=new JLabel[size];
@@ -346,26 +343,7 @@ public class SecondView extends JFrame {
 			JLabel[] f=new JLabel[size];
 			
 			int y1=410;
-			
-			if(size<=20) {
-
-				for(int q=0;q<size;q++) {
-					String str=sinfo.get(q);
-					String[] r=str.split(",");
-					tname[q]=r[0];
-					dsname[q]=r[1];
-					dtime[q]=r[2];
-					asname[q]=r[3];
-					atime[q]=r[4];
-					String fe=r[5];
-					int p=Integer.parseInt(fdto.getPerson().substring(0, 1));
-					int fee=Integer.parseInt(fe)*p;
-					fair[q]=String.valueOf(fee);
-					
-				}
-			
-			
-			for(int k=0;k<size;k++) {
+			for(int k=20;k<size;k++) {
 				tn[k]=new JLabel(tname[k]);
 				tn[k].setBounds(160,y1,70,15);
 				
@@ -394,44 +372,9 @@ public class SecondView extends JFrame {
 				y1+=21;
 				
 			}
-			}
-			else {
-				for(int k=0;k<20;k++) {
-					tn[k]=new JLabel(tname[k]);
-					tn[k].setBounds(160,y1,70,15);
-					
-					ds[k]=new JLabel(dsname[k]);
-					ds[k].setBounds(278, y1, 57, 15);
-					
-					dt[k]=new JLabel(dtime[k]);
-					dt[k].setBounds(379, y1, 57, 15);
-					
-					as[k]=new JLabel(asname[k]);
-					as[k].setBounds(488, y1, 57, 15);
-					
-					at[k]=new JLabel(atime[k]);
-					at[k].setBounds(580, y1, 57, 15);
-					
-					f[k]=new JLabel(fair[k]);
-					f[k].setBounds(766, y1, 57, 15);
-					
-					contentPane.add(tn[k]);
-					contentPane.add(ds[k]);
-					contentPane.add(dt[k]);
-					contentPane.add(as[k]);
-					contentPane.add(at[k]);
-					contentPane.add(f[k]);
-					
-					y1+=21;
-				
-			}
-			}
 			
 			
 			
-		
 	}
-}
-			
 
-	
+}

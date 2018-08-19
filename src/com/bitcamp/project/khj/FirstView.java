@@ -12,6 +12,8 @@ import com.bitcamp.project.kyr.screen.returnscreen;
 
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.GridBagConstraints;
 import javax.swing.JButton;
 import java.awt.Insets;
@@ -83,7 +85,7 @@ public class FirstView extends JFrame {
 		textField_d.setColumns(10);
 		
 		JLabel label = new JLabel("\uC5ED");
-		label.setBounds(406, 61, 12, 15);
+		label.setBounds(406, 61, 29, 15);
 		contentPane.add(label);
 		
 		JLabel lblNewLabel_1 = new JLabel("\uB3C4\uCC29\uC5ED");
@@ -96,7 +98,7 @@ public class FirstView extends JFrame {
 		textField_a.setColumns(10);
 		
 		JLabel lblNewLabel_5 = new JLabel("\uC5ED");
-		lblNewLabel_5.setBounds(406, 107, 12, 15);
+		lblNewLabel_5.setBounds(406, 107, 29, 15);
 		contentPane.add(lblNewLabel_5);
 		
 		JLabel lblNewLabel_2 = new JLabel("\uCD9C\uBC1C\uC77C\uC790");
@@ -136,7 +138,9 @@ public class FirstView extends JFrame {
 		JComboBox comboBox_d = new JComboBox(date);
 		comboBox_d.setBounds(417, 155, 53, 21);
 		comboBox_d.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {	
+			public void actionPerformed(ActionEvent e) {
+			
+				
 				JComboBox cb = (JComboBox) e.getSource();
 				int index = cb.getSelectedIndex();
 				List<String> arr=fc.Cal();
@@ -159,7 +163,7 @@ public class FirstView extends JFrame {
 				int index = cb.getSelectedIndex();
 				String[]t=fc.time();
 				String time=t[index];
-				String rtime=time.substring(0, 1)+":00:00";
+				String rtime=time.substring(0, 2)+":00:00";
 				fdto.setTime(rtime);
 				System.out.println(fdto.getTime());}
 			});
@@ -186,16 +190,30 @@ public class FirstView extends JFrame {
 		JButton btnNewButton_g = new JButton("\uC608\uC57D\uD558\uAE30");
 		btnNewButton_g.setBounds(264, 300, 113, 23);
 		btnNewButton_g.addActionListener(new ActionListener() {		
-		public void actionPerformed(ActionEvent e) {			
-			String ds=textField_d.getText();
-			fdto.setDs(ds);
-			String as=textField_a.getText();
-			fdto.setAs(as);
-			System.out.println(fdto.getDs());
-			System.out.println(fdto.getAs());
+		public void actionPerformed(ActionEvent e) {					
 			
-			SecondView sc=new SecondView(fdto);
-			sc.setVisible(true);
+			String ds=textField_d.getText();
+			String as=textField_a.getText();
+			System.out.println(ds);
+			System.out.println(as);
+			List<String>sta=fc.getStation();
+			if(sta.contains(ds)&sta.contains(as)) {
+				fdto.setDs(ds);
+				fdto.setAs(as);
+			}
+			else {
+				JOptionPane.showMessageDialog(contentPane, "존재하지 않는 역입니다.\n 다시 입력하세요", "오류창!",JOptionPane.ERROR_MESSAGE);
+			}
+			
+			if(fdto.getDate()==null||fdto.getMonth()==null||fdto.getYear()==null||fdto.getTime()==null) {
+				JOptionPane.showMessageDialog(contentPane, "클릭하지 않은 정보를 눌러주세요.\n 다시한번씩 정보를 눌러주세요", "오류창!",JOptionPane.ERROR_MESSAGE);
+			}
+			else {
+				SecondView sc=new SecondView(fdto);
+				sc.setVisible(true);
+				dispose();	
+			}
+			
 			
 		}
 			
