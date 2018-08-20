@@ -288,7 +288,7 @@ public class SecondView extends JFrame {
 		JRadioButton[]rb=new JRadioButton[size];
 		ButtonGroup bg=new ButtonGroup();
 		
-		if(size<=20) {
+		if(size<20) {
 		for(int i=0; i<size;i++) {
 		rb[i]=new JRadioButton(info[i]);
 		rb[i].setBounds(30, y, 60, 23);
