@@ -67,6 +67,13 @@ public class FirstView extends JFrame {
 	 * Create the frame.
 	 */
 	public FirstView() {
+		
+		fdto.setYear(year[0]);
+		fdto.setMonth(month[0]);
+		fdto.setDate(date[0]);
+		fdto.setPerson(person[0]);
+		fdto.setDtime(time[0].substring(0, 2)+":00:00");
+		
 		this.setTitle("기차예약시스템인데 경부선밖에 안됨.");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 900, 400);
@@ -164,8 +171,8 @@ public class FirstView extends JFrame {
 				String[]t=fc.time();
 				String time=t[index];
 				String rtime=time.substring(0, 2)+":00:00";
-				fdto.setTime(rtime);
-				System.out.println(fdto.getTime());}
+				fdto.setDtime(rtime);
+				System.out.println(fdto.getDtime());}
 			});
 		contentPane.add(comboBox_t);
 		
@@ -200,21 +207,18 @@ public class FirstView extends JFrame {
 			if(sta.contains(ds)&sta.contains(as)) {
 				fdto.setDs(ds);
 				fdto.setAs(as);
+				if(fdto.getDate()==null||fdto.getMonth()==null||fdto.getYear()==null||fdto.getDtime()==null||fdto.getPerson()==null) {
+					JOptionPane.showMessageDialog(contentPane, "클릭하지 않은 정보를 눌러주세요.\n 다시한번씩 정보를 눌러주세요", "오류창!",JOptionPane.ERROR_MESSAGE);
+				}
+				else {
+					SecondView sc=new SecondView(fdto);
+					sc.setVisible(true);
+					dispose();	
+				}
 			}
 			else {
 				JOptionPane.showMessageDialog(contentPane, "존재하지 않는 역입니다.\n 다시 입력하세요", "오류창!",JOptionPane.ERROR_MESSAGE);
-			}
-			
-			if(fdto.getDate()==null||fdto.getMonth()==null||fdto.getYear()==null||fdto.getTime()==null) {
-				JOptionPane.showMessageDialog(contentPane, "클릭하지 않은 정보를 눌러주세요.\n 다시한번씩 정보를 눌러주세요", "오류창!",JOptionPane.ERROR_MESSAGE);
-			}
-			else {
-				SecondView sc=new SecondView(fdto);
-				sc.setVisible(true);
-				dispose();	
-			}
-			
-			
+			}			
 		}
 			
 		});				

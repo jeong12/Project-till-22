@@ -168,8 +168,8 @@ public class SecondView extends JFrame {
 				String[]t=fc.time();
 				String time=t[index];
 				String rtime=time.substring(0, 2)+":00:00";
-				fdto.setTime(rtime);
-				System.out.println(fdto.getTime());}
+				fdto.setDtime(rtime);
+				System.out.println(fdto.getDtime());}
 			});
 		contentPane.add(comboBox_t);
 		
@@ -191,9 +191,9 @@ public class SecondView extends JFrame {
 		});
 		contentPane.add(comboBox_p);
 		
-		JButton btnNewButton_g = new JButton("\uAC80\uC0C9");
-		btnNewButton_g.setBounds(446, 290, 97, 23);
-		btnNewButton_g.addActionListener(new ActionListener() {		
+		JButton btn_s = new JButton("\uAC80\uC0C9");
+		btn_s.setBounds(446, 290, 97, 23);
+		btn_s.addActionListener(new ActionListener() {		
 			public void actionPerformed(ActionEvent e) {			
 				String ds=textField_d.getText();
 				String as=textField_a.getText();
@@ -213,7 +213,7 @@ public class SecondView extends JFrame {
 
 			}});
 				
-		contentPane.add(btnNewButton_g);
+		contentPane.add(btn_s);
 		
 		JLabel label_1 = new JLabel("\uC5F4\uCC28\uBC88\uD638");
 		label_1.setBounds(33, 369, 72, 15);
@@ -249,7 +249,11 @@ public class SecondView extends JFrame {
 		
 		JButton Button_next = new JButton("\uC5ED \uAC80\uC0C9");
 		Button_next.setBounds(446, 84, 97, 23);
-		Button_next.addActionListener(new ActionListener() {		
+		contentPane.add(Button_next);
+		
+		JButton btnNewButton_2 = new JButton("\uB2E4\uC74C");
+		btnNewButton_2.setBounds(121, 828, 97, 23);
+		btnNewButton_2.addActionListener(new ActionListener() {		
 			public void actionPerformed(ActionEvent e) {			
 			
 				SecondView2 sv2=new SecondView2(fdto);
@@ -283,6 +287,7 @@ public class SecondView extends JFrame {
 		int y=410;		
 		JRadioButton[]rb=new JRadioButton[size];
 		ButtonGroup bg=new ButtonGroup();
+		
 		if(size<=20) {
 		for(int i=0; i<size;i++) {
 		rb[i]=new JRadioButton(info[i]);
@@ -298,46 +303,26 @@ public class SecondView extends JFrame {
 				rb[i].setBounds(30, y, 60, 23);
 				bg.add(rb[i]);
 				contentPane.add(rb[i]);
-				contentPane.add(Button_next);
+				contentPane.add(btnNewButton_2);	
+				
+				
 				y+=21;}
 			
 		}
 		
-		JButton button = new JButton("\uC608\uC57D\uD558\uAE30");
-		button.setBounds(775, 828, 97, 23);
-		button.addActionListener(new ActionListener() {		
-			public void actionPerformed(ActionEvent e) {			
-				Enumeration<AbstractButton> em=bg.getElements();
-				String st=null;
-				while(em.hasMoreElements()) {
-					AbstractButton ab=em.nextElement();
-					JRadioButton jr=(JRadioButton)ab;
-					
-					if(jr.isSelected()) {
-					st=jr.getText();
-					fdto.setTnumber(st);
-					}
-						
-				}//
-				ThirdView tv=new ThirdView(fdto);
-				tv.setVisible(true);
+			List<String> h=fdao.getSeat(hm);
+			String[]empty=new String[h.size()];
+			for(int e=0;e<size;e++) {
+				empty[e]=h.get(e);
 			}
 			
-		});
-			contentPane.add(button);
-			
-			JButton btnNewButton_2 = new JButton("\uB2E4\uC74C");
-			btnNewButton_2.setBounds(121, 828, 97, 23);
-			contentPane.add(btnNewButton_2);
-	
-					
 			String[]tname=new String[size];
 			String[]dsname=new String[size];
 			String[]dtime=new String[size];
 			String[]asname=new String[size];
 			String[]atime=new String[size];
 			String[]fair=new String[size];
-			
+						
 							
 			JLabel[] tn=new JLabel[size];
 			JLabel[] ds=new JLabel[size];
@@ -345,6 +330,7 @@ public class SecondView extends JFrame {
 			JLabel[] as=new JLabel[size];
 			JLabel[] at=new JLabel[size];
 			JLabel[] f=new JLabel[size];
+			JLabel[] s=new JLabel[size];
 			
 			int y1=410;
 			
@@ -382,6 +368,9 @@ public class SecondView extends JFrame {
 				at[k]=new JLabel(atime[k]);
 				at[k].setBounds(580, y1, 57, 15);
 				
+				s[k]=new JLabel(empty[k]+"/28");
+				s[k].setBounds(677, y1, 57, 15);
+				
 				f[k]=new JLabel(fair[k]);
 				f[k].setBounds(766, y1, 57, 15);
 				
@@ -391,6 +380,7 @@ public class SecondView extends JFrame {
 				contentPane.add(as[k]);
 				contentPane.add(at[k]);
 				contentPane.add(f[k]);
+				contentPane.add(s[k]);
 				
 				y1+=21;
 				
@@ -413,6 +403,9 @@ public class SecondView extends JFrame {
 					at[k]=new JLabel(atime[k]);
 					at[k].setBounds(580, y1, 57, 15);
 					
+					s[k]=new JLabel(empty[k]+"/28");
+					s[k].setBounds(677, y1, 57, 15);
+					
 					f[k]=new JLabel(fair[k]);
 					f[k].setBounds(766, y1, 57, 15);
 					
@@ -422,13 +415,50 @@ public class SecondView extends JFrame {
 					contentPane.add(as[k]);
 					contentPane.add(at[k]);
 					contentPane.add(f[k]);
+					contentPane.add(s[k]);
 					
 					y1+=21;
 				
 			}
 			}
 			
-			
+			JButton button = new JButton("\uC608\uC57D\uD558\uAE30");
+			button.setBounds(775, 828, 97, 23);
+			button.addActionListener(new ActionListener() {		
+				public void actionPerformed(ActionEvent e) {			
+					Enumeration<AbstractButton> em=bg.getElements();
+					String st=null;
+					while(em.hasMoreElements()) {
+						AbstractButton ab=em.nextElement();
+						JRadioButton jr=(JRadioButton)ab;
+						
+						if(jr.isSelected()) {
+						st=jr.getText();
+						fdto.setTnumber(st);
+						System.out.println(fdto.getTnumber());
+						}						
+					}
+					
+					List<String> arr=fdao.Final(fdto);
+					String as=arr.get(0);
+					String at=arr.get(1);
+					String tname=arr.get(2);
+					String fair=arr.get(3);
+					
+					fdto.setAs(as);
+					fdto.setAtime(at);
+					fdto.setTname(tname);
+					fdto.setFair(fair);
+					
+					String s=fdao.Seat();
+					fdto.setSeat(s);
+					ThirdView tv=new ThirdView(fdto);
+					tv.setVisible(true);
+				}
+				
+			});
+				contentPane.add(button);
+				
 			
 		
 	}
