@@ -1,23 +1,16 @@
 package com.bitcamp.project.lsy;
 
 import java.awt.EventQueue;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JTextField;
-
-import com.bitcamp.project.khj.FirstActionDay;
-
-import javax.swing.JList;
-import javax.swing.JComboBox;
+import java.awt.event.ItemListener;
+import java.awt.event.ItemEvent;
 
 public class inputView extends JFrame implements ActionListener {
 
@@ -40,8 +33,12 @@ public class inputView extends JFrame implements ActionListener {
 	/**
 	 * Create the frame.
 	 */
+	
 	public inputView() {
 		indexa ina = new indexa();
+		indexb inb = new indexb();
+		indexi ini = new indexi();
+		
 	
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -77,8 +74,9 @@ public class inputView extends JFrame implements ActionListener {
 		mainButton.setBounds(322, 432, 102, 60);
 		getContentPane().add(mainButton);
 		
-		JComboBox<String> morBox1 = new JComboBox(ina.getListoba());
+		JComboBox morBox1 = new JComboBox(ina.getListoba());
 		morBox1.setBounds(82, 30, 82, 21);
+		calDTO dto = new calDTO();
 		getContentPane().add(morBox1);
 		
 		JComboBox morBox2 = new JComboBox();
@@ -88,6 +86,38 @@ public class inputView extends JFrame implements ActionListener {
 		JComboBox morBox3 = new JComboBox();
 		morBox3.setBounds(322, 30, 82, 21);
 		getContentPane().add(morBox3);
+		
+		
+		morBox1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("state changed!!");
+				JComboBox cb = (JComboBox) e.getSource();
+				String aname = (String)cb.getSelectedItem();
+				dto.setAname(aname);
+
+				morBox2.removeAllItems();
+				String[] subList = inb.getListobb(aname);
+				for (String subItem : subList) {
+					morBox2.addItem(subItem);
+				}
+			}
+		});
+		
+		morBox2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JComboBox cb = (JComboBox) e.getSource();
+				String bname = (String)cb.getSelectedItem();
+				dto.setBname(bname);
+				
+				morBox3.removeAllItems();
+				String[] subList2 = ini.getListitemi(bname);
+				for (String subItem2 : subList2) {
+					morBox3.addItem(subItem2);
+				}
+			}
+		});
+		
+		
 		
 		JComboBox lunBox1 = new JComboBox(ina.getListoba());
 		lunBox1.setBounds(82, 86, 82, 21);
@@ -101,6 +131,39 @@ public class inputView extends JFrame implements ActionListener {
 		lunBox3.setBounds(322, 86, 82, 21);
 		getContentPane().add(lunBox3);
 		
+		
+		
+		lunBox1.addActionListener(new ActionListener() {
+	         public void actionPerformed(ActionEvent e) {
+	            
+	        	JComboBox cb = (JComboBox) e.getSource();
+	        	String aname = (String)cb.getSelectedItem();
+	        	 dto.setAname(aname);
+	        	 
+	        	 lunBox2.removeAllItems();
+	        	 String[] subList = inb.getListobb(aname);
+	        	 for (String subItem : subList) {
+	        		 lunBox2.addItem(subItem);
+	        	 }
+	         }
+	      });
+		
+		lunBox2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JComboBox cb = (JComboBox) e.getSource();
+				String bname = (String)cb.getSelectedItem();
+				dto.setBname(bname);
+				
+				lunBox3.removeAllItems();
+				String[] subList2 = ini.getListitemi(bname);
+				for (String subItem2 : subList2) {
+					lunBox3.addItem(subItem2);
+				}
+			}
+		});
+		
+		
+		
 		JComboBox diBox1 = new JComboBox(ina.getListoba());
 		diBox1.setBounds(82, 142, 82, 21);
 		getContentPane().add(diBox1);
@@ -112,6 +175,36 @@ public class inputView extends JFrame implements ActionListener {
 		JComboBox diBox3 = new JComboBox();
 		diBox3.setBounds(322, 142, 82, 21);
 		getContentPane().add(diBox3);
+		
+		diBox1.addActionListener(new ActionListener() {
+	         public void actionPerformed(ActionEvent e) {
+	            
+	        	JComboBox cb = (JComboBox) e.getSource();
+	        	String aname = (String)cb.getSelectedItem();
+	        	 dto.setAname(aname);
+	        	 
+	        	 diBox2.removeAllItems();
+	        	 String[] subList = inb.getListobb(aname);
+	        	 for (String subItem : subList) {
+	        		 diBox2.addItem(subItem);
+	        	 }
+	         }
+	      });
+		
+		diBox2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JComboBox cb = (JComboBox) e.getSource();
+				String bname = (String)cb.getSelectedItem();
+				dto.setBname(bname);
+				
+				diBox3.removeAllItems();
+				String[] subList2 = ini.getListitemi(bname);
+				for (String subItem2 : subList2) {
+					diBox3.addItem(subItem2);
+				}
+			}
+		});
+		
 		
 		JComboBox foodBox1 = new JComboBox(ina.getListoba());
 		foodBox1.setBounds(82, 198, 82, 21);
@@ -132,28 +225,41 @@ public class inputView extends JFrame implements ActionListener {
 				dispose();
 			}
 		});
+		
+		
+		
+		foodBox1.addActionListener(new ActionListener() {
+	         public void actionPerformed(ActionEvent e) {
+	            
+	        	JComboBox cb = (JComboBox) e.getSource();
+	        	String aname = (String)cb.getSelectedItem();
+	        	 dto.setAname(aname);
+	        	 
+	        	 foodBox2.removeAllItems();
+	        	 String[] subList = inb.getListobb(aname);
+	        	 for (String subItem : subList) {
+	        		 foodBox2.addItem(subItem);
+	        	 }
+	         }
+	      });
+		
+		foodBox2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JComboBox cb = (JComboBox) e.getSource();
+				String bname = (String)cb.getSelectedItem();
+				dto.setBname(bname);
+				
+				foodBox3.removeAllItems();
+				String[] subList2 = ini.getListitemi(bname);
+				for (String subItem2 : subList2) {
+					foodBox3.addItem(subItem2);
+				}
+			}
+		});
+		
+		
 	}
-		
-//		calDAO da = new calDAO();
-//		calDTO dt = new calDTO();
-		
-		//
-//		List<calDTO>arr = da.getList();
-		
-//		String[]aname=new String[arr.size()]; 
-//		for(int i=0;i<arr.size();i++) {
-//			aname[i]=arr.get(i).acode;
-//		}
-//		
-//		for(String r:aname) {
-//			System.out.println(r);
-//		}
-//		
-//		Iterator<calDTO> itr = arr.iterator();
-//		for(int i=0; i<arr.size(); i++) {
-//			morBox1.addItem(itr.next().aname);
-//		}
-//	}
+	
 
 	@Override
 	public void actionPerformed(ActionEvent e) {

@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextPane;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JTextArea;
 
 public class mainView extends JFrame {
 
@@ -42,10 +43,6 @@ public class mainView extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JTextPane textPane = new JTextPane();
-		textPane.setBounds(35, 35, 389, 426);
-		contentPane.add(textPane);
-		
 		JButton inputCalButton = new JButton("Ä®·Î¸® ÀÔ·Â");
 		inputCalButton.setBounds(35, 496, 105, 60);
 		contentPane.add(inputCalButton);
@@ -54,10 +51,11 @@ public class mainView extends JFrame {
 		JButton outputCalButton = new JButton("Áö³­ Ä®·Î¸®");
 		outputCalButton.setBounds(319, 496, 105, 60);
 		contentPane.add(outputCalButton);
+		
+		JTextArea textArea = new JTextArea();
+		textArea.setBounds(35, 40, 389, 427);
+		contentPane.add(textArea);
 		outputCalButton.addActionListener(new outputView());
 		
 	}
-
-
-	
 }
