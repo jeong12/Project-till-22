@@ -13,6 +13,7 @@ public class FirstDTO {
 	private String fair;
 	private String seat;
 	private String atime;
+	private String tname;
 	
 	
 	public FirstDTO() {
@@ -87,5 +88,13 @@ public class FirstDTO {
 		this.atime = atime;
 		// 
 	}
+	public String getTname() {
+		return tname;
+	}
+	public void setTname(String tname) {
+		this.tname = tname;
+	}
+	
+	
 
 }

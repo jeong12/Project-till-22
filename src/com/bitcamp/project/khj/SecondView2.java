@@ -154,8 +154,8 @@ public class SecondView2 extends JFrame {
 				String[]t=fc.time();
 				String time=t[index];
 				String rtime=time.substring(0, 2)+":00:00";
-				fdto.setTime(rtime);
-				System.out.println(fdto.getTime());}
+				fdto.setDtime(rtime);
+				System.out.println(fdto.getDtime());}
 			});
 		contentPane.add(comboBox_t);
 		
