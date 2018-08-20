@@ -53,7 +53,7 @@ public class inputDAO {
 				inputDTO dto = new inputDTO();
 				
 				dto.setInid(rs.getString("id"));
-				dto.setIndate(rs.getInt("indate"));
+				dto.setIndate(rs.getDate("indate"));
 				dto.setInmeal(rs.getString("inmeal"));
 				dto.setIcode(rs.getString("icode"));
 				arr.add(dto);
@@ -90,7 +90,7 @@ public class inputDAO {
 			pst = conn.prepareStatement(br.toString());
 			
 			pst.setString(1, dto.getInid());
-			pst.setInt(2, dto.getIndate());
+			pst.setDate(2, dto.getIndate());
 			pst.setString(3, dto.getInmeal());
 			pst.setString(4, dto.getIcode());
 			

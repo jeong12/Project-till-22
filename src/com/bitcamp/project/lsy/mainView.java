@@ -35,6 +35,8 @@ public class mainView extends JFrame {
 	 * Create the frame.
 	 */
 	public mainView() {
+		bodydata data = new bodydata();
+		String body = data.getData();
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 480, 600);
@@ -56,6 +58,8 @@ public class mainView extends JFrame {
 		textArea.setBounds(35, 40, 389, 427);
 		contentPane.add(textArea);
 		outputCalButton.addActionListener(new outputView());
+		textArea.setText(body);
+		
 		
 	}
 }

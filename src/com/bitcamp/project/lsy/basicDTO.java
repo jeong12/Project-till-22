@@ -7,6 +7,7 @@ public class basicDTO {
 	private int height;
 	private int weight;
 	
+	
 	//get, set
 	public int getGender() {
 		return gender;

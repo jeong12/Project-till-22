@@ -6,7 +6,7 @@ public class inputDTO {
 	
 	// ÇÊµå
 	String id;
-	int indate;
+	Date indate;
 	String inmeal;
 	String icode;
 	
@@ -18,10 +18,10 @@ public class inputDTO {
 	public void setInid(String id) {
 		this.id = id;
 	}
-	public int getIndate() {
+	public Date getIndate() {
 		return indate;
 	}
-	public void setIndate(int indate) {
+	public void setIndate(Date indate) {
 		this.indate = indate;
 	}
 	public String getInmeal() {
@@ -43,7 +43,7 @@ public class inputDTO {
 		
 	}
 	
-	public inputDTO(String id, int indate, String inmeal, String icode) {
+	public inputDTO(String id, Date indate, String inmeal, String icode) {
 		this.id = id;
 		this.indate = indate;
 		this.inmeal = inmeal;

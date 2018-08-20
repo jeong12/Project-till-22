@@ -61,14 +61,26 @@ public class inputView extends JFrame implements ActionListener {
 		foodLabel.setBounds(30, 198, 40, 21);
 		getContentPane().add(foodLabel);
 		
+		// 입력 하기
 		JButton inputButton = new JButton("입력");
 		inputButton.setBounds(30, 326, 394, 55);
 		getContentPane().add(inputButton);
 		inputButton.addActionListener(new saveDTO());
 		
+		
+		
 		JButton deleteButton = new JButton("초기화");
 		deleteButton.setBounds(30, 432, 102, 60);
 		getContentPane().add(deleteButton);
+		
+		deleteButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		
 		JButton mainButton = new JButton("메인으로");
 		mainButton.setBounds(322, 432, 102, 60);
