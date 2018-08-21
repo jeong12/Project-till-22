@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -57,6 +58,7 @@ public class returnscreen extends JFrame implements ActionListener {
 
 	screenDTO dto=new screenDTO();
 	screenDAO dao=new screenDAO();
+	Connection conn=null;
 	
 	
 	public returnscreen() {
@@ -76,6 +78,17 @@ public class returnscreen extends JFrame implements ActionListener {
 		contentPane.add(lblNewLabel_1);
 		
 		JButton btnNewButton = new JButton("책 반납");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				screenDAO dao=new screenDAO();
+				dao.retu(dto);
+				
+				Float bm=(Float.parseFloat(textField.getText()));
+				dto.setBnum(bm);
+				int nm=(Integer.parseInt(textField_1.getText()));
+				dto.setNumber(nm);
+			}
+		});
 		btnNewButton.setBounds(221, 6, 97, 23);
 		contentPane.add(btnNewButton);
 		
@@ -83,13 +96,11 @@ public class returnscreen extends JFrame implements ActionListener {
 		textField.setBounds(96, 7, 91, 21);
 		contentPane.add(textField);
 		textField.setColumns(10);
-		dto.setBnum(textField.getText());
 		
 		textField_1 = new JTextField();   //회원 번호
 		textField_1.setBounds(96, 40, 91, 21);
 		contentPane.add(textField_1);
 		textField_1.setColumns(10);
-		dto.setNumber(textField_1.getColumns());
 		
 		JButton btnNewButton_1 = new JButton("뒤로 가기");
 		btnNewButton_1.addActionListener(new ActionListener() {

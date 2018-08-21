@@ -6,17 +6,19 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import com.bitcamp.project.khj.FirstActionGoto;
+//import com.bitcamp.project.khj.FirstActionGoto;
 import com.bitcamp.project.kyr.screenDTO;
 import com.bitcamp.project.kyr.DAO.screenDAO;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 
@@ -113,8 +115,34 @@ public class insertscreen extends JFrame{
 		btnNewButton.setBounds(12, 181, 97, 23);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				screenDAO dao=new screenDAO();
-				dao.insert(dto);
+				screenDTO dto=new screenDTO();
+				//dao.insert(dto, conn);
+				int r =0;
+				try {
+					
+					String bm=textField.getText();
+					dto.setBname(bm);
+					String rd=textField_1.getText();
+					dto.setRedate(rd);
+					String pb=textField_2.getText();
+					dto.setPublish(pb);
+					Float bu=(Float.parseFloat(textField_3.getText()));
+					dto.setBnum(bu);
+					r=dao.insert(dto, conn);
+					
+					if(r>0)
+					{
+						JOptionPane.showMessageDialog(null, "추가 성공");
+					}
+					else
+						JOptionPane.showMessageDialog(null, "추가실패");
+					
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					//e1.printStackTrace();
+					JOptionPane.showMessageDialog(null, "형식에 맞게 입력하세요");
+				}
+				
 			}
 		});
 		contentPane.add(btnNewButton);
@@ -133,36 +161,32 @@ public class insertscreen extends JFrame{
 		textField.setBounds(100, 27, 97, 21);
 		contentPane.add(textField);
 		textField.setColumns(20);
-		dto.setBname(textField.getText());
 		
 		textField_1 = new JTextField(); //출판일
 		textField_1.setBounds(100, 100, 97, 21);
 		contentPane.add(textField_1);
 		textField_1.setColumns(30);
-		dto.setRedate(textField_1.getText());
 		
 		textField_2 = new JTextField();  //출판사
 		textField_2.setBounds(100, 62, 97, 21);
 		contentPane.add(textField_2);
 		textField_2.setColumns(20);
-		dto.setPublish(textField_2.getText());
 		
 		textField_3 = new JTextField();  //책번호
 		textField_3.setBounds(100, 139, 97, 21);
 		contentPane.add(textField_3);
 		textField_3.setColumns(20);
-		dto.setBnum(textField_3.getText());
 		
-		label = new JLabel("yyyy-mm-dd");
+		label = new JLabel("'-'미포 ");
 		label.setBounds(12, 115, 73, 15);
 		contentPane.add(label);
 	}
 
-	public void actionPerformed(ActionEvent e) {
+	public void actionPerformed(ActionEvent e) throws SQLException {
 		// TODO Auto-generated method stub
 	screenDAO dao=new screenDAO();
 	
-	dao.insert(dto);
+	dao.insert(dto,conn);
 	
 	}
 }
