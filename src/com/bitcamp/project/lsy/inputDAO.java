@@ -85,14 +85,16 @@ public class inputDAO {
 			conn = getConnetction();
 			StringBuilder br = new StringBuilder();
 			br.append(    "     insert into pro3_input     "    );
-			br.append(    "     value (?,?,?,?)             "    );
+			br.append(    "     value (?,now(),?,(select icode             "    );
+			br.append(    "    from pro3_item             "    );
+			br.append(    "    where iname = ?))             "    );
+
 			
 			pst = conn.prepareStatement(br.toString());
 			
 			pst.setString(1, dto.getInid());
-			pst.setDate(2, dto.getIndate());
+			pst.setString(2, dto.getInmeal());
 			pst.setString(3, dto.getInmeal());
-			pst.setString(4, dto.getIcode());
 			
 			pst.executeUpdate();
 		}catch(SQLException e) {

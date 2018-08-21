@@ -3,14 +3,13 @@ package com.bitcamp.project.lsy;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List;
+import java.sql.Date;
+import java.util.Calendar;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import java.awt.event.ItemListener;
-import java.awt.event.ItemEvent;
 
 public class inputView extends JFrame implements ActionListener {
 
@@ -65,25 +64,9 @@ public class inputView extends JFrame implements ActionListener {
 		JButton inputButton = new JButton("입력");
 		inputButton.setBounds(30, 326, 394, 55);
 		getContentPane().add(inputButton);
-		inputButton.addActionListener(new saveDTO());
-		
-		
-		
-		JButton deleteButton = new JButton("초기화");
-		deleteButton.setBounds(30, 432, 102, 60);
-		getContentPane().add(deleteButton);
-		
-		deleteButton.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-		});
 		
 		JButton mainButton = new JButton("메인으로");
-		mainButton.setBounds(322, 432, 102, 60);
+		mainButton.setBounds(30, 432, 394, 60);
 		getContentPane().add(mainButton);
 		
 		JComboBox morBox1 = new JComboBox(ina.getListoba());
@@ -268,6 +251,54 @@ public class inputView extends JFrame implements ActionListener {
 				}
 			}
 		});
+		
+		inputButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(morBox3.getSelectedItem()!=null) {
+				inputDTO dto = new inputDTO();
+				dto.setInid("세영");
+				dto.setInmeal((String)morBox3.getSelectedItem());
+				
+				
+				inputDAO dao = new inputDAO();
+				dao.InsertData(dto);
+				}
+				
+				if(lunBox3.getSelectedItem()!=null) {
+					inputDTO dto = new inputDTO();
+					dto.setInid("세영");
+					dto.setInmeal((String)lunBox3.getSelectedItem());
+					
+					
+					inputDAO dao = new inputDAO();
+					dao.InsertData(dto);
+					}
+				
+				if(diBox3.getSelectedItem()!=null) {
+					inputDTO dto = new inputDTO();
+					dto.setInid("세영");
+					dto.setInmeal((String)diBox3.getSelectedItem());
+					
+					
+					inputDAO dao = new inputDAO();
+					dao.InsertData(dto);
+					}
+				
+				if(foodBox3.getSelectedItem()!=null) {
+					inputDTO dto = new inputDTO();
+					dto.setInid("세영");
+					dto.setInmeal((String)foodBox3.getSelectedItem());
+					
+					
+					inputDAO dao = new inputDAO();
+					dao.InsertData(dto);
+					}
+				
+			}
+		});
+		
 		
 		
 	}
