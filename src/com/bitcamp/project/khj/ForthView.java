@@ -59,7 +59,7 @@ public class ForthView extends JFrame {
 		btn_print.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String text="";
-				String filename="c:\\desktop\\Train_resevation.txt";
+				String filename="d://reseved train.txt";
 				FileWriter fw = null;
 				File file=new File(filename);
 				try {

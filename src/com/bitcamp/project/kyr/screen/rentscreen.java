@@ -6,9 +6,13 @@ import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.TimeZone;
+import java.util.Vector;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -16,9 +20,11 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import com.bitcamp.project.kyr.screenDTO;
+import com.bitcamp.project.kyr.DAO.booklist;
 import com.bitcamp.project.kyr.DAO.screenDAO;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JTable;
@@ -87,31 +93,18 @@ public class rentscreen extends JFrame implements ActionListener {
 		screenDAO dao = new screenDAO();
 		arr = dao.getList();*/
 		
-		String header[]= {"책이름","출판사","출판일","책 번호"};
-		String data[][]= {{dto.getBname(),dto.getPublish(),dto.getRedate(),dto.getBnum()}};
+		booklist bls=new booklist();
+		//String header[]= {"책이름","출판사","출판일","책 번호"};
+		Vector header=new Vector();
+		header.add("책이름");
+		header.add("출판사");
+		header.add("출판일");
+		header.add("책 번호");
+		Vector data= bls.bok();
 		
 		
 		DefaultTableModel model = new DefaultTableModel(data, header);
 		contentPane.setLayout(null);
-		
-		/*String sql= "select * from pro3_book";
-		try {
-			conn=dao.getCon();
-			Statement st= conn.createStatement();
-			ResultSet rs=st.executeQuery(sql);
-			DefaultTableModel model;
-            while (rs.next()) {
-            
-            	String header[]= {"책이름","출판사","출판일","책 번호"};
-                Object data[] = { rs.getString(1), rs.getString(2),
-                        rs.getInt(3), rs.getString(4) };
- 
-                model.addRow(data); //DefaultTableModel에 레코드 추가
-                model = new DefaultTableModel(data, header);
-            }
-        }catch(Exception e) {
-			e.printStackTrace();
-		}*/
 		
 		table = new JTable(model);
 		table.setBounds(1, 27, 351, 64);
@@ -142,13 +135,26 @@ public class rentscreen extends JFrame implements ActionListener {
 		button = new JButton("대여 하기");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				screenDAO dao=new screenDAO();
-				dao.rent(dto);
+				screenDTO dto=new screenDTO();
+				int r=0;
+				TimeZone jst =TimeZone.getTimeZone("Asia/Seoul");
+				Calendar Cal = Calendar.getInstance(jst); 
 				
-				String bm=textField.getText();
-				dto.setBnum(bm);
-				int nm=textField_1.getColumns();
-				dto.setNumber(nm);
+				try {
+					
+					Float bm=(Float.parseFloat(textField.getText()));
+					dto.setBnum(bm);
+					int nm=(Integer.parseInt(textField_1.getText()));
+					dto.setNumber(nm);
+					
+					r=dao.rent(dto,conn);
+					
+				} catch (SQLException e1) {
+					JOptionPane.showMessageDialog(null, "입력을 잘못하셨거나 대여할 수 있는 책이 없습니다.");
+					e1.printStackTrace();
+				}
+				
+				
 				
 			}
 		});
@@ -169,6 +175,13 @@ public class rentscreen extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
+		
+			/*try {
+				dao.rent(dto,conn);
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}*/
 		
 		
 	}

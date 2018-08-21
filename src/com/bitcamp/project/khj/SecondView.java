@@ -422,7 +422,7 @@ public class SecondView extends JFrame {
 					}
 					
 					List<String> arr=fdao.Final(fdto);
-					String as=arr.get(0);
+/*					String as=arr.get(0);
 					String at=arr.get(1);
 					String tname=arr.get(2);
 					String fair=arr.get(3);
@@ -431,9 +431,12 @@ public class SecondView extends JFrame {
 					fdto.setAtime(at);
 					fdto.setTname(tname);
 					fdto.setFair(fair);
+					*/
 					
 					String s=fdao.Seat();
 					fdto.setSeat(s);
+					
+					
 					ThirdView tv=new ThirdView(fdto);
 					tv.setVisible(true);
 				}

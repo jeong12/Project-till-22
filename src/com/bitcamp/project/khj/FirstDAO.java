@@ -59,14 +59,14 @@ public class FirstDAO {
 		
 		try {
 			
-			sb.append(   "    select a.tnumber,c.tname,e.sname,a.time,f.sname, b.time,d.fair  "    ); 
-			sb.append(   "     from pro3_schedule as a, pro3_schedule as b , pro3_train as c, pro3_sectionfair as d, pro3_station as e, pro3_station as f    "  ); 
-			sb.append(   "      where e.snumber=a.snumber and e.sname=  ?          "    );    
-			sb.append(   "         and f.snumber=b.snumber and f.sname=  ?       "    ); 
-			sb.append( 	"            and a.tnumber = b.tnumber and a.time<b.time      "   );
-			sb.append( 	"            and a.time>   ?                                     "    );
-			sb.append( 	"            and a.tnumber=c.tnumber                          "    ); 
-			sb.append( 	"            and  (d.section = round(abs((b.snumber-a.snumber))/100,0))      "    ); 
+			sb.append(   "    select a.tnumber,c.tname,e.sname,a.time,f.sname, b.time, d.fair  "    ); 
+			sb.append(   "     from pro3_schedule as a, pro3_schedule as b , pro3_train as c, pro3_station as e, pro3_station as f, (select fair, tcode    "  ); 
+			sb.append(   "      from pro3_sectionfair      where section in (select abs(aas.snumber-ds.snumber)/100          "    );    
+			sb.append(   "         from pro3_station as ds, pro3_station as aas      "    ); 
+			sb.append( 	"             where ds.sname='서울' and aas.sname='수원')) as d      "   );
+			sb.append( 	"           where e.snumber=a.snumber and e.sname='서울'                                 "    );
+			sb.append( 	"           and f.snumber=b.snumber and f.sname='수원'                        "    ); 
+			sb.append( 	"          and a.tnumber = b.tnumber and a.time<b.time      "    ); 
 			sb.append( 	"            and c.tid = d.tcode        "      ); 
 			sb.append( 	"            order by a.time;       "     );
 
@@ -188,7 +188,7 @@ public class FirstDAO {
 		conn=getConnection();
 		StringBuilder sb=new StringBuilder();
 		sb.append(   "   select seat from pro3_seat     "   );
-		sb.append(   "   where tnumber=? and checked=0;        "   );
+		sb.append(   "   where tnumber=? and checked=0       "   );
 		
 		pst=conn.prepareStatement(sb.toString());
 		pst.setString(1, fdto.getTnumber());
