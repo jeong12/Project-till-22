@@ -1,9 +1,5 @@
 package com.bitcamp.project.lsy;
 
-import java.util.List;
-
-import com.bitcamp.project.kms.main;
-
 public class bodydata {
 
 	public String getData() {
