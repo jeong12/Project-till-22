@@ -2,28 +2,41 @@ package com.bitcamp.project.khj;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+
+import javafx.animation.Interpolator;
+
+import java.awt.GridLayout;
+import java.awt.GridBagLayout;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
+import javax.swing.JTextField;
+import javax.swing.JComboBox;
 import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
+import javax.swing.JCheckBox;
+import javax.swing.JTextArea;
 import javax.swing.JRadioButton;
-import javax.swing.JTextField;
-import javax.swing.border.EmptyBorder;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class SecondView2 extends JFrame {
 
+	
 	private JPanel contentPane;
 	JTextField textField_d;
 	JTextField textField_a;
@@ -72,6 +85,7 @@ public class SecondView2 extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+
 		
 		JLabel lblNewLabel = new JLabel("\uB2E4\uC2DC\uC608\uB9E4\uD558\uAE30");
 		lblNewLabel.setBounds(50, 35, 111, 15);
@@ -177,9 +191,9 @@ public class SecondView2 extends JFrame {
 		});
 		contentPane.add(comboBox_p);
 		
-		JButton btnNewButton_g = new JButton("\uAC80\uC0C9");
-		btnNewButton_g.setBounds(446, 290, 97, 23);
-		btnNewButton_g.addActionListener(new ActionListener() {		
+		JButton btn_s = new JButton("\uAC80\uC0C9");
+		btn_s.setBounds(446, 290, 97, 23);
+		btn_s.addActionListener(new ActionListener() {		
 			public void actionPerformed(ActionEvent e) {			
 				String ds=textField_d.getText();
 				String as=textField_a.getText();
@@ -196,10 +210,10 @@ public class SecondView2 extends JFrame {
 				else {
 					JOptionPane.showMessageDialog(contentPane, "존재하지 않는 역입니다.\n 다시 입력하세요", "오류창!",JOptionPane.ERROR_MESSAGE);
 				}
-				
+
 			}});
 				
-		contentPane.add(btnNewButton_g);
+		contentPane.add(btn_s);
 		
 		JLabel label_1 = new JLabel("\uC5F4\uCC28\uBC88\uD638");
 		label_1.setBounds(33, 369, 72, 15);
@@ -233,139 +247,73 @@ public class SecondView2 extends JFrame {
 		lblNewLabel_11.setBounds(580, 369, 57, 15);
 		contentPane.add(lblNewLabel_11);
 		
-		JButton Button_next = new JButton("\uC5ED \uAC80\uC0C9");
-		Button_next.setBounds(446, 84, 97, 23);
-		Button_next.addActionListener(new ActionListener() {		
-			public void actionPerformed(ActionEvent e) {			
-			
-			/*	SecondView2 sv2=new SecondView2();
-				sv2.setVisible(true);
-				dispose();*/
-				// 만약에 다음 넘어가면 쓰고 없으면 이전으로 스자.
-			}
-			
-		});
+		List<String> info=fdao.getInfor();
+		int size=info.size();
+		List<String> sit=fdao.getSeat(info);
 		
-		
-		HashMap<String, String> hm=fdao.getInfor();
-		ArrayList<String> tnumber=new ArrayList<>();
-		ArrayList<String> sinfo=new ArrayList<>();
-		Iterator<String> itr=hm.keySet().iterator();
-		while(itr.hasNext()) {
-			String key=itr.next();
-			tnumber.add(key);
-			sinfo.add(hm.get(key));
-		}
-		
-		int size=tnumber.size();
-		String[]info=new String[size];
-		for(int i=0;i<size;i++) {
-			info[i]=tnumber.get(i);
-		}
-				
-		
-		int y=410;		
-		JRadioButton[]rb=new JRadioButton[size];
-		ButtonGroup bg=new ButtonGroup();
-		
-		if(size<40) {
-		for(int i=21; i<size;i++) {
-		rb[i]=new JRadioButton(info[i]);
-		rb[i].setBounds(30, y, 60, 23);
-		bg.add(rb[i]);
-		contentPane.add(rb[i]);
-		y+=21;}
-		contentPane.add(Button_next);
-		}
-		
-		else {
-			for(int i=21; i<40;i++) {
-				rb[i]=new JRadioButton(info[i]);
-				rb[i].setBounds(30, y, 60, 23);
-				bg.add(rb[i]);
-				contentPane.add(rb[i]);
-				y+=21;}
-			
-		}
-
-		List<String> h=fdao.getSeat(hm);
-		String[]empty=new String[h.size()];
-		for(int e=0;e<size;e++) {
-			empty[e]=h.get(e);
-		}
-		
+		String[]tnumber=new String[size];
 		String[]tname=new String[size];
 		String[]dsname=new String[size];
 		String[]dtime=new String[size];
 		String[]asname=new String[size];
 		String[]atime=new String[size];
 		String[]fair=new String[size];
-					
-						
-		JLabel[] tn=new JLabel[size];
-		JLabel[] ds=new JLabel[size];
-		JLabel[] dt=new JLabel[size];
-		JLabel[] as=new JLabel[size];
-		JLabel[] at=new JLabel[size];
-		JLabel[] f=new JLabel[size];
-		JLabel[] s=new JLabel[size];
+		String[]seat=new String[size];
 		
-		int y1=410;
+		for(int e=0;e<sit.size();e++) {
+			seat[e]=sit.get(e);
+		}
 		
+		for(int i=0;i<size;i++) {
+			String str=info.get(i);
+			String[] r=str.split(",");
+			tnumber[i]=r[0];
+			tname[i]=r[1];
+			dsname[i]=r[2];
+			dtime[i]=r[3];
+			asname[i]=r[4];
+			atime[i]=r[5];
+			String fe=r[6];
+			int p=Integer.parseInt(fdto.getPerson().substring(0, 1));
+			int fee=Integer.parseInt(fe)*p;
+			fair[i]=String.valueOf(fee);
+		}// 라디오버튼 페이지의 내용들 쪼개기(열차번호, 열차명, 역이름, 시간, 금액, 좌석)
+		
+		// 라이더 버튼 만들기
+		int y=410;		
+		JRadioButton[]rb=new JRadioButton[size];
+		ButtonGroup bg=new ButtonGroup();
 		if(size<40) {
-
-			for(int q=21;q<size;q++) {
-				String str=sinfo.get(q);
-				String[] r=str.split(",");
-				tname[q]=r[0];
-				dsname[q]=r[1];
-				dtime[q]=r[2];
-				asname[q]=r[3];
-				atime[q]=r[4];
-				String fe=r[5];
-				int p=Integer.parseInt(fdto.getPerson().substring(0, 1));
-				int fee=Integer.parseInt(fe)*p;
-				fair[q]=String.valueOf(fee);
-				
-			}
-		
-		
-		for(int k=21;k<size;k++) {
-			tn[k]=new JLabel(tname[k]);
-			tn[k].setBounds(160,y1,70,15);
-			
-			ds[k]=new JLabel(dsname[k]);
-			ds[k].setBounds(278, y1, 57, 15);
-			
-			dt[k]=new JLabel(dtime[k]);
-			dt[k].setBounds(379, y1, 57, 15);
-			
-			as[k]=new JLabel(asname[k]);
-			as[k].setBounds(488, y1, 57, 15);
-			
-			at[k]=new JLabel(atime[k]);
-			at[k].setBounds(580, y1, 57, 15);
-			
-			s[k]=new JLabel(empty[k]+"/28");
-			s[k].setBounds(677, y1, 57, 15);
-			
-			f[k]=new JLabel(fair[k]);
-			f[k].setBounds(766, y1, 57, 15);
-			
-			contentPane.add(tn[k]);
-			contentPane.add(ds[k]);
-			contentPane.add(dt[k]);
-			contentPane.add(as[k]);
-			contentPane.add(at[k]);
-			contentPane.add(f[k]);
-			contentPane.add(s[k]);
-			
-			y1+=21;
-			
-		}
-		}
+		for(int i=20; i<size;i++) {
+		rb[i]=new JRadioButton(tnumber[i]);
+		rb[i].setBounds(30, y, 60, 23);
+		bg.add(rb[i]);
+		contentPane.add(rb[i]);
+		y+=21;}
+		} //라디어버튼 만들기 (사이즈가 20보다 작을 때)
 		else {
-			for(int k=21;k<40;k++) {
+			for(int i=20; i<40;i++) {
+				rb[i]=new JRadioButton(tnumber[i]);
+				rb[i].setBounds(30, y, 60, 23);
+				bg.add(rb[i]);
+				contentPane.add(rb[i]);
+				y+=21;}			
+		}//라디어버튼 만들기 (사이즈가 20보다 클 때)
+		
+			
+			JLabel[] tn=new JLabel[size];
+			JLabel[] ds=new JLabel[size];
+			JLabel[] dt=new JLabel[size];
+			JLabel[] as=new JLabel[size];
+			JLabel[] at=new JLabel[size];
+			JLabel[] f=new JLabel[size];
+			JLabel[] s=new JLabel[size];
+			
+			int y1=410;
+			
+			if(size<40) {			
+			
+			for(int k=20;k<size;k++) {
 				tn[k]=new JLabel(tname[k]);
 				tn[k].setBounds(160,y1,70,15);
 				
@@ -381,7 +329,7 @@ public class SecondView2 extends JFrame {
 				at[k]=new JLabel(atime[k]);
 				at[k].setBounds(580, y1, 57, 15);
 				
-				s[k]=new JLabel(empty[k]+"/28");
+				s[k]=new JLabel(seat[k]+"/28");
 				s[k].setBounds(677, y1, 57, 15);
 				
 				f[k]=new JLabel(fair[k]);
@@ -396,10 +344,45 @@ public class SecondView2 extends JFrame {
 				contentPane.add(s[k]);
 				
 				y1+=21;
+				
+			}
+			}
+			else {
+				for(int k=20;k<40;k++) {
+					tn[k]=new JLabel(tname[k]);
+					tn[k].setBounds(160,y1,70,15);
+					
+					ds[k]=new JLabel(dsname[k]);
+					ds[k].setBounds(278, y1, 57, 15);
+					
+					dt[k]=new JLabel(dtime[k]);
+					dt[k].setBounds(379, y1, 57, 15);
+					
+					as[k]=new JLabel(asname[k]);
+					as[k].setBounds(488, y1, 57, 15);
+					
+					at[k]=new JLabel(atime[k]);
+					at[k].setBounds(580, y1, 57, 15);
+					
+					s[k]=new JLabel(seat[k]+"/28");
+					s[k].setBounds(677, y1, 57, 15);
+					
+					f[k]=new JLabel(fair[k]);
+					f[k].setBounds(766, y1, 57, 15);
+					
+					contentPane.add(tn[k]);
+					contentPane.add(ds[k]);
+					contentPane.add(dt[k]);
+					contentPane.add(as[k]);
+					contentPane.add(at[k]);
+					contentPane.add(f[k]);
+					contentPane.add(s[k]);
+					
+					y1+=21;
+				
+			}
+			}
 			
-		}
-		}
-		
 			JButton button = new JButton("\uC608\uC57D\uD558\uAE30");
 			button.setBounds(775, 828, 97, 23);
 			button.addActionListener(new ActionListener() {		
@@ -413,17 +396,34 @@ public class SecondView2 extends JFrame {
 						if(jr.isSelected()) {
 						st=jr.getText();
 						fdto.setTnumber(st);
-						}
-							
-					}//
+						System.out.println(fdto.getTnumber());
+						}						
+					}
+					
+					List<String> arr=fdao.Final(fdto);
+					String s=fdao.Seat();
 					ThirdView tv=new ThirdView(fdto);
 					tv.setVisible(true);
 				}
 				
 			});
-				contentPane.add(button);	
+				contentPane.add(button);
+				
+				JButton btn_goback = new JButton("\uB3CC\uC544\uAC00\uAE30");
+				btn_goback.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						SecondView sv=new SecondView(fdto);
+						sv.setVisible(true);
+						dispose();
+					}
+				});
+				btn_goback.setBounds(12, 828, 97, 23);
+				contentPane.add(btn_goback);
+				
 			
-			
+		
 	}
-
 }
+			
+
+	

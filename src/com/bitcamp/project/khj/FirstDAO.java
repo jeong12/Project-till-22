@@ -49,14 +49,13 @@ public class FirstDAO {
 	}
 	
 	
-	public HashMap<String,String> getInfor(){
+	public List<String> getInfor(){
 		
 		PreparedStatement pst=null;
 		Connection conn=getConnection();
 		ResultSet rs=null;
 		StringBuilder sb=new StringBuilder();
-		HashMap<String, String> hm=new HashMap<>();
-		
+		ArrayList<String> info=new ArrayList<>();		
 		
 		try {
 			
@@ -87,30 +86,35 @@ public class FirstDAO {
 			String asname=rs.getString("f.sname");
 			String atime=rs.getString("b.time");
 			String fair=rs.getString("d.fair");
-			hm.put(key, tname+","+dsname+","+dtime+","+asname+","+atime+","+fair);
+			info.add(key+","+tname+","+dsname+","+dtime+","+asname+","+atime+","+fair);
 			}
 			
+		
 		
 		}catch(SQLException e) {
 			System.out.println(e);
 		}finally {
 			close(conn,pst);
 		}
-		return hm;
+		return info;
 	}
 
-	public ArrayList<String> getSeat(HashMap<String,String> hm) {
+	public ArrayList<String> getSeat(List<String> info) {
 		Connection conn=null;
 		ResultSet rs=null;
 		PreparedStatement pst=null;
-		Iterator<String> itr=hm.keySet().iterator();
-		ArrayList<String> em=new ArrayList<>();
-		ArrayList<String> arr=new ArrayList<>();
+		List<String> test=getInfor();
+		int size=test.size();
+		String[]tnumber=new String[size];
 		int empty=0;
-		while(itr.hasNext()) {
-			arr.add(itr.next());
-		} //tnumber ±¸ÇÔ
-		int size=arr.size();
+		ArrayList<String> em=new ArrayList<>();
+		
+		for(int i=0;i<size;i++) {
+			String str=test.get(i);
+			String[] r=str.split(",");
+			tnumber[i]=r[0];
+		}
+
 		try {
 		conn=getConnection();
 		StringBuilder sb=new StringBuilder();
@@ -119,7 +123,7 @@ public class FirstDAO {
 		
 		pst=conn.prepareStatement(sb.toString());
 		for(int i=0;i<size;i++) {
-		pst.setString(1, arr.get(i));
+		pst.setString(1, tnumber[i]);
 		rs=pst.executeQuery();
 		rs.next();
 		empty=rs.getInt("count(seat)");
@@ -214,7 +218,7 @@ public class FirstDAO {
 	
 	
 	try {		
-		sb.append(   "    select f.sname,c.tname,d.fair, b.time  "    ); 
+		sb.append(   "    select f.sname,c.tname,d.fair, b.time, a.time  "    ); 
 		sb.append(   "     from pro3_schedule as a, pro3_schedule as b , pro3_train as c, pro3_sectionfair as d, pro3_station as e, pro3_station as f    "  ); 
 		sb.append(   "     where e.snumber=a.snumber and e.sname=?      "    );    
 		sb.append(   "     and f.snumber=b.snumber and f.sname=?        "    ); 
@@ -238,18 +242,19 @@ public class FirstDAO {
 			String at=rs.getString("b.time");
 			String tname=rs.getString("c.tname");
 			String fair=rs.getString("d.fair");
-			
-		
-			
+			String dt=rs.getString("a.time");
+
 			result.add(as);
 			result.add(at);
 			result.add(tname);
 			result.add(fair);
+			result.add(dt);
 			
 			fdto.setAs(as);
 			fdto.setAtime(at);
 			fdto.setTname(tname);
 			fdto.setFair(fair);
+			fdto.setDtime(dt);
 	
 			
 		}
