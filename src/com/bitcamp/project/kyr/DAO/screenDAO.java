@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.TimeZone;
+import java.util.Vector;
 
 import javax.swing.JOptionPane;
 
@@ -18,7 +19,7 @@ public class screenDAO {
 
 	public Connection getCon() {
 
-		String className = "com.mysql.jdbc.Driver";
+		String className = "com.mysql.cj.jdbc.Driver";
 		String url =  "jdbc:mysql://my5509.gabiadb.com:3306/mydb?characterEncoding=UTF-8&serverTimezone=UTC";
 		String user = "bit504";
 		String password = "bitcamp504*";
@@ -49,28 +50,26 @@ public class screenDAO {
 			}
 		}
 	}
-	public List<screenDTO> getList()
+	public Vector getList(Connection conn)
 	{
-		Connection conn=null;
 		PreparedStatement pstmt=null;
-		ArrayList<screenDTO> arr=new ArrayList<>();
+		Vector arr=new Vector();
 		ResultSet rs = null;
 		StringBuilder sql = new StringBuilder();
 		sql.append(  " select bname , publish , redate , bnum from pro3_book " );
+		sql.append("order by bnum");
 		conn=getCon();
 		try {
 			
 			pstmt = conn.prepareStatement(sql.toString());
 			rs = pstmt.executeQuery();				
 			while(rs.next()) {
-				screenDTO dto = 
-						
-						new screenDTO();
-				dto.setBname(rs.getString("bname"));
-				dto.setPublish(rs.getString("publish"));
-				dto.setRedate(rs.getString("redate"));
-				dto.setBnum(rs.getString("bnum"));
-				arr.add(dto);
+				Vector vec=new Vector();
+				vec.add(rs.getString("bname"));
+				vec.add(rs.getString("publish"));
+				vec.add(rs.getString("redate"));
+				vec.add(rs.getString("bnum"));
+				arr.add(vec);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -86,60 +85,74 @@ public class screenDAO {
 		}
 		return arr;
 	}
-	public void insert(screenDTO dto)
+	public int insert(screenDTO dto,Connection conn) throws SQLException
 	{
-		Connection conn=null;
+		//Connection conn=null;
 		PreparedStatement pstmt=null;
 		StringBuilder sbl=new StringBuilder();
 		conn= getCon();
+		int r=0;
+		sbl.append(" insert into pro3_book values (?,?,?,?) ");
 		try {
-			sbl.append(" insert into pro3_book values (?,?,?,?) ");
+			
 			pstmt=conn.prepareStatement(sbl.toString());
 			pstmt.setString(1 , dto.getBname());
 			pstmt.setString(2 , dto.getPublish());
 			pstmt.setString(3 , dto.getRedate());
-			pstmt.setString(4 , dto.getBnum());
-			pstmt.executeUpdate();
+			pstmt.setDouble(4 , dto.getBnum());
+			
+			r=pstmt.executeUpdate();
 		}catch(SQLException e)
 		{
-			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, "입력 형식에 맞지 않습니다.");
+			throw e;
+	
 		}finally {
 		close(conn,pstmt);
 		}
+		return r;
 	}
-			public int rent(screenDTO dto)
+			public int rent(screenDTO dto,Connection conn) throws SQLException
 			{
-				Connection conn=null;
 				StringBuilder sbl=new StringBuilder();
+				StringBuilder sb2=new StringBuilder();
 				PreparedStatement pstmt=null;
-				int result=0;
+				PreparedStatement pstmt2=null;
+				int r=0;
+				int r1=0;
 				conn=getCon();
-				
 				try {
 					TimeZone jst =TimeZone.getTimeZone("Asia/Seoul");
-					Calendar Cal = Calendar.getInstance(jst); 
+					Calendar Cal = Calendar.getInstance(jst);
 					
-				sbl.append(" insert into pro3_rent values (?,?,Cal.add(Calendar.DATE, 7))");
-				pstmt=conn.prepareStatement(sbl.toString());
-				pstmt.setString(1, dto.getBnum());
-				pstmt.setInt(2, dto.getNumber());
-				
-				sbl.append(" delete pro3_rent where bnum = ?");
-				pstmt=conn.prepareStatement(sbl.toString());
-				pstmt.setString(1, dto.getBnum());
-				JOptionPane.showMessageDialog(null, "대여가 완료 되었습니다.반납 기한 : "
-						+Cal.get(Calendar.YEAR)+"년"+(Cal.get(Calendar.MONTH)+1)+"월"
-						+(Cal.get(Calendar.DATE)+7)+"일까지 입니다");
-				
+					sb2.append(" delete from pro3_book where round(bnum,2) = round(?,2)");
+					pstmt2=conn.prepareStatement(sb2.toString());
+					pstmt2.setFloat(1, dto.getBnum());
+					r1=pstmt2.executeUpdate();
+					
+					if(r1>0)
+					{
+					sbl.append(" insert into pro3_rent values (?,?,now()) ");
+					pstmt=conn.prepareStatement(sbl.toString());
+					pstmt.setFloat(1, dto.getBnum());
+					pstmt.setInt(2, dto.getNumber());
+					r=pstmt.executeUpdate();
+					
+					JOptionPane.showMessageDialog(null, "대여가 완료 되었습니다.반납 기한 : "
+							+Cal.get(Calendar.YEAR)+"년"+(Cal.get(Calendar.MONTH)+1)+"월"
+							+(Cal.get(Calendar.DATE)+7)+"일까지 입니다");
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "대여 할 책이 없드아아 ㅜ ㅜ ");
+					}
+					
 				}catch(SQLException e) {
-					e.printStackTrace();
-					JOptionPane.showMessageDialog(null, "입력을 잘못하셨거나 대여할 수 있는 책이 없습니다.");
-				}finally {
-					close(conn,pstmt);
+					throw e;
+				}finally { 
+						close(conn,pstmt2);
 				}
-				return result;
+				return r+r1;
 			}
+			
 			
 			public int retu(screenDTO dto)
 			{
@@ -149,20 +162,33 @@ public class screenDAO {
 				int result=0;
 				conn=getCon();
 				
-				Calendar cal=Calendar.getInstance();
+				Calendar cal=Calendar.getInstance();			
 				
 				try {
+					TimeZone jst =TimeZone.getTimeZone("Asia/Seoul");
+					Calendar Cal = Calendar.getInstance(jst); 
+					
 					sbl.append(" insert into pro3_retu values (?,?,sysdate()) ");
 					pstmt=conn.prepareStatement(sbl.toString());
-					pstmt.setString(1, dto.getBnum());
+					pstmt.setDouble(1, dto.getBnum());
 					pstmt.setInt(2, dto.getNumber());
 					
-					sbl.append(" delete pro3_rent where bnum = ?");
+					sbl.append(" delete from pro3_rent where bnum = ?");
 					pstmt=conn.prepareStatement(sbl.toString());
-					pstmt.setString(1, dto.getBnum());
+					pstmt.setDouble(1, dto.getBnum());
+					
+					if(result>0) {
+						JOptionPane.showMessageDialog(null, "반납이 완료 되었습니다.반납 완료 날짜: "
+								+Cal.get(Calendar.YEAR)+"년"+(Cal.get(Calendar.MONTH)+1)+"월"
+								+Cal.get(Calendar.DATE)+"일 입니다");
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "반납 할 책이 없으신대 ? ");
+				}
 					
 				}catch(SQLException e) {
 					e.printStackTrace();
+					JOptionPane.showMessageDialog(null, "입력을 잘못하셨거나 반납 할 책이 없습니다.");
 				}finally {
 					close(conn,pstmt);
 				}
