@@ -63,7 +63,7 @@ public class ForthView extends JFrame {
 				FileWriter fw = null;
 				File file=new File(filename);
 				try {
-					fw=new FileWriter(file);
+					fw=new FileWriter(filename);
 					fw.write(text);
 					fw.flush();//
 				} catch (IOException e) {

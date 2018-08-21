@@ -267,63 +267,61 @@ public class SecondView extends JFrame {
 		
 		
 		
-		HashMap<String, String> hm=fdao.getInfor();
-		ArrayList<String> tnumber=new ArrayList<>();
-		ArrayList<String> sinfo=new ArrayList<>();
-		Iterator<String> itr=hm.keySet().iterator();
-		while(itr.hasNext()) {
-			String key=itr.next();
-			tnumber.add(key);
-			sinfo.add(hm.get(key));
+		List<String> info=fdao.getInfor();
+		int size=info.size();
+		List<String> sit=fdao.getSeat(info);
+		
+		String[]tnumber=new String[size];
+		String[]tname=new String[size];
+		String[]dsname=new String[size];
+		String[]dtime=new String[size];
+		String[]asname=new String[size];
+		String[]atime=new String[size];
+		String[]fair=new String[size];
+		String[]seat=new String[size];
+		
+		for(int e=0;e<sit.size();e++) {
+			seat[e]=sit.get(e);
 		}
 		
-		int size=tnumber.size();
-		String[]info=new String[size];
 		for(int i=0;i<size;i++) {
-			info[i]=tnumber.get(i);
-		}
-				
+			String str=info.get(i);
+			String[] r=str.split(",");
+			tnumber[i]=r[0];
+			tname[i]=r[1];
+			dsname[i]=r[2];
+			dtime[i]=r[3];
+			asname[i]=r[4];
+			atime[i]=r[5];
+			String fe=r[6];
+			int p=Integer.parseInt(fdto.getPerson().substring(0, 1));
+			int fee=Integer.parseInt(fe)*p;
+			fair[i]=String.valueOf(fee);
+		}// 라디오버튼 페이지의 내용들 쪼개기(열차번호, 열차명, 역이름, 시간, 금액, 좌석)
 		
+		// 라이더 버튼 만들기
 		int y=410;		
 		JRadioButton[]rb=new JRadioButton[size];
 		ButtonGroup bg=new ButtonGroup();
-		
-		if(size<=20) {
+		if(size<20) {
 		for(int i=0; i<size;i++) {
-		rb[i]=new JRadioButton(info[i]);
+		rb[i]=new JRadioButton(tnumber[i]);
 		rb[i].setBounds(30, y, 60, 23);
 		bg.add(rb[i]);
 		contentPane.add(rb[i]);
 		y+=21;}
-		}
-		
+		} //라디어버튼 만들기 (사이즈가 20보다 작을 때)
 		else {
 			for(int i=0; i<20;i++) {
-				rb[i]=new JRadioButton(info[i]);
+				rb[i]=new JRadioButton(tnumber[i]);
 				rb[i].setBounds(30, y, 60, 23);
 				bg.add(rb[i]);
 				contentPane.add(rb[i]);
 				contentPane.add(btnNewButton_2);	
-				
-				
-				y+=21;}
-			
-		}
+				y+=21;}			
+		}//라디어버튼 만들기 (사이즈가 20보다 클 때)
 		
-			List<String> h=fdao.getSeat(hm);
-			String[]empty=new String[h.size()];
-			for(int e=0;e<size;e++) {
-				empty[e]=h.get(e);
-			}
 			
-			String[]tname=new String[size];
-			String[]dsname=new String[size];
-			String[]dtime=new String[size];
-			String[]asname=new String[size];
-			String[]atime=new String[size];
-			String[]fair=new String[size];
-						
-							
 			JLabel[] tn=new JLabel[size];
 			JLabel[] ds=new JLabel[size];
 			JLabel[] dt=new JLabel[size];
@@ -334,23 +332,7 @@ public class SecondView extends JFrame {
 			
 			int y1=410;
 			
-			if(size<=20) {
-
-				for(int q=0;q<size;q++) {
-					String str=sinfo.get(q);
-					String[] r=str.split(",");
-					tname[q]=r[0];
-					dsname[q]=r[1];
-					dtime[q]=r[2];
-					asname[q]=r[3];
-					atime[q]=r[4];
-					String fe=r[5];
-					int p=Integer.parseInt(fdto.getPerson().substring(0, 1));
-					int fee=Integer.parseInt(fe)*p;
-					fair[q]=String.valueOf(fee);
-					
-				}
-			
+			if(size<20) {			
 			
 			for(int k=0;k<size;k++) {
 				tn[k]=new JLabel(tname[k]);
@@ -368,7 +350,7 @@ public class SecondView extends JFrame {
 				at[k]=new JLabel(atime[k]);
 				at[k].setBounds(580, y1, 57, 15);
 				
-				s[k]=new JLabel(empty[k]+"/28");
+				s[k]=new JLabel(seat[k]+"/28");
 				s[k].setBounds(677, y1, 57, 15);
 				
 				f[k]=new JLabel(fair[k]);
@@ -403,7 +385,7 @@ public class SecondView extends JFrame {
 					at[k]=new JLabel(atime[k]);
 					at[k].setBounds(580, y1, 57, 15);
 					
-					s[k]=new JLabel(empty[k]+"/28");
+					s[k]=new JLabel(seat[k]+"/28");
 					s[k].setBounds(677, y1, 57, 15);
 					
 					f[k]=new JLabel(fair[k]);
