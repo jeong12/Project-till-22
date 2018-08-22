@@ -74,7 +74,7 @@ public class FirstView extends JFrame {
 		fdto.setPerson(person[0]);
 		fdto.setDtime(time[0].substring(0, 2)+":00:00");
 		
-		this.setTitle("기차예약시스템인데 경부선밖에 안됨.");
+		this.setTitle("시작은 작은 '경부선'이지만, 차근차근 한반도 구석까지 넓혀가겠습니다 :)");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 900, 400);
 		contentPane = new JPanel();

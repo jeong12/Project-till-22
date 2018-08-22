@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -45,6 +46,7 @@ public class ForthView extends JFrame {
 	public ForthView(FirstDTO fdto, ArrayList<String> count) {
 		this.fdto=fdto;
 		this.count=count;
+		this.setTitle("시작은 작은 '경부선'이지만, 차근차근 한반도 구석까지 넓혀가겠습니다 :)");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -56,6 +58,10 @@ public class ForthView extends JFrame {
 		lblNewLabel.setBounds(141, 23, 122, 15);
 		contentPane.add(lblNewLabel);
 		
+		long time=System.currentTimeMillis();
+		System.out.println(time);
+		
+		
 		ArrayList<String> arr=count;
 		int size=arr.size();
 		
@@ -65,6 +71,8 @@ public class ForthView extends JFrame {
 		n=""+n.concat(","+arr.get(i));
 		}
 		System.out.println(n);
+		
+			
 		
 		int p=Integer.parseInt(fdto.getPerson().substring(0, 1));
 		int fee=Integer.parseInt(fdto.getFair())*p;
@@ -82,7 +90,7 @@ public class ForthView extends JFrame {
 		btn_print.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String content=text;
-				String filename="d://reseved train.txt";
+				String filename="d://reseved train_"+time+".txt";
 				FileWriter fw = null;
 				File file=new File(filename);
 				try {
@@ -93,6 +101,13 @@ public class ForthView extends JFrame {
 					System.out.println(e);
 				}finally {
 					if(fw!=null) try {}catch(Exception e) {}
+				}
+				
+				if(file.exists()) {
+					JOptionPane.showMessageDialog(contentPane, "출력을 성공하였습니다.\n d드라이브를 확인해주세요\n 파일명은 'reseved train_숫자.txt'입니다", "출력성공!",JOptionPane.PLAIN_MESSAGE);
+				}
+				else {
+					JOptionPane.showMessageDialog(contentPane, "출력을 실패했습니다", "출력실패!",JOptionPane.WARNING_MESSAGE);
 				}
 				
 				

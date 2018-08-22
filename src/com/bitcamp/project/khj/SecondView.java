@@ -78,7 +78,7 @@ public class SecondView extends JFrame {
 	public SecondView(FirstDTO fdto) {
 		this.fdto=fdto;
 		fdao = new FirstDAO(fdto);
-		this.setTitle("기차예약시스템인데 경부선밖에 안됨.");
+		this.setTitle("시작은 작은 '경부선'이지만, 차근차근 한반도 구석까지 넓혀가겠습니다 :)");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 900, 900);
 		contentPane = new JPanel();
@@ -444,6 +444,7 @@ public class SecondView extends JFrame {
 					
 					ThirdView tv=new ThirdView(fdto,count);
 					tv.setVisible(true);
+					dispose();
 				}
 				
 			});

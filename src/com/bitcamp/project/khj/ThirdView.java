@@ -45,6 +45,7 @@ public class ThirdView extends JFrame {
 		this.count=count;
 		this.fdto=fdto;
 		fdao = new FirstDAO(fdto);
+		this.setTitle("시작은 작은 '경부선'이지만, 차근차근 한반도 구석까지 넓혀가겠습니다 :)");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 600, 450);
 		contentPane = new JPanel();
@@ -131,6 +132,14 @@ public class ThirdView extends JFrame {
 		contentPane.add(label_8);
 		
 		JButton bnt_back = new JButton("\uB3CC\uC544\uAC00\uAE30");
+		bnt_back.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				SecondView sv=new SecondView(fdto);
+				sv.setVisible(true);
+				dispose();
+			}
+		});
 		bnt_back.setBounds(12, 378, 97, 23);
 		contentPane.add(bnt_back);
 		
@@ -145,6 +154,10 @@ public class ThirdView extends JFrame {
 					if(answer==0) {
 						ForthView fv=new ForthView(fdto,count); 
 						fv.setVisible(true);
+						dispose();
+					}
+					else {
+						dispose();
 					}
 					
 				}

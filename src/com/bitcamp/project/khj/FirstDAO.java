@@ -302,8 +302,71 @@ public class FirstDAO {
 	return result;
 }
 
+	public List<String> getRev(){
+		
+		
+		PreparedStatement pst=null;
+		Connection conn=getConnection();
+		ResultSet rs=null;
+		StringBuilder sb=new StringBuilder();
+		ArrayList<String> rev=new ArrayList<>();		
+		
+		try {
+			
+			sb.append(  "  select reservation number,tnumber,tname,dsname,dtime,asname,atime,fair,seat,date  "                     ); 
+			sb.append(  "  from pro3_ticketing "    );
+			sb.append(	"  where mid= ? "    ); 
 
+			pst=conn.prepareStatement(sb.toString());
+			pst.setInt(1, 123456);
 
+			rs=pst.executeQuery();
+			
+			while(rs.next()) {
+				rev.add(rs.getString("reservation number"));
+				rev.add(String.valueOf(rs.getInt("tnumber")));
+				rev.add(rs.getString("tname"));
+				rev.add(rs.getString("dsname"));
+				rev.add(rs.getString("dtime"));
+				rev.add(rs.getString("asname"));
+				rev.add(rs.getString("atime"));
+				rev.add(String.valueOf(rs.getInt("fair")));
+				rev.add(rs.getString("seat"));
+				rev.add(rs.getString("date"));
+			}
+			
+		}catch(SQLException e) {
+			System.out.println(e);
+		}finally {
+			close(conn,pst);
+		}
+		return rev;
+		
+	}
+	
+	public int del() {
+		Connection conn=null;
+		PreparedStatement pst=null;
+		int r=0;
+		try {
+		conn=getConnection();
+		StringBuilder sb=new StringBuilder();
+		sb.append(   "   delete from pro3_ticketing    "   );
+		sb.append(   "   where reservation number = ?    "   );
+		pst=conn.prepareStatement(sb.toString());
+		pst.setString(1, "1");
+		r=pst.executeUpdate();
+
+		}catch(SQLException e) {
+			System.out.println(e);
+			
+		}finally {
+			close(conn,pst);
+		}
+		return r;
+		}
 }
+
+
 
 
