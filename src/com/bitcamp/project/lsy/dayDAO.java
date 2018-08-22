@@ -76,7 +76,7 @@ private Connection getConnection() {
 				if(rs!=null) try {rs.close();} catch(SQLException e) {}
 				close(conn,pst);
 			}
-			System.out.println(dto.getTue());
+//			System.out.println(dto.getTue());
 			return dto;
 			
 		}
