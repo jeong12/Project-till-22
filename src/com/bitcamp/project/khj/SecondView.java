@@ -433,11 +433,16 @@ public class SecondView extends JFrame {
 					fdto.setFair(fair);
 					*/
 					
-					String s=fdao.Seat();
-					fdto.setSeat(s);
+					ArrayList<String> count=fdao.Seat();
+					int cs=count.size();
+					System.out.println(cs);
+					String[]seat=new String[cs];
+					for(int c=0;c<cs;c++) {
+						seat[c]=count.get(c);
+					}
 					
 					
-					ThirdView tv=new ThirdView(fdto);
+					ThirdView tv=new ThirdView(fdto,count);
 					tv.setVisible(true);
 				}
 				

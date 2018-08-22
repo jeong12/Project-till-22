@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 public class ThirdView extends JFrame {
@@ -18,6 +19,7 @@ public class ThirdView extends JFrame {
 	private JPanel contentPane;
 	FirstDTO fdto;
 	FirstDAO fdao;
+	ArrayList<String> count;
 
 	/**
 	 * Launch the application.
@@ -37,8 +39,10 @@ public class ThirdView extends JFrame {
 */
 	/**
 	 * Create the frame.
+	 * @param seat 
 	 */
-	public ThirdView(FirstDTO fdto) {
+	public ThirdView(FirstDTO fdto, ArrayList<String> count) {
+		this.count=count;
 		this.fdto=fdto;
 		fdao = new FirstDAO(fdto);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -106,19 +110,24 @@ public class ThirdView extends JFrame {
 		label_seat.setBounds(341, 176, 57, 15);
 		contentPane.add(label_seat);
 		
-		JLabel label_7= new JLabel(fdto.getSeat());
-		label_7.setBounds(340, 228, 97, 15);
+		int x=340;
+		for(int c=0;c<count.size();c++) {
+		JLabel label_7= new JLabel(count.get(c));
+		label_7.setBounds(x, 228, 97, 15);
 		contentPane.add(label_7);
-		
+		x+=20;
+		}
 		JLabel label_fair = new JLabel("\uAE08\uC561");
-		label_fair.setBounds(481, 176, 65, 15);
+		label_fair.setBounds(65, 280, 65, 15);
 		contentPane.add(label_fair);
+		
 		
 		int p=Integer.parseInt(fdto.getPerson().substring(0, 1));
 		int fee=Integer.parseInt(fdto.getFair())*p;
+		System.out.println(fee);
 		String fe=String.valueOf(fee);
 		JLabel label_8= new JLabel(fe);
-		label_8.setBounds(480, 228, 100, 15);
+		label_8.setBounds(65, 310, 100, 15);
 		contentPane.add(label_8);
 		
 		JButton bnt_back = new JButton("\uB3CC\uC544\uAC00\uAE30");
@@ -129,12 +138,12 @@ public class ThirdView extends JFrame {
 		btnNewButton.setBounds(463, 365, 97, 23);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int r=fdao.goReserve(fdto);
+				int r=fdao.goReserve(fdto,count);
 				if(r>0) {
 					JOptionPane.showMessageDialog(contentPane, "예약를 성공했습니다", "예약성공!",JOptionPane.PLAIN_MESSAGE);
 					int answer=JOptionPane.showInternalConfirmDialog(contentPane, "예약내역을 출력하시겠습니까?", "출력창으로",JOptionPane.PLAIN_MESSAGE,JOptionPane.YES_NO_CANCEL_OPTION);
 					if(answer==0) {
-						ForthView fv=new ForthView(fdto); 
+						ForthView fv=new ForthView(fdto,count); 
 						fv.setVisible(true);
 					}
 					
@@ -146,4 +155,5 @@ public class ThirdView extends JFrame {
 		});
 		contentPane.add(btnNewButton);
 	}
+
 }
