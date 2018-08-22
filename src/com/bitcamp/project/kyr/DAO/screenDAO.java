@@ -57,7 +57,7 @@ public class screenDAO {
 		ResultSet rs = null;
 		StringBuilder sql = new StringBuilder();
 		sql.append(  " select bname , publish , redate , bnum from pro3_book " );
-		sql.append("order by bnum");
+		sql.append(" order by bnum ");
 		conn=getCon();
 		try {
 			
@@ -115,27 +115,40 @@ public class screenDAO {
 			{
 				StringBuilder sbl=new StringBuilder();
 				StringBuilder sb2=new StringBuilder();
+				StringBuilder sb3=new StringBuilder();
 				PreparedStatement pstmt=null;
 				PreparedStatement pstmt2=null;
-				int r=0;
+				PreparedStatement pstmt3=null;
 				int r1=0;
+				int r2=0;
+				int r3=0;
 				conn=getCon();
 				try {
 					TimeZone jst =TimeZone.getTimeZone("Asia/Seoul");
 					Calendar Cal = Calendar.getInstance(jst);
 					
-					sb2.append(" delete from pro3_book where round(bnum,2) = round(?,2)");
-					pstmt2=conn.prepareStatement(sb2.toString());
-					pstmt2.setFloat(1, dto.getBnum());
-					r1=pstmt2.executeUpdate();
-					
-					if(r1>0)
-					{
 					sbl.append(" insert into pro3_rent values (?,?,now()) ");
 					pstmt=conn.prepareStatement(sbl.toString());
 					pstmt.setFloat(1, dto.getBnum());
 					pstmt.setInt(2, dto.getNumber());
-					r=pstmt.executeUpdate();
+					r1=pstmt.executeUpdate();
+					
+					if(r1>0)
+					{
+					sb3.append(" insert into rttest(number,bname,publish,redate,bnum)  ");
+					sb3.append(" select r.number,bname,publish,redate,b.bnum ");
+					sb3.append(" from pro3_book b ,pro3_rent r ");
+					sb3.append(" where b.bnum=r.bnum and round(b.bnum,2) = round(?,2) ");
+					pstmt3=conn.prepareStatement(sb3.toString());
+					pstmt3.setFloat(1, dto.getBnum());
+					r3=pstmt3.executeUpdate();
+					
+					if(r3>0)
+					{
+						sb2.append(" delete from pro3_book where round(bnum,2) = round(?,2)");
+						pstmt2=conn.prepareStatement(sb2.toString());
+						pstmt2.setFloat(1, dto.getBnum());
+						r2=pstmt2.executeUpdate();
 					
 					JOptionPane.showMessageDialog(null, "대여가 완료 되었습니다.반납 기한 : "
 							+Cal.get(Calendar.YEAR)+"년"+(Cal.get(Calendar.MONTH)+1)+"월"
@@ -143,23 +156,31 @@ public class screenDAO {
 					}
 					else {
 						JOptionPane.showMessageDialog(null, "대여 할 책이 없드아아 ㅜ ㅜ ");
+						}
 					}
-					
 				}catch(SQLException e) {
 					throw e;
 				}finally { 
 						close(conn,pstmt2);
 				}
-				return r+r1;
+				return r3+r1+r2;
 			}
 			
 			
-			public int retu(screenDTO dto)
+			public int retu(screenDTO dto,Connection conn) throws SQLException
 			{
-				Connection conn=null;
 				StringBuilder sbl=new StringBuilder();
+				StringBuilder sb2=new StringBuilder();
+				StringBuilder sb3=new StringBuilder();
+				StringBuilder sb4=new StringBuilder();
 				PreparedStatement pstmt=null;
-				int result=0;
+				PreparedStatement pstmt2=null;
+				PreparedStatement pstmt3=null;
+				PreparedStatement pstmt4=null;
+				int r=0;
+				int r2=0;
+				int r3=0;
+				int r4=0;
 				conn=getCon();
 				
 				Calendar cal=Calendar.getInstance();			
@@ -168,30 +189,54 @@ public class screenDAO {
 					TimeZone jst =TimeZone.getTimeZone("Asia/Seoul");
 					Calendar Cal = Calendar.getInstance(jst); 
 					
-					sbl.append(" insert into pro3_retu values (?,?,sysdate()) ");
+					sbl.append(" insert into pro3_retu values (?,?,now()) ");
 					pstmt=conn.prepareStatement(sbl.toString());
-					pstmt.setDouble(1, dto.getBnum());
+					pstmt.setFloat(1, dto.getBnum());
 					pstmt.setInt(2, dto.getNumber());
+					r=pstmt.executeUpdate();
 					
-					sbl.append(" delete from pro3_rent where bnum = ?");
-					pstmt=conn.prepareStatement(sbl.toString());
-					pstmt.setDouble(1, dto.getBnum());
+					sb2.append(" delete from pro3_rent where round(bnum,2) = round(?,2) ");
+					pstmt2=conn.prepareStatement(sb2.toString());
+					pstmt2.setFloat(1, dto.getBnum());
+					r2=pstmt2.executeUpdate();
 					
-					if(result>0) {
+					sb3.append(" insert into pro3_book(bname,publish,redate,bnum) ");
+					sb3.append(" select bname,publish,redate,bnum ");
+					sb3.append(" from rttest where round(bnum,2)=round( ? ,2) ");
+					pstmt3=conn.prepareStatement(sb3.toString());
+					pstmt3.setFloat(1, dto.getBnum());
+					r3=pstmt3.executeUpdate();
+					
+					
+					if(r>0) {
+						if(r2>0)
+						{
+							sb4.append(" delete from rttest where round(bnum,2) = round( ? ,2) ");
+							pstmt4=conn.prepareStatement(sb4.toString());
+							pstmt4.setFloat(1, dto.getBnum());
+							r4=pstmt4.executeUpdate();
+							if(r3>0)
+							{
+						
+								
 						JOptionPane.showMessageDialog(null, "반납이 완료 되었습니다.반납 완료 날짜: "
 								+Cal.get(Calendar.YEAR)+"년"+(Cal.get(Calendar.MONTH)+1)+"월"
 								+Cal.get(Calendar.DATE)+"일 입니다");
+						}
+					}
+						else {
+							JOptionPane.showMessageDialog(null, "반납 할 책이 없으신대 ? ");
+						}
 					}
 					else {
 						JOptionPane.showMessageDialog(null, "반납 할 책이 없으신대 ? ");
 				}
 					
 				}catch(SQLException e) {
-					e.printStackTrace();
-					JOptionPane.showMessageDialog(null, "입력을 잘못하셨거나 반납 할 책이 없습니다.");
+					throw e;
 				}finally {
 					close(conn,pstmt);
 				}
-				return result;
+				return r+r2;
 			}
 		}
