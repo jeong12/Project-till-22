@@ -13,12 +13,14 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 public class ForthView extends JFrame {
 
 	private JPanel contentPane;
-
+	ArrayList<String> count;
+	FirstDTO fdto;
 	/**
 	 * Launch the application.
 	 */
@@ -38,8 +40,11 @@ public class ForthView extends JFrame {
 	/**
 	 * Create the frame.
 	 * @param fdto 
+	 * @param count 
 	 */
-	public ForthView(FirstDTO fdto) {
+	public ForthView(FirstDTO fdto, ArrayList<String> count) {
+		this.fdto=fdto;
+		this.count=count;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -51,20 +56,38 @@ public class ForthView extends JFrame {
 		lblNewLabel.setBounds(141, 23, 122, 15);
 		contentPane.add(lblNewLabel);
 		
+		ArrayList<String> arr=count;
+		int size=arr.size();
+		
+		String n="";
+		
+		for(int i=0;i<size;i++) {
+		n=""+n.concat(","+arr.get(i));
+		}
+		System.out.println(n);
+		
+		int p=Integer.parseInt(fdto.getPerson().substring(0, 1));
+		int fee=Integer.parseInt(fdto.getFair())*p;
+		String fe=String.valueOf(fee);
+		String text="열차번호: "+fdto.getTnumber()+"\t열차명: "+fdto.getTname()+"\n출발역: "+fdto.getDs()+"\t 출발시간: "+fdto.getDs()
+		+"\n도착역: "+fdto.getAs()+"\t도착시간: "+fdto.getAtime()+"\n좌석: "+n+"\t금액: "+fe;
+		
+
 		JTextArea textArea = new JTextArea();
 		textArea.setBounds(12, 50, 398, 92);
+		textArea.append(text);
 		contentPane.add(textArea);
 		
 		JButton btn_print = new JButton("\uCD9C\uB825");
 		btn_print.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				String text="";
+				String content=text;
 				String filename="d://reseved train.txt";
 				FileWriter fw = null;
 				File file=new File(filename);
 				try {
 					fw=new FileWriter(filename);
-					fw.write(text);
+					fw.write(content);
 					fw.flush();//
 				} catch (IOException e) {
 					System.out.println(e);

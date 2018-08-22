@@ -16,7 +16,6 @@ import java.util.List;
 public class FirstDAO {
 
 		FirstDTO fdto;
-	
 	public FirstDAO(FirstDTO fdto) {
 			this.fdto=fdto;
 		}
@@ -59,38 +58,38 @@ public class FirstDAO {
 		
 		try {
 			
-			sb.append(   "    select a.tnumber,c.tname,e.sname,a.time,f.sname, b.time, d.fair  "    ); 
-			sb.append(   "     from pro3_schedule as a, pro3_schedule as b , pro3_train as c, pro3_station as e, pro3_station as f, (select fair, tcode    "  ); 
-			sb.append(   "      from pro3_sectionfair      where section in (select abs(aas.snumber-ds.snumber)/100          "    );    
-			sb.append(   "         from pro3_station as ds, pro3_station as aas      "    ); 
-			sb.append( 	"             where ds.sname='서울' and aas.sname='수원')) as d      "   );
-			sb.append( 	"           where e.snumber=a.snumber and e.sname='서울'                                 "    );
-			sb.append( 	"           and f.snumber=b.snumber and f.sname='수원'                        "    ); 
-			sb.append( 	"          and a.tnumber = b.tnumber and a.time<b.time      "    ); 
-			sb.append( 	"            and c.tid = d.tcode        "      ); 
-			sb.append( 	"            order by a.time;       "     );
-
+			sb.append(  "  select aa.tnumber, aa.tname, aa.esname, aa.atime, aa.fsname, aa.btime, bb.fair from  "                     ); 
+			sb.append(  " (select a.tnumber,c.tname,e.sname as esname,a.time as atime,f.sname as fsname, b.time as btime, c.tid  "    );
+			sb.append(	"  from pro3_schedule as a, pro3_schedule as b , pro3_train as c, pro3_station as e, pro3_station as f  "    ); 
+			sb.append(  "  where e.snumber=a.snumber and e.sname=?      "   );    
+			sb.append( 	"  and f.snumber=b.snumber and f.sname=?  "   );
+			sb.append( 	"  and a.tnumber = b.tnumber and a.time<b.time             "     );
+			sb.append( 	"  and a.time>? and a.tnumber=c.tnumber  "     ); 
+			sb.append( 	"  order by atime) as aa, (select fair, tcode from pro3_sectionfair    "     );
+			sb.append(  "   where section =(select abs(aas.snumber-ds.snumber)/100     "       ); 
+			sb.append(  "   from pro3_station as ds, pro3_station as aas where ds.sname=? and aas.sname=?)) as bb "  );
+			sb.append(  "  where aa.tid=bb.tcode   "      );
 			pst=conn.prepareStatement(sb.toString());
 			pst.setString(1, fdto.getDs());
 			pst.setString(2, fdto.getAs());
-			pst.setString(3, fdto.getDtime());
-			
+			pst.setString(3, fdto.getDtime());	
+			pst.setString(4, fdto.getDs());
+			pst.setString(5, fdto.getAs());
 			
 			rs=pst.executeQuery();
 			
 			while(rs.next()) {
-			String key=String.valueOf(rs.getInt("a.tnumber"));
-			String tname=rs.getString("c.tname");
-			String dsname=rs.getString("e.sname");
-			String dtime=rs.getString("a.time");
-			String asname=rs.getString("f.sname");
-			String atime=rs.getString("b.time");
-			String fair=rs.getString("d.fair");
+			String key=String.valueOf(rs.getInt("aa.tnumber"));
+			String tname=rs.getString("aa.tname");
+			String dsname=rs.getString("aa.esname");
+			String dtime=rs.getString("aa.atime");
+			String asname=rs.getString("aa.fsname");
+			String atime=rs.getString("aa.btime");
+			String fair=rs.getString("bb.fair");
 			info.add(key+","+tname+","+dsname+","+dtime+","+asname+","+atime+","+fair);
 			}
+
 			
-		
-		
 		}catch(SQLException e) {
 			System.out.println(e);
 		}finally {
@@ -118,8 +117,8 @@ public class FirstDAO {
 		try {
 		conn=getConnection();
 		StringBuilder sb=new StringBuilder();
-		sb.append(   "   select count(seat) from pro3_seat     "   );
-		sb.append(   "   where tnumber=? and checked=0;        "   );
+		sb.append(   "   select count(seat) from pro3_ticketing     "   );
+		sb.append(   "   where tnumber=?                            "   );
 		
 		pst=conn.prepareStatement(sb.toString());
 		for(int i=0;i<size;i++) {
@@ -138,18 +137,33 @@ public class FirstDAO {
 		return em;
 	}
 	
-	public int goReserve(FirstDTO fdto) {
+	public int goReserve(FirstDTO fdto, ArrayList<String> count) {
 	Connection conn=null;
 	PreparedStatement pst=null;
+	PreparedStatement pst2=null;
+	ArrayList<String> seat=count;
+	ResultSet rs=null;
+	int size=seat.size();
+	int rev;
 	int r=0;
 	try {
 	conn=getConnection();
+	StringBuilder sb2=new StringBuilder();
+	sb2.append(   "   select count(seat)     "   );
+	sb2.append(   "   from pro3_ticketing   "   );
+	pst2=conn.prepareStatement(sb2.toString());
+	rs=pst2.executeQuery();
+	rs.next();
+	rev=rs.getInt("count(seat)");
+	System.out.println(":::::::");
+	System.out.println(rev);
+	rev++;
 	StringBuilder sb=new StringBuilder();
 	sb.append(   "   insert   into   pro3_ticketing     "   );
-	sb.append(   "   values( ?, ?, ?, ?, ?, ?,?, ?, ?, ?)      "   );
-	
+	sb.append(   "   values ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?  )      "   );
+	String date=fdto.getYear()+"-"+fdto.getMonth()+"-"+fdto.getDate();
+	for(int q=0;q<size;q++) {
 	pst=conn.prepareStatement(sb.toString());
-	
 	pst.setInt(1, 123456);
 	pst.setString(2, fdto.getDs());
 	pst.setString(3, fdto.getAs());
@@ -157,53 +171,72 @@ public class FirstDAO {
 	pst.setString(5, fdto.getTname());
 	pst.setString(6, fdto.getDtime());
 	pst.setString(7, fdto.getAtime());
-	pst.setString(8, fdto.getFair());
-	pst.setString(9, "1명");
-	pst.setString(10, "1A");
-	
-	
+	pst.setInt(8, Integer.parseInt(fdto.getFair()));
+	pst.setString(9, seat.get(q));
+	pst.setInt(10, rev);
+	pst.setString(11, date);
 	
 	r=pst.executeUpdate();
-	
+	rev++;
+	}
 	}catch(SQLException e) {
 		System.out.println(e);
 		e.printStackTrace();		
 	}finally {
-		
+		if(rs!=null) try {rs.close();} catch(Exception e) {};
 		close(conn,pst);
 	}
-	System.out.println("================r");
-	System.out.println(r);
 	return r;
 	}
-
 	
-	public String Seat() {
+	public ArrayList<String> Seat() {
 		Connection conn=null;
 		ResultSet rs=null;
+		ResultSet rs2=null;
 		PreparedStatement pst=null;
-		ArrayList<String> s=new ArrayList<>();
+		PreparedStatement pst2=null;
 		String seat=null;
+		ArrayList<String> count=new ArrayList<>();
+		int sc;
 		try {
 		conn=getConnection();
 		StringBuilder sb=new StringBuilder();
-		sb.append(   "   select seat from pro3_seat     "   );
-		sb.append(   "   where tnumber=? and checked=0       "   );
+		sb.append(   "   select count(seat) from pro3_ticketing     "   );
+		sb.append(   "   where tnumber=? and date=?       "   );
 		
+		String date=fdto.getYear()+"-"+fdto.getMonth()+"-"+fdto.getDate();
 		pst=conn.prepareStatement(sb.toString());
 		pst.setString(1, fdto.getTnumber());
+		pst.setString(2, date);
 		rs=pst.executeQuery();
 		rs.next();
-		s.add(rs.getString("seat"));
+		sc=rs.getInt("count(seat)");
+		System.out.println(sc); //0까지 나옴
 		
-		seat=s.get(0);
+		int k=sc;
+		int e=0;
+		int p=sc+Integer.parseInt(fdto.getPerson().substring(0,1));
+		StringBuilder sb2=new StringBuilder();
+		sb2.append(   "   select seat from pro3_seat     "   );
+		sb2.append(   "   where emty=?      "   );
+		pst2=conn.prepareStatement(sb2.toString());
+		for(;k<p;k++) {
+		pst2.setInt(1, k);
+		rs2=pst2.executeQuery();
+		rs2.next();
+		count.add(e, rs2.getString("seat"));
+		e++;
+		}
+		for(String r:count) {
+			System.out.println(r);
+		}
 		
 		}catch(SQLException e) {
 			System.out.println(e);
 		}finally {
 			close(conn,pst);
 		}
-		return seat;
+		return count;
 				
 		
 	}	

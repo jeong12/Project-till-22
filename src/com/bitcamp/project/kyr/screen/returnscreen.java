@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
+import java.sql.SQLException;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -14,6 +15,7 @@ import com.bitcamp.project.kyr.screenDTO;
 import com.bitcamp.project.kyr.DAO.screenDAO;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 
@@ -23,7 +25,8 @@ public class returnscreen extends JFrame implements ActionListener {
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField bnum,number;
-
+	
+	
 	public JTextField getTextField() {
 		return textField;
 	}
@@ -81,12 +84,21 @@ public class returnscreen extends JFrame implements ActionListener {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				screenDAO dao=new screenDAO();
-				dao.retu(dto);
+				int r=0;
 				
+				try {
+					
 				Float bm=(Float.parseFloat(textField.getText()));
 				dto.setBnum(bm);
 				int nm=(Integer.parseInt(textField_1.getText()));
 				dto.setNumber(nm);
+				
+				r=dao.retu(dto,conn);
+				}catch(SQLException e1) {
+					JOptionPane.showMessageDialog(null, "입력을 잘못하셨거나 대여할 수 있는 책이 없습니다.");
+					e1.printStackTrace();
+				}
+				
 			}
 		});
 		btnNewButton.setBounds(221, 6, 97, 23);

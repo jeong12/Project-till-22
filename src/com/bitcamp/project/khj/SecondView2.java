@@ -401,8 +401,16 @@ public class SecondView2 extends JFrame {
 					}
 					
 					List<String> arr=fdao.Final(fdto);
-					String s=fdao.Seat();
-					ThirdView tv=new ThirdView(fdto);
+					ArrayList<String> count=fdao.Seat();
+					int cs=count.size();
+					System.out.println(cs);
+					String[]seat=new String[cs];
+					for(int c=0;c<cs;c++) {
+						seat[c]=count.get(c);
+					}
+					
+					
+					ThirdView tv=new ThirdView(fdto,count);
 					tv.setVisible(true);
 				}
 				
