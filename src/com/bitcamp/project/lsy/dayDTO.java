@@ -99,7 +99,5 @@ public class dayDTO {
 				+ ", sun=" + sun + ", avg=" + avg + "]";
 	}
 	
-	
-	
 
 }

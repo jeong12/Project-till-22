@@ -6,6 +6,7 @@ public class bodydata {
 		bodyDAO dao = new bodyDAO();
 		bodyDTO dto = dao.getBodyList("bit002");
 		
+		
 		double basic;// 기초대사량
 		double fat; // 체지방
 		String big;
@@ -13,6 +14,7 @@ public class bodydata {
 		int wei = dto.getWeight();
 		int hei = dto.getHeight();
 		int age = dto.getAge();
+		int today = dao.gettodayList();
 
 		if((wei/(hei*hei))<18.5) {
 			big = "저체중";
@@ -55,8 +57,10 @@ public class bodydata {
 
 
 		String result = " 신장: "+hei+"\n 체중: "+wei+"\n 기초대사량: "+Math.round(basic)+
-				"\n 체지방: "+fat+"\n 비만율: "+big;
+				"\n 체지방: "+fat+"\n 비만율: "+big+"\n 오늘 입력한 총 칼로리: "+today;
 		return result;
+		
+
 
 	}
 }

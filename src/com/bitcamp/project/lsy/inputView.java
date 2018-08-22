@@ -68,6 +68,15 @@ public class inputView extends JFrame implements ActionListener {
 		JButton mainButton = new JButton("메인으로");
 		mainButton.setBounds(30, 432, 394, 60);
 		getContentPane().add(mainButton);
+		mainButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				mainView in = new mainView();
+				in.setVisible(true);
+			}
+		});
 		
 		JComboBox morBox1 = new JComboBox(ina.getListoba());
 		morBox1.setBounds(82, 30, 82, 21);

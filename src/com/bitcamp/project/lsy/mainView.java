@@ -49,10 +49,28 @@ public class mainView extends JFrame {
 		inputCalButton.setBounds(35, 496, 105, 60);
 		contentPane.add(inputCalButton);
 		inputCalButton.addActionListener(new inputView());
+		inputCalButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				dispose();
+				
+			}
+		});
 		
 		JButton outputCalButton = new JButton("Áö³­ Ä®·Î¸®");
 		outputCalButton.setBounds(319, 496, 105, 60);
 		contentPane.add(outputCalButton);
+		outputCalButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				dispose();
+				
+			}
+		});
 		
 		JTextArea textArea = new JTextArea();
 		textArea.setBounds(35, 40, 389, 427);
