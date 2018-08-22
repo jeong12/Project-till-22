@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 public class bodyDAO {
 
@@ -35,7 +37,7 @@ public class bodyDAO {
 
 	// select
 	public bodyDTO getBodyList(String id){
-//		ArrayList<bodyDTO> arr = new ArrayList<>();
+
 		Connection conn = null;
 		PreparedStatement pst = null;
 		ResultSet rs = null;
@@ -108,10 +110,52 @@ public class bodyDAO {
 		return today;
 
 	}
-	private void close(Connection conn, PreparedStatement pst) {
-		if(pst!=null) try {pst.close();} catch(SQLException e) {}
-		if(conn!=null) try {conn.close();} catch(SQLException e) {}
-	}
+
+	
+	// select today 
+		public List<calDTO> getdayitemList(){
+			ArrayList<calDTO> arr = new ArrayList<>();
+			Connection conn = null;
+			PreparedStatement pst = null;
+			ResultSet rs = null;
+		
+			
+			
+
+			try {
+				conn = getConnection();
+				StringBuilder sql = new StringBuilder();
+				sql.append(    "    select iname, kcal  "    );
+				sql.append(    "    from pro3_input p, pro3_item i  "    );
+				sql.append(    "    where p.icode = i.icode    "   );
+				sql.append(    "    and date(indate)=date(now())    "    );
+								
+
+				pst = conn.prepareStatement(sql.toString());
+				rs = pst.executeQuery();
+				while(rs.next()) {
+					calDTO dto = new calDTO(); //밖에다 선언 하면 같은 것을 가르킴
+					dto.setIname(rs.getString("iname"));
+					dto.setKcal(rs.getInt("kcal"));
+					arr.add(dto);
+					
+				}
+
+				
+			}catch(SQLException e) {
+				System.out.println(e);
+			}finally {
+				if(rs!=null) try {rs.close();} catch(SQLException e) {}
+				close(conn,pst);
+			}
+			
+			return arr;
+
+		}
+		private void close(Connection conn, PreparedStatement pst) {
+			if(pst!=null) try {pst.close();} catch(SQLException e) {}
+			if(conn!=null) try {conn.close();} catch(SQLException e) {}
+		}
 
 
 

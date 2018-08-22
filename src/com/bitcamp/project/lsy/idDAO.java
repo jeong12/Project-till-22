@@ -35,7 +35,7 @@ private Connection getConnection() {
 	
 	// select gender
 		public bodyDTO getBodyList(String id){
-			ArrayList<bodyDTO> arr = new ArrayList<>();
+
 			Connection conn = null;
 			PreparedStatement pst = null;
 			ResultSet rs = null;

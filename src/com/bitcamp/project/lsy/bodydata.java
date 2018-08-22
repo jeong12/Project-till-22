@@ -1,15 +1,22 @@
 package com.bitcamp.project.lsy;
 
-public class bodydata {
+import java.util.ArrayList;
+import java.util.List;
 
+public class bodydata {
+	
 	public String getData() {
 		bodyDAO dao = new bodyDAO();
 		bodyDTO dto = dao.getBodyList("bit002");
+
+		
+		
 		
 		
 		double basic;// 기초대사량
 		double fat; // 체지방
 		String big;
+
 
 		int wei = dto.getWeight();
 		int hei = dto.getHeight();
@@ -53,11 +60,15 @@ public class bodydata {
 
 
 		}//end else
+	
 
 
-
+		
+		
 		String result = " 신장: "+hei+"\n 체중: "+wei+"\n 기초대사량: "+Math.round(basic)+
 				"\n 체지방: "+fat+"\n 비만율: "+big+"\n 오늘 입력한 총 칼로리: "+today;
+		
+
 		return result;
 		
 

@@ -68,6 +68,12 @@ public class calDTO {
 		this.kcal = kcal;
 	}
 	
+	public calDTO(String iname, int kcal) {
+		super();
+		this.iname = iname;
+		this.kcal = kcal;
+	}
+	
 	public calDTO() {
 		
 	}

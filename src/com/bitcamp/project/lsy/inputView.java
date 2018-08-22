@@ -3,8 +3,6 @@ package com.bitcamp.project.lsy;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Date;
-import java.util.Calendar;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -33,7 +31,7 @@ public class inputView extends JFrame implements ActionListener {
 	 * Create the frame.
 	 */
 	
-	public inputView() {
+	public inputView(	/*DefaultTableModel model*/ ) {
 		indexa ina = new indexa();
 		indexb inb = new indexb();
 		indexi ini = new indexi();
@@ -303,7 +301,9 @@ public class inputView extends JFrame implements ActionListener {
 					
 					inputDAO dao = new inputDAO();
 					dao.InsertData(dto);
+					
 					}
+				
 				
 			}
 		});
