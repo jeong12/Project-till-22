@@ -46,7 +46,7 @@ public class returnscreen extends JFrame implements ActionListener {
 	/**
 	    *    Launch the application.
 	  */
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -54,10 +54,10 @@ public class returnscreen extends JFrame implements ActionListener {
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
-				}
+				 }
 			}
 		});
-	}
+	}*/
 
 	screenDTO dto=new screenDTO();
 	screenDAO dao=new screenDAO();

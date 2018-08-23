@@ -24,7 +24,7 @@ import javax.swing.JTextField;
 
 public class insertscreen extends JFrame{
 
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -35,7 +35,7 @@ public class insertscreen extends JFrame{
 				}
 			}
 		});
-	}
+	}*/
 	
 	private JPanel contentPane;
 	private JTextField textField;
@@ -141,7 +141,7 @@ public class insertscreen extends JFrame{
 					// TODO Auto-generated catch block
 					//e1.printStackTrace();
 					JOptionPane.showMessageDialog(null, "형식에 맞게 입력하세요");
-				}
+				 }
 				
 			}
 		});

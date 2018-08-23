@@ -32,7 +32,7 @@ import javax.swing.JScrollPane;
 import java.awt.BorderLayout;
 
 public class rentscreen extends JFrame implements ActionListener {
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -43,7 +43,7 @@ public class rentscreen extends JFrame implements ActionListener {
 				}
 			}
 		});
-	}
+	}*/
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;
@@ -143,7 +143,7 @@ public class rentscreen extends JFrame implements ActionListener {
 				} catch (SQLException e1) {
 					JOptionPane.showMessageDialog(null, "입력을 잘못하셨거나 대여할 수 있는 책이 없습니다.");
 					e1.printStackTrace();
-				}
+				 }
 			}
 		});
 		button.setBounds(231, 227, 97, 23);
