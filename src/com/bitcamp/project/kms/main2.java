@@ -47,15 +47,15 @@ public class main2 extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnNewButton = new JButton("±èÈñÁ¤");
+		JButton btnNewButton = new JButton("New button");
 		btnNewButton.setBounds(37, 54, 97, 57);
 		contentPane.add(btnNewButton);
 		
-		JButton btnNewButton_1 = new JButton("±è¿µ·Ï");
+		JButton btnNewButton_1 = new JButton("New button");
 		btnNewButton_1.setBounds(146, 54, 97, 57);
 		contentPane.add(btnNewButton_1);
 		
-		JButton btnNewButton_2 = new JButton("ÀÌ¼¼¿µ");
+		JButton btnNewButton_2 = new JButton("New button");
 		btnNewButton_2.setBounds(255, 54, 97, 57);
 		contentPane.add(btnNewButton_2);
 		
@@ -68,11 +68,11 @@ public class main2 extends JFrame {
 				
 			}
 		});
-		btnNewButton_3.setBounds(73, 194, 116, 23);
+		btnNewButton_3.setBounds(80, 194, 109, 23);
 		contentPane.add(btnNewButton_3);
 		
 		JButton btnNewButton_4 = new JButton("È¸¿øÅ»Åð");
-		btnNewButton_4.setBounds(201, 194, 116, 23);
+		btnNewButton_4.setBounds(201, 194, 109, 23);
 		contentPane.add(btnNewButton_4);
 	}
 }

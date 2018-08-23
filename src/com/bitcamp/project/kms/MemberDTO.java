@@ -38,7 +38,7 @@ public class MemberDTO {
 	}
 	public String getJumin() {
 		return jumin;
-	}
+	} 
 	public void setJumin(String jumin) {
 		this.jumin = jumin;
 	}
