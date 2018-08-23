@@ -116,7 +116,6 @@ public class outputView extends JFrame implements ActionListener{
 		contentPane.add(suntext);
 		suntext.setText(Integer.toString(dto.getSun()));
 		
-//		avgtext.setText(Integer.toString());
 		
 		JButton mainButton = new JButton("메인으로");
 		mainButton.setBounds(315, 465, 111, 55);
