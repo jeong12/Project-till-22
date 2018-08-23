@@ -263,6 +263,17 @@ public class FirstView extends JFrame {
 		button.setBounds(12, 328, 97, 23);
 		contentPane.add(button);
 		
+		JButton button_1 = new JButton("\uC608\uC57D\uB0B4\uC5ED \uCD9C\uB825\uD558\uAE30");
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Prtview pv=new Prtview(fdto);
+				pv.setVisible(true);
+				dispose();
+			}
+		});
+		button_1.setBounds(531, 328, 141, 23);
+		contentPane.add(button_1);
+		
 
 	}
 }

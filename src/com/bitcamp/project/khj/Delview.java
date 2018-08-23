@@ -91,7 +91,7 @@ public class Delview extends JFrame {
 		contentPane.add(lblNewLabel_8);
 		
 		JLabel lblNewLabel_9 = new JLabel("¿œ¿⁄");
-		lblNewLabel_9.setBounds(791, 91, 57, 15);
+		lblNewLabel_9.setBounds(791, 91, 162, 15);
 		contentPane.add(lblNewLabel_9);
 		
 		
@@ -149,6 +149,7 @@ public class Delview extends JFrame {
 		
 		int y=130;
 		for(int j=0;j<rsv.length;j++) {
+			
 		JCheckBox chckbxNewCheckBox = new JCheckBox(rsv[j]);
 		chckbxNewCheckBox.setBounds(8, y, 115, 23);
 		contentPane.add(chckbxNewCheckBox);
@@ -186,7 +187,7 @@ public class Delview extends JFrame {
 		contentPane.add(l8);
 		
 		JLabel l9 = new JLabel(date[j]);
-		l9.setBounds(800, y, 100, 50);
+		l9.setBounds(800, y, 162, 15);
 		contentPane.add(l9);
 		
 		y+=21;

@@ -31,7 +31,7 @@ public class FirstCal {
 			c1.add(Calendar.DATE,1);
 			index++;}
 		return arr;
-	}//
+	}
 
 	public String[] year(List<String> arr){
 		ArrayList<String> y=new ArrayList<>();
