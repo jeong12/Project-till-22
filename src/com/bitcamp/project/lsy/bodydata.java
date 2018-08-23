@@ -5,9 +5,19 @@ import java.util.List;
 
 public class bodydata {
 	
-	public String getData() {
+	String id = "";
+
+
+	public bodydata(String id) {
+		this.id = id;
+	}
+
+
+
+
+	public String getData(String id) {
 		bodyDAO dao = new bodyDAO();
-		bodyDTO dto = dao.getBodyList("bit002");
+		bodyDTO dto = dao.getBodyList(id);
 
 		
 		

@@ -18,6 +18,7 @@ public class mainView extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
+	static String id="";
 
 	/**
 	 * Launch the application.
@@ -26,7 +27,7 @@ public class mainView extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					mainView frame = new mainView();
+					mainView frame = new mainView(id);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -38,9 +39,11 @@ public class mainView extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public mainView() {
-		bodydata data = new bodydata();
-		String body = data.getData();
+	
+	public mainView(String id) {
+		this.id= id;
+		bodydata data = new bodydata(id);
+		String body = data.getData(id);
 		DefaultTableModel model = new DefaultTableModel(new Object[] {"Ç°¸ñ","Ä®·Î¸®"}, 0);
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
