@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 public class inputView extends JFrame implements ActionListener {
+	String id = "";
 
 	/**
 	 * Launch the application.
@@ -71,7 +72,7 @@ public class inputView extends JFrame implements ActionListener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				mainView in = new mainView();
+				mainView in = new mainView(id);
 				in.setVisible(true);
 			}
 		});
@@ -261,11 +262,12 @@ public class inputView extends JFrame implements ActionListener {
 		
 		inputButton.addActionListener(new ActionListener() {
 			
+			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(morBox3.getSelectedItem()!=null) {
 				inputDTO dto = new inputDTO();
-				dto.setInid("技康");
+				dto.setInid(id);
 				dto.setInmeal((String)morBox3.getSelectedItem());
 				
 				
@@ -275,7 +277,7 @@ public class inputView extends JFrame implements ActionListener {
 				
 				if(lunBox3.getSelectedItem()!=null) {
 					inputDTO dto = new inputDTO();
-					dto.setInid("技康");
+					dto.setInid(id);
 					dto.setInmeal((String)lunBox3.getSelectedItem());
 					
 					
@@ -285,7 +287,7 @@ public class inputView extends JFrame implements ActionListener {
 				
 				if(diBox3.getSelectedItem()!=null) {
 					inputDTO dto = new inputDTO();
-					dto.setInid("技康");
+					dto.setInid(id);
 					dto.setInmeal((String)diBox3.getSelectedItem());
 					
 					
@@ -295,7 +297,7 @@ public class inputView extends JFrame implements ActionListener {
 				
 				if(foodBox3.getSelectedItem()!=null) {
 					inputDTO dto = new inputDTO();
-					dto.setInid("技康");
+					dto.setInid(id);
 					dto.setInmeal((String)foodBox3.getSelectedItem());
 					
 					

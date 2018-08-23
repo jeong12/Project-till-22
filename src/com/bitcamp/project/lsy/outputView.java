@@ -17,6 +17,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JTextPane;
 
 public class outputView extends JFrame implements ActionListener{
+	String id = "";
 
 	private JPanel contentPane;
 
@@ -125,7 +126,7 @@ public class outputView extends JFrame implements ActionListener{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				mainView in = new mainView();
+				mainView in = new mainView(id);
 				in.setVisible(true);
 				dispose();
 			}
