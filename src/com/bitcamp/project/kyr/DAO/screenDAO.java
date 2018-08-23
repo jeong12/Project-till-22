@@ -198,7 +198,7 @@ public class screenDAO {
 					TimeZone jst =TimeZone.getTimeZone("Asia/Seoul");
 					Calendar Cal = Calendar.getInstance(jst); 
 
-					sbl.append(" insert into pro3_retu values (?,?,now()) ");
+					sbl.append(" insert into pro3_retu(bnum,number,rdate) values (?,?,now()) ");
 					pstmt=conn.prepareStatement(sbl.toString());
 					pstmt.setFloat(1, dto.getBnum());
 					pstmt.setInt(2, dto.getNumber());
