@@ -47,10 +47,13 @@ public class mainscreen extends JFrame implements ActionListener{
 		setBounds(100, 100, 228, 328);
 		getContentPane().setLayout(null);
 		
+		//number =mto.getNumber();
+		mto.setNumber(number);
+				
 		JButton button = new JButton("책 대여");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				rentscreen ren=new rentscreen();
+				rentscreen ren=new rentscreen(number);
 				ren.setVisible(true);
 			}
 		});
@@ -60,7 +63,7 @@ public class mainscreen extends JFrame implements ActionListener{
 		JButton button_1 = new JButton("책 반납");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				returnscreen ret=new returnscreen();
+				returnscreen ret=new returnscreen(number);
 				ret.setVisible(true);
 			}
 		});

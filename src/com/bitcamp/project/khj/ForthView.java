@@ -19,6 +19,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.awt.event.ActionEvent;
 
 public class ForthView extends JFrame {
@@ -61,10 +62,10 @@ public class ForthView extends JFrame {
 		JLabel lblNewLabel = new JLabel("\uC608\uB9E4 \uB0B4\uC5ED \uCD9C\uB825\uD558\uAE30");
 		lblNewLabel.setBounds(198, 41, 122, 15);
 		contentPane.add(lblNewLabel);
-		
+			
 		long time=System.currentTimeMillis();
 		System.out.println(time);
-		
+			
 		String date=fdto.getYear()+"-"+fdto.getMonth()+"-"+fdto.getDate();
 		ArrayList<String> arr=count;
 		int size=arr.size();
@@ -94,7 +95,7 @@ public class ForthView extends JFrame {
 		btn_print.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String content=text;
-				String filename="d://test//reseved train_"+time+".txt";
+				String filename="d://reseved train_"+time+".txt";
 				FileWriter fw = null;
 				File file=new File(filename);
 				try {
@@ -123,9 +124,9 @@ public class ForthView extends JFrame {
 		JButton btn_tom = new JButton("\uBA54\uC778\uC73C\uB85C");
 		btn_tom.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			/*	main2 main=new main2();
+				main2 main=new main2(fdto.getMid());
 				main.setVisible(true);
-				dispose();*/
+				dispose();
 			}
 		});
 		btn_tom.setBounds(12, 528, 97, 23);

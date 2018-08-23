@@ -15,9 +15,10 @@ import javax.swing.JOptionPane;
 
 import com.bitcamp.project.kms.MemberDTO;
 import com.bitcamp.project.kyr.screenDTO;
+import com.bitcamp.project.kyr.screen.mainscreen;
 
 public class screenDAO {
-
+	MemberDTO mto=new MemberDTO();	
 	public Connection getCon() {
 
 		String className = "com.mysql.cj.jdbc.Driver";
@@ -112,8 +113,13 @@ public class screenDAO {
 		}
 		return r;
 	}
-			public int rent(screenDTO dto,Connection conn) throws SQLException
+			public int rent(screenDTO dto,Connection conn,int number) throws SQLException
 			{
+				MemberDTO mto=new MemberDTO();
+				//number=mto.getNumber();
+				
+				mto.setNumber(number);
+			
 				StringBuilder sbl=new StringBuilder();
 				StringBuilder sb2=new StringBuilder();
 				StringBuilder sb3=new StringBuilder();
@@ -124,8 +130,6 @@ public class screenDAO {
 				int r2=0;
 				int r3=0;
 				conn=getCon();
-				
-				MemberDTO mto=new MemberDTO();
 				
 				try {
 					TimeZone jst =TimeZone.getTimeZone("Asia/Seoul");
@@ -154,10 +158,10 @@ public class screenDAO {
 						pstmt2=conn.prepareStatement(sb2.toString());
 						pstmt2.setFloat(1, dto.getBnum());
 						r2=pstmt2.executeUpdate();
-					
+					System.out.println(mto.getNumber());
 					JOptionPane.showMessageDialog(null, "대여가 완료 되었습니다.반납 기한 : "
 							+Cal.get(Calendar.YEAR)+"년"+(Cal.get(Calendar.MONTH)+1)+"월"
-							+(Cal.get(Calendar.DATE)+7)+"일까지 입니다");
+							+(Cal.get(Calendar.DATE)+7)+"일까지 입니다"+" ,회원번호 : "+mto.getNumber());
 					}
 					else {
 						JOptionPane.showMessageDialog(null, "대여 할 책이 없드아아 ㅜ ㅜ ");

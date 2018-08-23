@@ -1,7 +1,10 @@
 package com.bitcamp.project.kyr;
 
+import com.bitcamp.project.kms.MemberDTO;
+
 public class screenDTO {
 
+	MemberDTO mto=new MemberDTO();
 	
 	private String bname; //책이름
 	private String publish; //출판사

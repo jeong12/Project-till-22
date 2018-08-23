@@ -19,6 +19,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import com.bitcamp.project.kms.MemberDTO;
 import com.bitcamp.project.kyr.screenDTO;
 import com.bitcamp.project.kyr.DAO.booklist;
 import com.bitcamp.project.kyr.DAO.screenDAO;
@@ -51,6 +52,7 @@ public class rentscreen extends JFrame implements ActionListener {
 	/**
 	 *   Launch the application.
 	 */
+	MemberDTO mto=new MemberDTO();
 
 	public JTextField getTextField() {
 		return textField;
@@ -81,13 +83,15 @@ public class rentscreen extends JFrame implements ActionListener {
 	//private String
 	Connection conn=null;
 
-	public rentscreen() {
+	public rentscreen(int number) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 379, 325);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-
+		
+		mto.setNumber(number);
+		
 		booklist bls=new booklist();
 		Vector header=new Vector();
 		header.add("책이름");
@@ -111,19 +115,19 @@ public class rentscreen extends JFrame implements ActionListener {
 		label.setBounds(15, 231, 57, 15);
 		contentPane.add(label);
 
-		label_1 = new JLabel("회원 번호");
+		/*label_1 = new JLabel("회원 번호");
 		label_1.setBounds(15, 261, 57, 15);
-		contentPane.add(label_1);
+		contentPane.add(label_1);*/
 
 		textField = new JTextField(); //책번호
 		textField.setBounds(84, 229, 116, 21);
 		contentPane.add(textField);
 		textField.setColumns(10);
-
-		textField_1 = new JTextField();  //회원번호
+		
+/*		textField_1 = new JTextField();  //회원번호
 		textField_1.setBounds(84, 255, 116, 21);
 		contentPane.add(textField_1);
-		textField_1.setColumns(10);
+		textField_1.setColumns(10);*/
 
 		button = new JButton("대여 하기");
 		button.addActionListener(new ActionListener() {
@@ -135,10 +139,10 @@ public class rentscreen extends JFrame implements ActionListener {
 
 					Float bm=(Float.parseFloat(textField.getText()));
 					dto.setBnum(bm);
-					int nm=(Integer.parseInt(textField_1.getText()));
+					int nm=number; //(Integer.parseInt(textField_1.getText()));
 					dto.setNumber(nm);
 
-					r=dao.rent(dto,conn);
+					r=dao.rent(dto,conn,number);
 
 				} catch (SQLException e1) {
 					JOptionPane.showMessageDialog(null, "입력을 잘못하셨거나 대여할 수 있는 책이 없습니다.");
