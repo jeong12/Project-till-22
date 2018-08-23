@@ -26,6 +26,9 @@ public class main2 extends JFrame {
 	 */
 	 
 	
+  
+	
+	
 	public main2(MemberDTO dto) {
 		
 		this.dto = dto;
@@ -104,4 +107,7 @@ public class main2 extends JFrame {
 		btnNewButton_4.setBounds(201, 194, 109, 23);
 		contentPane.add(btnNewButton_4);
 	}
+	
+	
+	
 }

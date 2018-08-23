@@ -78,7 +78,7 @@ public class main extends JFrame {
 				
 				
 				if(textField.getText().equals(dto.getId()) && textField_1.getText().equals(dto.getPw()))
-				{
+		       { 
 					
 			      m2.setVisible(true);
 				}

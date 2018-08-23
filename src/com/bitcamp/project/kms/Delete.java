@@ -24,7 +24,7 @@ public class Delete extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Delete(MemberDTO dto) {
+	public Delete(MemberDTO dto)  {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 412, 264);
 		contentPane = new JPanel();

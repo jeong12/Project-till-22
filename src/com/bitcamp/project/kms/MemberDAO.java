@@ -24,6 +24,7 @@ package com.bitcamp.project.kms;
 			
 		}
 		
+		
 		public Connection getCon()
 		{
 			try {
@@ -101,7 +102,13 @@ package com.bitcamp.project.kms;
 			
 			return dto;
 			
+			
+			
 		}
+	
+		
+		
+		
 		
 			
 		public void Insert(MemberDTO dto)

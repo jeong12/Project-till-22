@@ -51,7 +51,7 @@ public class Update extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Update(MemberDTO dto) {
+	public Update(MemberDTO dto)  {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 335, 568);
 		contentPane = new JPanel();

@@ -36,7 +36,7 @@ public class join extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public join() {
+	public join()  {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 335, 568);
 		contentPane = new JPanel();
