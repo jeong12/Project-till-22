@@ -118,7 +118,7 @@ public class main2 extends JFrame {
 				
 			 }
 		});
-		btnNewButton_3.setBounds(80, 194, 109, 23);
+		btnNewButton_3.setBounds(70, 194, 120, 23);
 		contentPane.add(btnNewButton_3);
 		
 		JButton btnNewButton_4 = new JButton("È¸¿øÅ»Åð");
@@ -129,7 +129,7 @@ public class main2 extends JFrame {
 				d.setVisible(true);
 			 }
 		});
-		btnNewButton_4.setBounds(201, 194, 109, 23);
+		btnNewButton_4.setBounds(201, 194, 120, 23);
 		contentPane.add(btnNewButton_4);
 	}
 }

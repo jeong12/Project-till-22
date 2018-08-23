@@ -123,6 +123,7 @@ public class join extends JFrame {
 		
 		JRadioButton rdbtnNewRadioButton = new JRadioButton("남자");
 		rdbtnNewRadioButton.setBounds(137, 307, 64, 23);
+		rdbtnNewRadioButton.setSelected(true);
 		contentPane.add(rdbtnNewRadioButton);
 		
 		JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("여자");
