@@ -37,43 +37,39 @@ public class bodydata {
 		System.out.println(wei);
 		System.out.println(hei);
 		int today = dao.gettodayList(id);
-
-		if((wei/(hei*hei))<18.5) {
+		
+		fat = wei/((hei*hei)/10000);
+		
+		if(fat<18.5) {
 			big = "저체중";
 
-		}else if((wei/(hei*hei))>=18.5&&((wei/(hei*hei))<23)) {
+		}else if (fat>=18.5 && fat<23) {
 			big = "정상";
-		}else if((wei/(hei*hei))>=23&&((wei/(hei*hei))<25)) {
+		}else if (fat>=23 && fat<25) {
 			big = "과체중";
-		}else if((wei/(hei*hei))>=25&&((wei/(hei*hei))<30)) {
+		}else if(fat>=25 && fat<30) {
 			big = "비만";
-		}else if((wei/(hei*hei))>=30&&((wei/(hei*hei))<35)) {
+		}else if(fat>=30 && fat<35) {
 			big = "고도비만";
 		}else
 			big = "초고도비만";
+		
 
 		if(dto.getGender().equals("남")){
+			int mkg = ((hei*hei)/10000)*22;
 			// 기초대사량
 
 			basic = 66.47 + (13.75*wei)+(5*hei)-(6.76*age);
 
-			// 체지방
-
-			fat = (((wei*1.10)-(128*(wei*wei)/(hei*hei)))*100)/wei;
-
-
+			
 
 		}else {// 여성
+			
 			// 기초대사량
 
 			basic = 655.1 + (9.56*wei)+(1.85*hei)-(4.68*age);
 
-			// 체지방
-
-			fat = (((wei*1.07)-(128*(wei*wei)/(hei*hei)))*100)/wei;
 			
-
-
 		}//end else
 	
 
@@ -81,7 +77,7 @@ public class bodydata {
 		
 		
 		String result = " 신장: "+hei+"\n 체중: "+wei+"\n 기초대사량: "+Math.round(basic)+
-				"\n 체지방: "+Math.round(fat)+"\n 비만율: "+big+"\n 오늘 입력한 총 칼로리: "+today;
+				"\n 체질량 지수: "+Math.round(fat)+"\n 비만율: "+big+"\n 오늘 입력한 총 칼로리: "+today;
 		
 
 		return result;
