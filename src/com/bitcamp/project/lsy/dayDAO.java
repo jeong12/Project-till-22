@@ -36,6 +36,7 @@ private Connection getConnection() {
 	
 	// select 
 		public dayDTO getdayList(){
+			String id ="";
 			Connection conn = null;
 			PreparedStatement pst = null;
 			ResultSet rs = null;
@@ -54,9 +55,11 @@ private Connection getConnection() {
 				sql.append(    "    , sum(case when weekday(indate)=6 then kcal end) as sumSun    "    );
 				sql.append(    "    from pro3_input p, pro3_item i  "    );
 				sql.append(    "    where p.icode = i.icode  "    );
-				sql.append(    "    and yearweek(indate) = yearweek(current_date - interval 7 Day);  "    );
+				sql.append(    "    and yearweek(indate) = yearweek(current_date - interval 7 Day)  "    );
+				sql.append(    "    and id = ?;  "    );
 				
 				pst = conn.prepareStatement(sql.toString());
+				pst.setString(1, id);
 				rs = pst.executeQuery();
 				while(rs.next()) {
 					dto.setMon(rs.getInt("sumMon"));

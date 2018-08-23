@@ -1,6 +1,7 @@
 package com.bitcamp.project.lsy;
 
 import java.awt.EventQueue;
+import java.awt.GraphicsConfiguration;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -16,13 +17,14 @@ import javax.swing.table.DefaultTableModel;
 
 public class mainView extends JFrame {
 
+	private static final GraphicsConfiguration String = null;
 	private JPanel contentPane;
 	private JTable table;
-	static String id="";
+	String id="";
 
 	/**
 	 * Launch the application.
-	 */
+	 *//*
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -36,11 +38,12 @@ public class mainView extends JFrame {
 		});
 	}
 
-	/**
+	*//**
 	 * Create the frame.
 	 */
 	
 	public mainView(String id) {
+		System.out.println("mainView ID ::" + id);
 		this.id= id;
 		bodydata data = new bodydata(id);
 		String body = data.getData(id);
@@ -56,7 +59,7 @@ public class mainView extends JFrame {
 		JButton inputCalButton = new JButton("Ä®·Î¸® ÀÔ·Â");
 		inputCalButton.setBounds(35, 496, 105, 60);
 		contentPane.add(inputCalButton);
-		inputCalButton.addActionListener(new inputView(/*model*/));
+		inputCalButton.addActionListener(new inputView(/*model*/id));
 		inputCalButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -83,7 +86,7 @@ public class mainView extends JFrame {
 		JTextArea textArea = new JTextArea();
 		textArea.setBounds(35, 40, 389, 147);
 		contentPane.add(textArea);
-		outputCalButton.addActionListener(new outputView());
+		outputCalButton.addActionListener(new outputView(id));
 		textArea.setText(body);
 		
 		
@@ -95,7 +98,7 @@ public class mainView extends JFrame {
 		
 		
 		bodyDAO dao = new bodyDAO();
-		List<calDTO> list = dao.getdayitemList();
+		List<calDTO> list = dao.getdayitemList(id);
 		
 		for(int i=0; i<list.size(); i++) {
 			

@@ -12,32 +12,37 @@ import javax.swing.JLabel;
 public class inputView extends JFrame implements ActionListener {
 	String id = "";
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					inputView frame = new inputView();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	/**
+//	 * Launch the application.
+//	 */
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					inputView frame = new inputView();
+//					frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	/**
 	 * Create the frame.
 	 */
 	
-	public inputView(	/*DefaultTableModel model*/ ) {
+	public inputView(	/*DefaultTableModel model*/String id ) {
+		
+		this.id = id;
+		
+		
+		
 		indexa ina = new indexa();
 		indexb inb = new indexb();
 		indexi ini = new indexi();
 		
-	
+		System.out.println("inputView ID :: "  + id);
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 475, 600);
@@ -72,6 +77,7 @@ public class inputView extends JFrame implements ActionListener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
+				System.out.println( "메인으로 ID :: " + id);
 				mainView in = new mainView(id);
 				in.setVisible(true);
 			}
@@ -318,8 +324,7 @@ public class inputView extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		
-		inputView frame = new inputView();
+		inputView frame = new inputView(id);
 		frame.setVisible(true);
 	}
 }

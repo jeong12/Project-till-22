@@ -17,7 +17,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JTextPane;
 
 public class outputView extends JFrame implements ActionListener{
-	String id = "";
+	static String id ;
 
 	private JPanel contentPane;
 
@@ -28,7 +28,7 @@ public class outputView extends JFrame implements ActionListener{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					outputView frame = new outputView();
+					outputView frame = new outputView(id);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -40,7 +40,9 @@ public class outputView extends JFrame implements ActionListener{
 	/**
 	 * Create the frame.
 	 */
-	public outputView() {
+	public outputView(String id) {
+		this.id = id;
+		
 		dayDTO dto = new dayDTO();
 		dayDAO dao = new dayDAO();
 		dto = dao.getdayList();
@@ -137,7 +139,7 @@ public class outputView extends JFrame implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		outputView frame = new outputView();
+		outputView frame = new outputView(id);
 		frame.setVisible(true);
 		dispose();
 		

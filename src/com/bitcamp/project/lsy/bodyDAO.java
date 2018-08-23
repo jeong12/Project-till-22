@@ -76,7 +76,7 @@ public class bodyDAO {
 
 	
 	// select today 
-	public int gettodayList(){
+	public int gettodayList(String id){
 		Connection conn = null;
 		PreparedStatement pst = null;
 		ResultSet rs = null;
@@ -89,10 +89,12 @@ public class bodyDAO {
 			sql.append(    "    select sum(kcal) as today  "    );
 			sql.append(    "    from pro3_input p, pro3_item i  "    );
 			sql.append(    "    where p.icode = i.icode    "   );
-			sql.append(    "    and date(indate)=date(now());    "    );
+			sql.append(    "    and date(indate)=date(now())    "    );
+			sql.append(    "    and id = ?    "    );
 			
 
 			pst = conn.prepareStatement(sql.toString());
+			pst.setString(1, id);
 			rs = pst.executeQuery();
 			while(rs.next()) {
 
@@ -113,7 +115,7 @@ public class bodyDAO {
 
 	
 	// select today 
-		public List<calDTO> getdayitemList(){
+		public List<calDTO> getdayitemList(String id){
 			ArrayList<calDTO> arr = new ArrayList<>();
 			Connection conn = null;
 			PreparedStatement pst = null;
@@ -129,9 +131,13 @@ public class bodyDAO {
 				sql.append(    "    from pro3_input p, pro3_item i  "    );
 				sql.append(    "    where p.icode = i.icode    "   );
 				sql.append(    "    and date(indate)=date(now())    "    );
+				sql.append(    "    and id = ?    "    );
+				
 								
 
 				pst = conn.prepareStatement(sql.toString());
+				
+				pst.setString(1, id);
 				rs = pst.executeQuery();
 				while(rs.next()) {
 					calDTO dto = new calDTO(); //밖에다 선언 하면 같은 것을 가르킴
