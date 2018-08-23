@@ -19,21 +19,7 @@ public class Delete extends JFrame {
 	private JTextField textField_1;
 	private JButton btnNewButton_1;
     private static MemberDTO dto;
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Delete frame = new Delete(dto);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+
 
 	/**
 	 * Create the frame.
