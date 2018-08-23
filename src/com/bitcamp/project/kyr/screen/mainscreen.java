@@ -85,7 +85,7 @@ public class mainscreen extends JFrame implements ActionListener{
 			public void actionPerformed(ActionEvent e) {
 				MemberDTO mto=new MemberDTO();
 				
-				main2 ma2=new main2(mto);
+				main2 ma2=new main2(number);
 				ma2.setVisible(true);
 				dispose();
 			}
