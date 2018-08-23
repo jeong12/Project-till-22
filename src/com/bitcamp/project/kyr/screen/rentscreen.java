@@ -152,7 +152,7 @@ public class rentscreen extends JFrame implements ActionListener {
 		button_1 = new JButton("뒤로 가기");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				mainscreen mai=new mainscreen();
+				mainscreen mai=new mainscreen(dto.getNumber());
 				setVisible(false);
 			}
 		});

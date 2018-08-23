@@ -3,6 +3,7 @@ package com.bitcamp.project.kyr.screen;
 
 import java.awt.EventQueue;
 import javax.swing.JFrame;
+import javax.xml.ws.soap.MTOM;
 
 import com.bitcamp.project.kms.MemberDTO;
 import com.bitcamp.project.kms.main2;
@@ -14,6 +15,8 @@ import java.awt.event.ActionEvent;
 
 public class mainscreen extends JFrame implements ActionListener{
 
+	MemberDTO mto=new MemberDTO();
+	screenDTO dto=new screenDTO();
 	/**
 	 *  Launch the application.
 	 */
@@ -34,8 +37,7 @@ public class mainscreen extends JFrame implements ActionListener{
 	 *  Create the frame.
 	 */
 	
-	MemberDTO mto=new MemberDTO();
-	screenDTO dto=new screenDTO();
+	
 	
 	
 		
@@ -78,10 +80,10 @@ public class mainscreen extends JFrame implements ActionListener{
 		JButton btnNewButton = new JButton("메인 화면으로");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MemberDTO mto=new MemberDTO();
+				/*MemberDTO mto=new MemberDTO();
 				
-				main2 ma2=new main2(mto);
-				ma2.setVisible(true);
+				main2 ma2=new main2(mto);*/
+				setVisible(false);
 			}
 		});
 		btnNewButton.setBounds(12, 204, 187, 62);

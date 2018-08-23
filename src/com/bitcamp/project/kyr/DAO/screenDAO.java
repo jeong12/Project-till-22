@@ -13,6 +13,7 @@ import java.util.Vector;
 
 import javax.swing.JOptionPane;
 
+import com.bitcamp.project.kms.MemberDTO;
 import com.bitcamp.project.kyr.screenDTO;
 
 public class screenDAO {
@@ -123,6 +124,9 @@ public class screenDAO {
 				int r2=0;
 				int r3=0;
 				conn=getCon();
+				
+				MemberDTO mto=new MemberDTO();
+				
 				try {
 					TimeZone jst =TimeZone.getTimeZone("Asia/Seoul");
 					Calendar Cal = Calendar.getInstance(jst);
@@ -131,6 +135,7 @@ public class screenDAO {
 					pstmt=conn.prepareStatement(sbl.toString());
 					pstmt.setFloat(1, dto.getBnum());
 					pstmt.setInt(2, dto.getNumber());
+					//pstmt.setInt(2, mto.getNumber());
 					r1=pstmt.executeUpdate();
 					
 					if(r1>0)

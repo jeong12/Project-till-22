@@ -150,7 +150,7 @@ public class insertscreen extends JFrame{
 		JButton btnNewButton_1 = new JButton("뒤로 가기");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				mainscreen mai=new mainscreen();
+				mainscreen mai=new mainscreen(11);
 				setVisible(false);
 			}
 		});
