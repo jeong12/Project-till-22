@@ -24,7 +24,7 @@ public class main2 extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	
+	 
 	
 	public main2(MemberDTO dto) {
 		
