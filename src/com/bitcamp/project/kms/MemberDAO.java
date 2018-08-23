@@ -109,7 +109,7 @@ package com.bitcamp.project.kms;
 		
 		public MemberDTO get(String id)
 		{
-			MemberDTO dto = new MemberDTO();
+			 MemberDTO dto = new MemberDTO();
 					
 					
 			try {
