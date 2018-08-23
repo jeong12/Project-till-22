@@ -66,7 +66,10 @@ public class join extends JFrame {
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				setVisible(false);
+				main m  = new main();
+				m.setVisible(true);
+				dispose();
+						
 			}
 		});
 		btnNewButton_1.setBounds(180, 455, 97, 23);
@@ -126,6 +129,10 @@ public class join extends JFrame {
 		rdbtnNewRadioButton_1.setBounds(198, 307, 121, 23);
 		contentPane.add(rdbtnNewRadioButton_1);
 		
+		ButtonGroup grp = new ButtonGroup();
+		grp.add(rdbtnNewRadioButton);
+		grp.add(rdbtnNewRadioButton_1);
+		 
 		textField_6 = new JTextField();
 		textField_6.setBounds(137, 347, 116, 21);
 		contentPane.add(textField_6);
@@ -159,9 +166,7 @@ public class join extends JFrame {
 				dto.setWeight(textField_7.getText());
 			   
 				
-				ButtonGroup grp = new ButtonGroup();
-				grp.add(rdbtnNewRadioButton);
-				grp.add(rdbtnNewRadioButton_1);
+				
 			
 			   Enumeration<AbstractButton> em = grp.getElements();
 			   String st = null;

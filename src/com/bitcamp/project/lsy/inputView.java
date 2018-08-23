@@ -8,6 +8,9 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
+import com.bitcamp.project.khj.ForthView;
 
 public class inputView extends JFrame implements ActionListener {
 	String id = "";
@@ -68,6 +71,13 @@ public class inputView extends JFrame implements ActionListener {
 		JButton inputButton = new JButton("입력");
 		inputButton.setBounds(30, 326, 394, 55);
 		getContentPane().add(inputButton);
+		
+		
+		
+//				JOptionPane.showMessageDialog(null, "입력을 성공했습니다!");
+		
+	
+		
 		
 		JButton mainButton = new JButton("메인으로");
 		mainButton.setBounds(30, 432, 394, 60);
@@ -311,6 +321,8 @@ public class inputView extends JFrame implements ActionListener {
 					dao.InsertData(dto);
 					
 					}
+				
+					JOptionPane.showMessageDialog(null, "입력을 성공했습니다!");
 				
 				
 			}

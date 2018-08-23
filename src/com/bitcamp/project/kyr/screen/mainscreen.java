@@ -83,10 +83,11 @@ public class mainscreen extends JFrame implements ActionListener{
 		JButton btnNewButton = new JButton("메인 화면으로");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				/*MemberDTO mto=new MemberDTO();
+				MemberDTO mto=new MemberDTO();
 				
-				main2 ma2=new main2(mto);*/
-				setVisible(false);
+				main2 ma2=new main2(number);
+				ma2.setVisible(true);
+				dispose();
 			}
 		});
 		btnNewButton.setBounds(12, 204, 187, 62);

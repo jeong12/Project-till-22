@@ -33,6 +33,7 @@ public class main2 extends JFrame {
        
        dto = dao.get(id);
        getlist(dto);
+       
     }
 	
     
@@ -72,7 +73,7 @@ public class main2 extends JFrame {
 				
 				mainscreen ms = new mainscreen(number);
 				ms.setVisible(true);
-				
+				dispose();
 			 }
 		});
 		btnNewButton.setBounds(37, 54, 97, 57);
@@ -87,8 +88,8 @@ public class main2 extends JFrame {
 				FirstView fv = new FirstView(number);
 				fv.setVisible(true);
 				
-				
-			}
+				dispose();
+			} 
 		});
 		btnNewButton_1.setBounds(146, 54, 97, 57);
 		contentPane.add(btnNewButton_1);
@@ -102,7 +103,7 @@ public class main2 extends JFrame {
 				mainView mv = new mainView(id);
 				
 				mv.setVisible(true);
-				
+				dispose();
 			}
 		});
 		btnNewButton_2.setBounds(255, 54, 97, 57);

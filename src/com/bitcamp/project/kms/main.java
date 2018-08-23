@@ -87,7 +87,7 @@ public class main extends JFrame {
 					JOptionPane.showMessageDialog(null, "아이디와 비밀번호를 다시 확인해주세요");
 				}
 				
-				
+				dispose();
 			}
 		});
 		btnNewButton.setBounds(266, 56, 97, 49);
@@ -99,6 +99,8 @@ public class main extends JFrame {
 				
 				join j = new join();
 				j.setVisible(true);
+				
+				dispose();
 			}
 		});
 		btnNewButton_1.setBounds(117, 152, 157, 23);
