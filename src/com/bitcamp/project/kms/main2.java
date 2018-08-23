@@ -87,7 +87,7 @@ public class main2 extends JFrame {
 				
 				String id = dto.getId();
 			    
-				mainView mv = new mainView();
+				mainView mv = new mainView(id);
 				
 				mv.setVisible(true);
 				
