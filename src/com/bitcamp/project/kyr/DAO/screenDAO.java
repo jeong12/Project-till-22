@@ -198,7 +198,7 @@ public class screenDAO {
 					TimeZone jst =TimeZone.getTimeZone("Asia/Seoul");
 					Calendar Cal = Calendar.getInstance(jst); 
 
-					sbl.append(" insert into pro3_retu values (?,?,now()) ");
+					sbl.append(" insert into pro3_retu(bnum,number,rdate) values (?,?,now()) ");
 					pstmt=conn.prepareStatement(sbl.toString());
 					pstmt.setFloat(1, dto.getBnum());
 					pstmt.setInt(2, dto.getNumber());
@@ -209,7 +209,6 @@ public class screenDAO {
 						pstmt2=conn.prepareStatement(sb2.toString());
 						pstmt2.setFloat(1, dto.getBnum());
 						r2=pstmt2.executeUpdate();
-						System.out.println("1");
 						if(r2>0)
 						{
 							sb3.append(" insert into pro3_book(bname,publish,redate,bnum) ");
@@ -219,7 +218,6 @@ public class screenDAO {
 							pstmt3.setFloat(1, dto.getBnum());
 							pstmt3.setInt(2, dto.getNumber());
 							r3=pstmt3.executeUpdate();							
-							System.out.println("2");
 							if(r3>0)
 							{
 								sb4.append(" delete from rttest where round(bnum,2) = round( ? ,2) and number = ? ");
@@ -227,19 +225,19 @@ public class screenDAO {
 								pstmt4.setFloat(1, dto.getBnum());
 								pstmt4.setInt(2, dto.getNumber());
 								r4=pstmt4.executeUpdate();		
-								System.out.println("3");
 								JOptionPane.showMessageDialog(null, "반납이 완료 되었습니다.반납 완료 날짜: "
 										+Cal.get(Calendar.YEAR)+"년"+(Cal.get(Calendar.MONTH)+1)+"월"
 										+Cal.get(Calendar.DATE)+"일 입니다");
 							}
+							else {
+								JOptionPane.showMessageDialog(null, "반납 할 책이 없으신대 ? ");
+						}
 						}
 						else {
 							JOptionPane.showMessageDialog(null, "반납 할 책이 없으신대 ? ");
 						}
 					}
-					else {
-						JOptionPane.showMessageDialog(null, "반납 할 책이 없으신대 ? ");
-				}
+					
 					
 				}catch(SQLException e) {
 					throw e;
