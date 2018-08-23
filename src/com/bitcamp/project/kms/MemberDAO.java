@@ -119,7 +119,7 @@ package com.bitcamp.project.kms;
 				
 				pstmt = con.prepareStatement(sql);
 				
-				pstmt.setString(1, dto.getId());
+				pstmt.setString(1, id);
 				
 				rs = pstmt.executeQuery();
 				
@@ -173,7 +173,7 @@ package com.bitcamp.project.kms;
 				
 				pstmt = con.prepareStatement(sql);
 				
-				pstmt.setInt(1, dto.getNumber());
+				pstmt.setInt(1, number);
 				
 				rs = pstmt.executeQuery();
 				

@@ -66,7 +66,10 @@ public class join extends JFrame {
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				setVisible(false);
+				main m  = new main();
+				m.setVisible(true);
+				dispose();
+						
 			}
 		});
 		btnNewButton_1.setBounds(180, 455, 97, 23);
