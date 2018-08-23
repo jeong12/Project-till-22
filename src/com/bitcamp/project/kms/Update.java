@@ -177,7 +177,7 @@ public class Update extends JFrame {
 				MemberDAO dao = new MemberDAO();
 				
 				
-				
+			 	
 				dto.setId(textField.getText());
 				dto.setPw(textField_1.getText());
 				dto.setName(textField_2.getText());

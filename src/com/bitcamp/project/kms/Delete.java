@@ -73,7 +73,8 @@ public class Delete extends JFrame {
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			  
-				setVisible(false);
+				main m = new main();
+				m.setVisible(true);
 			}
 		});
 		btnNewButton_1.setBounds(198, 157, 97, 23);
