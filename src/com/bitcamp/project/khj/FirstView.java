@@ -44,7 +44,7 @@ public class FirstView extends JFrame {
 	String[] date=fc.day(arr);
 	String[] time=fc.time();
 	String[] person=fc.Person();
-	int mid;
+	static int mid;
 	private JButton btn_tm;
 	
 	
@@ -52,18 +52,18 @@ public class FirstView extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	/*public static void main(String[] args) {
+	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					FirstView frame = new FirstView(String mid);
+					FirstView frame = new FirstView(mid);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
-	}*/
+	}
 
 	/**
 	 * Create the frame.
@@ -84,6 +84,8 @@ public class FirstView extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		System.out.println(fdto.getMid());
 		
 		JLabel lblNewLabel = new JLabel("\uCD9C\uBC1C\uC5ED");
 		lblNewLabel.setBounds(130, 61, 41, 15);
