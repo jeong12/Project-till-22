@@ -6,6 +6,10 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import com.bitcamp.project.kms.main;
+import com.bitcamp.project.kms.main2;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
@@ -48,20 +52,20 @@ public class ForthView extends JFrame {
 		this.count=count;
 		this.setTitle("시작은 작은 '경부선'이지만, 차근차근 한반도 구석까지 넓혀가겠습니다 :)");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 600, 600);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("\uC608\uB9E4 \uB0B4\uC5ED \uCD9C\uB825\uD558\uAE30");
-		lblNewLabel.setBounds(141, 23, 122, 15);
+		lblNewLabel.setBounds(198, 41, 122, 15);
 		contentPane.add(lblNewLabel);
 		
 		long time=System.currentTimeMillis();
 		System.out.println(time);
 		
-		
+		String date=fdto.getYear()+"-"+fdto.getMonth()+"-"+fdto.getDate();
 		ArrayList<String> arr=count;
 		int size=arr.size();
 		
@@ -77,12 +81,12 @@ public class ForthView extends JFrame {
 		int p=Integer.parseInt(fdto.getPerson().substring(0, 1));
 		int fee=Integer.parseInt(fdto.getFair())*p;
 		String fe=String.valueOf(fee);
-		String text="열차번호: "+fdto.getTnumber()+"\t열차명: "+fdto.getTname()+"\n출발역: "+fdto.getDs()+"\t 출발시간: "+fdto.getDs()
-		+"\n도착역: "+fdto.getAs()+"\t도착시간: "+fdto.getAtime()+"\n좌석: "+n+"\t금액: "+fe;
+		String text="열차번호: "+fdto.getTnumber()+"\n열차명: "+fdto.getTname()+"\n출발일자: "+date+"\n출발역: "+fdto.getDs()+"\n출발시간: "+fdto.getDs()
+		+"\n도착역: "+fdto.getAs()+"\n도착시간: "+fdto.getAtime()+"\n좌석: "+n+"\n금액: "+fe;
 		
 
 		JTextArea textArea = new JTextArea();
-		textArea.setBounds(12, 50, 398, 92);
+		textArea.setBounds(25, 77, 521, 421);
 		textArea.append(text);
 		contentPane.add(textArea);
 		
@@ -113,8 +117,18 @@ public class ForthView extends JFrame {
 				
 			}
 		});
-		btn_print.setBounds(325, 217, 97, 23);
+		btn_print.setBounds(475, 528, 97, 23);
 		contentPane.add(btn_print);
+		
+		JButton btn_tom = new JButton("\uBA54\uC778\uC73C\uB85C");
+		btn_tom.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				main2 main=new main2();
+				main.setVisible(true);
+				dispose();
+			}
+		});
+		btn_tom.setBounds(12, 528, 97, 23);
+		contentPane.add(btn_tom);
 	}
-
 }

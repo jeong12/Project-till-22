@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import com.bitcamp.project.kms.main2;
+
 import javax.swing.JTextArea;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -167,6 +170,17 @@ public class ThirdView extends JFrame {
 			}
 		});
 		contentPane.add(btnNewButton);
+		
+		JButton btn_tm = new JButton("\uBA54\uC778\uD654\uBA74\uC73C\uB85C");
+		btn_tm.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				main2 main=new main2();
+				main.setVisible(true);
+				dispose();
+			}
+		});
+		btn_tm.setBounds(446, 9, 131, 23);
+		contentPane.add(btn_tm);
 	}
 
 }

@@ -7,6 +7,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import com.bitcamp.project.kms.main2;
+
 import javafx.animation.Interpolator;
 
 import java.awt.GridLayout;
@@ -428,6 +430,18 @@ public class SecondView2 extends JFrame {
 				});
 				btn_goback.setBounds(12, 828, 97, 23);
 				contentPane.add(btn_goback);
+				
+				JButton btn_tm = new JButton("\uBA54\uC778\uD654\uBA74\uC73C\uB85C");
+				btn_tm.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						main2 main=new main2();
+						main.setVisible(true);
+						dispose();
+					}
+				});
+				btn_tm.setBounds(752, 10, 120, 23);
+				contentPane.add(btn_tm);
+				
 				
 			
 		
