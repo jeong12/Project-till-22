@@ -52,7 +52,7 @@ public class FirstView extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -63,7 +63,7 @@ public class FirstView extends JFrame {
 				}
 			}
 		});
-	}
+	}*/
 
 	/**
 	 * Create the frame.
@@ -200,7 +200,7 @@ public class FirstView extends JFrame {
 		
 		
 		JButton btnNewButton_g = new JButton("\uC608\uC57D\uD558\uAE30");
-		btnNewButton_g.setBounds(264, 300, 113, 23);
+		btnNewButton_g.setBounds(265, 300, 113, 23);
 		btnNewButton_g.addActionListener(new ActionListener() {		
 		public void actionPerformed(ActionEvent e) {					
 			
@@ -241,6 +241,27 @@ public class FirstView extends JFrame {
 		btn_tm.setActionCommand("\uBA54\uC778\uD654\uBA74\uC73C\uB85C");
 		btn_tm.setBounds(544, 10, 128, 23);
 		contentPane.add(btn_tm);
+		
+		JButton btnNewButton = new JButton("\uC5ED\uAC80\uC0C9");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Station st=new Station(fdto);
+				st.setVisible(true);
+			}
+		});
+		btnNewButton.setBounds(449, 81, 97, 23);
+		contentPane.add(btnNewButton);
+		
+		JButton button = new JButton("\uCDE8\uC18C\uD558\uAE30");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Delview dl=new Delview(fdto);
+				dl.setVisible(true);
+				dispose();	
+			}
+		});
+		button.setBounds(12, 328, 97, 23);
+		contentPane.add(button);
 		
 
 	}

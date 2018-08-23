@@ -442,6 +442,16 @@ public class SecondView2 extends JFrame {
 				btn_tm.setBounds(752, 10, 120, 23);
 				contentPane.add(btn_tm);
 				
+				JButton btnNewButton = new JButton("\uC5ED \uAC80\uC0C9\uD558\uAE30");
+				btnNewButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						Station st=new Station(fdto);
+						st.setVisible(true);
+					}
+				});
+				btnNewButton.setBounds(421, 110, 97, 23);
+				contentPane.add(btnNewButton);
+				
 				
 			
 		

@@ -318,7 +318,7 @@ public class FirstDAO {
 			sb.append(	"  where mid= ? and date>=sysdate()"    ); 
 
 			pst=conn.prepareStatement(sb.toString());
-			pst.setInt(1, 123456);
+			pst.setInt(1, fdto.getMid());
 
 			rs=pst.executeQuery();
 			
