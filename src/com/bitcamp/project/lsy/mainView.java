@@ -15,6 +15,8 @@ import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import com.bitcamp.project.kms.main2;
+
 public class mainView extends JFrame {
 
 	private static final GraphicsConfiguration String = null;
@@ -84,7 +86,7 @@ public class mainView extends JFrame {
 		});
 		
 		JTextArea textArea = new JTextArea();
-		textArea.setBounds(35, 40, 389, 147);
+		textArea.setBounds(35, 56, 389, 147);
 		contentPane.add(textArea);
 		outputCalButton.addActionListener(new outputView(id));
 		textArea.setText(body);
@@ -95,6 +97,20 @@ public class mainView extends JFrame {
 		JScrollPane scrollPane = new JScrollPane(table); // 테이블을 감싸고 있어야 함
 		scrollPane.setBounds(35, 238, 395, 226);
 		contentPane.add(scrollPane);
+		
+		JButton logButton = new JButton("\uB85C\uADF8\uC778\uD654\uBA74");
+		logButton.setBounds(35, 10, 389, 23);
+		contentPane.add(logButton);
+		logButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				 main2 frame = new main2(id);
+				frame.setVisible(true);
+				dispose();
+			}
+		});
 		
 		
 		bodyDAO dao = new bodyDAO();
