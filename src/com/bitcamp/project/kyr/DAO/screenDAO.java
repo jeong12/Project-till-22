@@ -182,48 +182,48 @@ public class screenDAO {
 				int r3=0;
 				int r4=0;
 				conn=getCon();
-				
+
 				Calendar cal=Calendar.getInstance();			
-				
+
 				try {
 					TimeZone jst =TimeZone.getTimeZone("Asia/Seoul");
 					Calendar Cal = Calendar.getInstance(jst); 
-					
+
 					sbl.append(" insert into pro3_retu values (?,?,now()) ");
 					pstmt=conn.prepareStatement(sbl.toString());
 					pstmt.setFloat(1, dto.getBnum());
 					pstmt.setInt(2, dto.getNumber());
 					r=pstmt.executeUpdate();
-					
-					sb2.append(" delete from pro3_rent where round(bnum,2) = round(?,2) ");
-					pstmt2=conn.prepareStatement(sb2.toString());
-					pstmt2.setFloat(1, dto.getBnum());
-					r2=pstmt2.executeUpdate();
-					
-					sb3.append(" insert into pro3_book(bname,publish,redate,bnum) ");
-					sb3.append(" select bname,publish,redate,bnum ");
-					sb3.append(" from rttest where round(bnum,2)=round( ? ,2) ");
-					pstmt3=conn.prepareStatement(sb3.toString());
-					pstmt3.setFloat(1, dto.getBnum());
-					r3=pstmt3.executeUpdate();
-					
-					
+
 					if(r>0) {
+						sb2.append(" delete from pro3_rent where round(bnum,2) = round(?,2) ");
+						pstmt2=conn.prepareStatement(sb2.toString());
+						pstmt2.setFloat(1, dto.getBnum());
+						r2=pstmt2.executeUpdate();
+					
 						if(r2>0)
 						{
-							sb4.append(" delete from rttest where round(bnum,2) = round( ? ,2) ");
-							pstmt4=conn.prepareStatement(sb4.toString());
-							pstmt4.setFloat(1, dto.getBnum());
-							r4=pstmt4.executeUpdate();
+							sb3.append(" insert into pro3_book(bname,publish,redate,bnum) ");
+							sb3.append(" select bname,publish,redate,bnum ");
+							sb3.append(" from rttest where round(bnum,2)=round( ? ,2) and number = ? ");
+							pstmt3=conn.prepareStatement(sb3.toString());
+							pstmt3.setFloat(1, dto.getBnum());
+							pstmt3.setInt(2, dto.getNumber());
+							r3=pstmt3.executeUpdate();							
+
 							if(r3>0)
 							{
-						
-								
-						JOptionPane.showMessageDialog(null, "반납이 완료 되었습니다.반납 완료 날짜: "
-								+Cal.get(Calendar.YEAR)+"년"+(Cal.get(Calendar.MONTH)+1)+"월"
-								+Cal.get(Calendar.DATE)+"일 입니다");
+								sb4.append(" delete from rttest where round(bnum,2) = round( ? ,2) and number = ? ");
+								pstmt4=conn.prepareStatement(sb4.toString());
+								pstmt4.setFloat(1, dto.getBnum());
+								pstmt4.setInt(2, dto.getNumber());
+								r4=pstmt4.executeUpdate();		
+
+								JOptionPane.showMessageDialog(null, "반납이 완료 되었습니다.반납 완료 날짜: "
+										+Cal.get(Calendar.YEAR)+"년"+(Cal.get(Calendar.MONTH)+1)+"월"
+										+Cal.get(Calendar.DATE)+"일 입니다");
+							}
 						}
-					}
 						else {
 							JOptionPane.showMessageDialog(null, "반납 할 책이 없으신대 ? ");
 						}
