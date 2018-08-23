@@ -4,9 +4,12 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.util.List;
 
+import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.ListSelectionModel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
@@ -50,6 +53,14 @@ public class Station extends JFrame {
 		for(int i=0;i<size;i++) {
 			station[i]=sta.get(i);
 		}
+		
+		JList jl=new JList(station);
+		jl.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		jl.setBounds(10, 10, 300, 280);
+		contentPane.add(jl);
+		JScrollPane scrollPane = new JScrollPane(jl);
+		scrollPane.setBounds(10, 10, 300, 280);
+		contentPane.add(scrollPane);
 	
 		
 		
