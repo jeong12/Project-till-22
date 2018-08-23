@@ -13,6 +13,7 @@ import java.awt.event.ActionEvent;
 public class main2 extends JFrame {
 
 	private JPanel contentPane;
+	private static MemberDTO dto;
 
 	/**
 	 * Launch the application.
@@ -21,7 +22,7 @@ public class main2 extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					main2 frame = new main2();
+					main2 frame = new main2(dto);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -33,44 +34,45 @@ public class main2 extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public main2() {
+	
+	
+	public main2(MemberDTO dto) {
+		
+		this.dto = dto;
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 413, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JButton btnNewButton = new JButton("New button");
-		btnNewButton.setBounds(35, 49, 97, 72);
+		btnNewButton.setBounds(37, 54, 97, 57);
 		contentPane.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("New button");
-		btnNewButton_1.setBounds(160, 49, 97, 72);
+		btnNewButton_1.setBounds(146, 54, 97, 57);
 		contentPane.add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("New button");
-		btnNewButton_2.setBounds(286, 49, 97, 72);
+		btnNewButton_2.setBounds(255, 54, 97, 57);
 		contentPane.add(btnNewButton_2);
 		
 		JButton btnNewButton_3 = new JButton("È¸¿øÁ¤º¸ ¼öÁ¤");
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				update up = new update();
-				up.setVisible(true);
+
+		      Update u = new Update(dto);
+		      u.setVisible(true);
+				
 			}
 		});
-		btnNewButton_3.setBounds(63, 198, 120, 23);
+		btnNewButton_3.setBounds(80, 194, 109, 23);
 		contentPane.add(btnNewButton_3);
 		
 		JButton btnNewButton_4 = new JButton("È¸¿øÅ»Åð");
-		btnNewButton_4.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				withdrawal wd = new withdrawal();
-				wd.setVisible(true);
-			}
-		});
-		btnNewButton_4.setBounds(225, 198, 120, 23);
+		btnNewButton_4.setBounds(201, 194, 109, 23);
 		contentPane.add(btnNewButton_4);
 	}
 }

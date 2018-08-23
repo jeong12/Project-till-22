@@ -1,154 +1,242 @@
 package com.bitcamp.project.kms;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
-
-
-
-
-public class MemberDAO {
-
-	String ClassName = "com.mysql.jdbc.Driver";
-	Connection con = null;
-	String url = "jdbc:mysql://my5509.gabiadb.com:3306/database";
-	String id = "bit504";
-	String pw = "bitcamp504*";
-    ResultSet rs = null;
-    PreparedStatement ps=null;
+	import java.sql.Connection;
+	import java.sql.DriverManager;
+	import java.sql.PreparedStatement;
+	import java.sql.ResultSet;
+	import java.sql.SQLException;
 	
-	public MemberDAO() { 
 	
-	 }
-	
+	public class MemberDAO {
+
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String ClassName = "com.mysql.cj.jdbc.Driver";
+		String url = "jdbc:mysql://my5509.gabiadb.com:3306/mydb?characterEncoding=UTF-8&serverTimezone=UTC";
+		String id = "bit504";
+		String pw = "bitcamp504*";
+		ResultSet rs = null;
 		
 		
-		public Connection getcon() {
-		try {
-			Class.forName(ClassName);
-			con = DriverManager.getConnection(url, id, pw);
-			
-			
-		}catch(ClassNotFoundException e)
+		public MemberDAO()
 		{
-			System.out.println(e+">>로드실패");
-		}catch(SQLException e)
-		{
-			System.out.println(e+">>연결실패");
+			
 		}
-		return con;
-	    
-	}
-	
-		public void closeMethod() //닫기
-		    {
-			if(rs!=null)
-			try{
-				rs.close();
+		
+		public Connection getCon()
+		{
+			try {
+				Class.forName(ClassName);
+				con = DriverManager.getConnection(url, id, pw);
+				
+				
+			}catch(ClassNotFoundException e)
+			{
+				e.printStackTrace();
 			}catch(SQLException e)
 			{
-				System.out.println(e+">>닫기실패");
+				e.printStackTrace();
 			}
-			if(ps!=null)
-			try{
-				ps.close();
-			}
-			catch(SQLException e)
-			{
-				System.out.println(e+">>닫기실패");
-			}
-  
-	    
-		}//close
 		
+			return con;
+		}
 
-  public memberDTO getmemberDTO(String id, String pw)
-    {
-    	memberDTO dto = new memberDTO();
-    	
-    	try {
-            
-            con = getcon();
-            String sql = "select * from mydb.pro3_userinfo where id=? , pw=?";
-     
-            ps = con.prepareStatement(sql);
-            ps.setString(1, id);
-            ps.setString(2, pw);
-            
-            rs = ps.executeQuery();
-           
-            /*if(rs.next()) // 여기서 계속 에러가 나는데 이부분을 어떻게 해야할지 고민입니다
+		
+		public MemberDTO getMember(String id, String pw) 
+		{
+  
+			
+          MemberDTO dto = new MemberDTO();
+			
+          try {
+			con = getCon();
+			
+			String sql = "select * from pro3_userinfo where id=? && pw=? ";
+			
+			
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, id);
+			pstmt.setString(2, pw);
+			
+			
+			
+			
+			rs = pstmt.executeQuery();
+			
+			  while(rs.next())
+			  {
+				dto.setId(rs.getString("id"));  
+				dto.setPw(rs.getString("pw"));
+				dto.setName(rs.getString("name"));
+				dto.setCellphone(rs.getString("cellphone"));
+				dto.setJumin(rs.getString("jumin"));
+		        dto.setNumber(rs.getInt("number"));
+		        dto.setJoindate(rs.getString("joindate"));
+		        dto.setAge(rs.getString("age"));
+		        dto.setGender(rs.getString("gender"));
+		        dto.setHeight(rs.getString("height"));
+		        dto.setWeight(rs.getString("weight"));
+			  }
+
+			 }catch(SQLException e)
             {
-             dto.setId(rs.getString(id));
-             dto.setPw(rs.getString(pw));
-             dto.setName(rs.getString(name));
-             dto.setCellphone(rs.getString(cellphone));
-             dto.setJumin(rs.getString(jumin));
-             dto.setAge(rs.getString(age));
-             dto.setGender(rs.getString(gender));
-             dto.setHeight(rs.getString(height));
-             dto.setWeight(rs.getString(weight));
-             
-            }*/
-        } catch (Exception e) {
-            e.printStackTrace();
-        }      
-       
-        return dto;    
-    }
-    	
-   
-	
-		
-		
-		
-	
-	public void JoinUser(memberDTO dto)//가입
-	{
-	
-		
-		try {
-			String sql = "insert into mydb.pro3_userinfo("+
-		                 "id,pw,name,cellphone,jumin,"+
-					     ",age geder,height,weight)"+
-		                 "values(?,?,?,?,?,?,?,?,?)";
+				 if(rs!=null)
+				try{
+					 rs.close();
+				 }catch(Exception e1)
+				 {
+					 e1.printStackTrace();
+				 }
+		         
+				 if(pstmt!=null)
+				 try{
+					 pstmt.close(); 
+				  }catch(Exception e1)
+				 {
+					  e1.printStackTrace();
+				 }
+            }
 			
-			ps=con.prepareStatement(sql);
+			return dto;
 			
-			ps.setString(1, dto.getId());
-			ps.setString(2, dto.getPw());
-			ps.setString(3, dto.getName());
-			ps.setString(4, dto.getCellphone());
-			ps.setString(5, dto.getJumin());
-			ps.setString(8, dto.getAge());
-			ps.setString(9, dto.getGender());
-			ps.setString(10, dto.getHeight());
-			ps.setString(11, dto.getWeight());
-			
-			int r = ps.executeUpdate();
-			
-			if(r>0)
-			{
-				System.out.println("가입성공");
-			   
-			}
-			else
-			{
-				System.out.println("가입실패");
-			}
-			
-		}catch(Exception e)
-		{
-			System.out.println(e+">>Insert Fail");
-		}finally
-		{
-			closeMethod();
 		}
 		
-	}//joinuser
+			
+		public void Insert(MemberDTO dto)
+		{
+
+			try{
+			con = getCon();
+			
+			String sql = "insert into pro3_userinfo values ( ?,?,?,?,?,?, now(),?,?,?,? ) ";
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, dto.getId());
+			pstmt.setString(2, dto.getPw());
+			pstmt.setString(3, dto.getName());
+			pstmt.setString(4, dto.getCellphone());
+			pstmt.setString(5, dto.getJumin());
+            pstmt.setInt(6, dto.getNumber());
+            pstmt.setString(7, dto.getAge());
+			pstmt.setString(8, dto.getGender());
+            pstmt.setString(9, dto.getHeight());
+			pstmt.setString(10, dto.getWeight());
+			pstmt.executeUpdate();
+			
+			}catch(SQLException e)
+			{
+				e.printStackTrace();
+			}finally
+			{ 
+				if(pstmt!=null)
+				try{
+				    pstmt.close();
+ 				}catch(Exception e1)
+				{
+ 				 e1.printStackTrace();
+				
+				}
+				
+				if(con!=null)
+				try{
+				   con.close();
+				}catch(Exception e2)
+				{
+					e2.printStackTrace();
+				}
+					
+			}
+			
+		}
+		
+		public void Update(MemberDTO dto)
+		{
+			
+			try {
+				con = getCon();
+				String sql = "Update pro3_userinfo set id=?, pw=?, name=?, cellphone=?,jumin=?,age=?,"
+						    + "gender=?,height=?, weight=?"
+				            + "where id=?";
+				pstmt = con.prepareStatement(sql);
+				
+				pstmt.setString(1, dto.getId());
+				pstmt.setString(2, dto.getPw());
+				pstmt.setString(3, dto.getName());
+				pstmt.setString(4, dto.getCellphone());
+				pstmt.setString(5, dto.getJumin());
+	            pstmt.setString(6, dto.getAge());
+				pstmt.setString(7, dto.getGender());
+	            pstmt.setString(8, dto.getHeight());
+				pstmt.setString(9, dto.getWeight());
+				pstmt.setString(10, dto.getId());
+				
+				pstmt.executeUpdate();
+				
+			   }catch(SQLException e)
+			{
+				   e.printStackTrace();
+			}finally
+			{
+				if(pstmt!=null)
+				try{
+					pstmt.close();
+				}catch(Exception e1)
+				{
+					e1.printStackTrace();
+				}
+				if(con!=null)
+				try{
+					con.close();
+				   }catch(Exception e2)
+				{
+					e2.printStackTrace();
+				}
+				
+			 }
+			
+		}
+		
+		
+		
+		public void Delete(MemberDTO dto)
+		{
+			try {
+				con = getCon();
+				
+				String sql = "Delete from practice where id=? && pw=?";
+				
+
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, dto.getId());
+				pstmt.setString(2, dto.getPw());
+				
+				pstmt.executeUpdate();
+
+			}catch(SQLException e)
+			{
+				e.printStackTrace();
+			}finally {
+				if(pstmt!=null)
+					try {
+						pstmt.close();
+					}catch(Exception e1)
+				     {
+						e1.printStackTrace();
+				    }
+				     if(con!=null)
+				    	 try {
+					    		  con.close();
+				    	 }catch(Exception e2)
+				     {
+				    		 e2.printStackTrace();
+				     }
+			}
+			
+				
+				
+		}
+	
 
 	}
- 
