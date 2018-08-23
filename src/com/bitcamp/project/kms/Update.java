@@ -18,7 +18,7 @@ import java.awt.event.ActionListener;
 import java.util.Enumeration;
 import java.awt.event.ActionEvent;
 
-public class join extends JFrame {
+public class Update extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
@@ -31,7 +31,7 @@ public class join extends JFrame {
 	private JTextField textField_7;
 	private JRadioButton rdbtnNewRadioButton;
 	private JRadioButton rdbtnNewRadioButton_1;
-
+    private static MemberDTO dto;
 	/**
 	 * Launch the application.
 	 */
@@ -39,7 +39,7 @@ public class join extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					join frame = new join();
+					Update frame = new Update(dto);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -51,7 +51,7 @@ public class join extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public join() {
+	public Update(MemberDTO dto) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 335, 568);
 		contentPane = new JPanel();
@@ -105,30 +105,37 @@ public class join extends JFrame {
 		
 		textField = new JTextField();
 		textField.setBounds(137, 43, 116, 21);
+		textField.setEditable(false);
+		textField.setText(dto.getId());
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
 		textField_1 = new JTextField();
+		textField_1.setText(dto.getPw());
 		textField_1.setBounds(137, 87, 116, 21);
 		contentPane.add(textField_1);
 		textField_1.setColumns(10);
 		
 		textField_2 = new JTextField();
+		textField_2.setText(dto.getName());
 		textField_2.setBounds(137, 134, 116, 21);
 		contentPane.add(textField_2);
 		textField_2.setColumns(10);
 		
 		textField_3 = new JTextField();
+		textField_3.setText(dto.getCellphone());
 		textField_3.setBounds(137, 179, 116, 21);
 		contentPane.add(textField_3);
 		textField_3.setColumns(10);
 		
 		textField_4 = new JTextField();
+		textField_4.setText(dto.getJumin());
 		textField_4.setBounds(137, 224, 116, 21);
 		contentPane.add(textField_4);
 		textField_4.setColumns(10);
 		
 		textField_5 = new JTextField();
+		textField_5.setText(dto.getAge());
 		textField_5.setBounds(137, 265, 116, 21);
 		contentPane.add(textField_5);
 		textField_5.setColumns(10);
@@ -142,11 +149,13 @@ public class join extends JFrame {
 		contentPane.add(rdbtnNewRadioButton_1);
 		
 		textField_6 = new JTextField();
+		textField_6.setText(dto.getHeight());
 		textField_6.setBounds(137, 347, 116, 21);
 		contentPane.add(textField_6);
 		textField_6.setColumns(10);
 		
 		textField_7 = new JTextField();
+		textField_7.setText(dto.getWeight());
 		textField_7.setBounds(137, 390, 116, 21);
 		contentPane.add(textField_7);
 		textField_7.setColumns(10);
@@ -158,11 +167,12 @@ public class join extends JFrame {
 	
 		
 		
-		JButton btnNewButton = new JButton("가입");
+		JButton btnNewButton = new JButton("수정");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MemberDAO dao = new MemberDAO();
-				MemberDTO dto = new MemberDTO();
+				
+				
 				
 				dto.setId(textField.getText());
 				dto.setPw(textField_1.getText());
@@ -190,7 +200,7 @@ public class join extends JFrame {
 				   dto.setGender(st);
 			   }
 		   }
-		 dao.Insert(dto);
+		 dao.Update(dto);
        }
 
 		
@@ -200,3 +210,4 @@ public class join extends JFrame {
 		
 	}
 }
+
