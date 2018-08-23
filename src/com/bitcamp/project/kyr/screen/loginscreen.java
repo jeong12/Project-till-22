@@ -76,8 +76,8 @@ public class loginscreen extends JFrame {
 		JButton btnNewButton = new JButton("로그인");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				mainscreen mai=new mainscreen();
-				mai.setVisible(true);  // 만약에 로그인 정보가 틀릴 경우 어떻게 할지 내일 형님한테 물어보기
+				//mainscreen mai=new mainscreen();
+				//mai.setVisible(true);  // 만약에 로그인 정보가 틀릴 경우 어떻게 할지 내일 형님한테 물어보기
 			}
 		});
 		btnNewButton.setBounds(244, 81, 97, 23);
