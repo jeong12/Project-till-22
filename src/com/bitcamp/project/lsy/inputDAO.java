@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 public class inputDAO {
 	// 입력창
 	private Connection getConnetction() {
@@ -48,7 +50,7 @@ public class inputDAO {
 			sql.append(    "    from pro3_input     "   );
 			
 			pst = conn.prepareStatement(sql.toString());
-			rs = pst.executeQuery();
+			rs = pst.executeQuery();// 보여주는 것 이기 때문에 resultSet이 리턴값
 			while(rs.next()) {
 				inputDTO dto = new inputDTO();
 				
@@ -96,12 +98,16 @@ public class inputDAO {
 			pst.setString(2, dto.getInmeal());
 			pst.setString(3, dto.getInmeal());
 			
-			pst.executeUpdate();
+			pst.executeUpdate();// int 값을 받음
+			
+			
+			
 		}catch(SQLException e) {
 			System.out.println(e);
 			
 		}finally {
 			close(conn,pst);
+			
 		}
 	
 		
