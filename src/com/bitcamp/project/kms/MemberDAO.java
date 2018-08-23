@@ -173,7 +173,7 @@ package com.bitcamp.project.kms;
 				
 				pstmt = con.prepareStatement(sql);
 				
-				pstmt.setString(1, dto.getId());
+				pstmt.setInt(1, dto.getNumber());
 				
 				rs = pstmt.executeQuery();
 				
