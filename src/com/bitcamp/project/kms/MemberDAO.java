@@ -107,10 +107,116 @@ package com.bitcamp.project.kms;
 		}
 	
 		
-		
-		
-		
+		public MemberDTO get(String id)
+		{
+			MemberDTO dto = new MemberDTO();
+					
+					
+			try {
+				con = getCon();
+				
+				String sql = "select * from pro3_userinfo where id = ?";
+				
+				pstmt = con.prepareStatement(sql);
+				
+				pstmt.setString(1, dto.getId());
+				
+				rs = pstmt.executeQuery();
+				
+				while(rs.next())
+				{
+					dto.setId(rs.getString("id"));  
+					dto.setPw(rs.getString("pw"));
+					dto.setName(rs.getString("name"));
+					dto.setCellphone(rs.getString("cellphone"));
+					dto.setJumin(rs.getString("jumin"));
+			        dto.setNumber(rs.getInt("number"));
+			        dto.setJoindate(rs.getString("joindate"));
+			        dto.setAge(rs.getString("age"));
+			        dto.setGender(rs.getString("gender"));
+			        dto.setHeight(rs.getString("height"));
+			        dto.setWeight(rs.getString("weight"));
+
+				}
+
+			}catch(SQLException e)
+			{
+				if(rs!=null)
+					try {
+						rs.close();
+					}catch(Exception e1)
+				{
+					e1.printStackTrace();
+				}
+				if(pstmt!=null)
+					try {
+						pstmt.close();
+					}catch(Exception e2)
+				{
+						e2.printStackTrace();
+				}
+			}
 			
+			return dto;
+		}
+		
+		
+		public MemberDTO Number(int number)
+		{
+			MemberDTO dto = new MemberDTO();
+					
+					
+			try {
+				con = getCon();
+				
+				String sql = "select * from pro3_userinfo where number = ?";
+				
+				pstmt = con.prepareStatement(sql);
+				
+				pstmt.setString(1, dto.getId());
+				
+				rs = pstmt.executeQuery();
+				
+				while(rs.next())
+				{
+					dto.setId(rs.getString("id"));  
+					dto.setPw(rs.getString("pw"));
+					dto.setName(rs.getString("name"));
+					dto.setCellphone(rs.getString("cellphone"));
+					dto.setJumin(rs.getString("jumin"));
+			        dto.setNumber(rs.getInt("number"));
+			        dto.setJoindate(rs.getString("joindate"));
+			        dto.setAge(rs.getString("age"));
+			        dto.setGender(rs.getString("gender"));
+			        dto.setHeight(rs.getString("height"));
+			        dto.setWeight(rs.getString("weight"));
+
+				}
+
+			}catch(SQLException e)
+			{
+				if(rs!=null)
+					try {
+						rs.close();
+					}catch(Exception e1)
+				{
+					e1.printStackTrace();
+				}
+				if(pstmt!=null)
+					try {
+						pstmt.close();
+					}catch(Exception e2)
+				{
+						e2.printStackTrace();
+				}
+			}
+			
+			return dto;
+		}
+			
+		
+		
+		
 		public void Insert(MemberDTO dto)
 		{
 

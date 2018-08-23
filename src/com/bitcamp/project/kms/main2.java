@@ -19,20 +19,44 @@ public class main2 extends JFrame {
 
 	private JPanel contentPane;
 	private static MemberDTO dto;
-
-	
+    private String id; 
+	private int number;
 	/**
 	 * Create the frame.
 	 */
 	 
+    public main2(String id)
+    {
+    	this.id = id;
+       MemberDTO dto = new MemberDTO();
+       MemberDAO dao = new MemberDAO();
+       
+       dto = dao.get(id);
+       getlist(dto);
+    }
 	
-  
-	
-	
+    
+    public main2(int number)
+    {
+        this.number = number;
+        MemberDTO dto = new MemberDTO();
+        MemberDAO dao = new MemberDAO();
+        
+        dto = dao.Number(number);
+        getlist(dto);
+    	
+    }
+    
+
 	public main2(MemberDTO dto) {
 		
 		this.dto = dto;
-		
+        getlist(dto);
+	}
+	
+	
+	public void getlist(MemberDTO dto)
+	{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 413, 300);
 		contentPane = new JPanel();
@@ -49,7 +73,7 @@ public class main2 extends JFrame {
 				mainscreen ms = new mainscreen(number);
 				ms.setVisible(true);
 				
-			}
+			 }
 		});
 		btnNewButton.setBounds(37, 54, 97, 57);
 		contentPane.add(btnNewButton);
@@ -107,7 +131,4 @@ public class main2 extends JFrame {
 		btnNewButton_4.setBounds(201, 194, 109, 23);
 		contentPane.add(btnNewButton_4);
 	}
-	
-	
-	
 }
