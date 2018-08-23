@@ -106,6 +106,7 @@ public class mainView extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
+				System.out.println("º¸³À´Ï´Ù!!!!:"+id);
 				 main2 frame = new main2(id);
 				frame.setVisible(true);
 				dispose();
