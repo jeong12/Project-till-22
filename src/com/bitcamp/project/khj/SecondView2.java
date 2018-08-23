@@ -434,9 +434,9 @@ public class SecondView2 extends JFrame {
 				JButton btn_tm = new JButton("\uBA54\uC778\uD654\uBA74\uC73C\uB85C");
 				btn_tm.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						main2 main=new main2();
+				/*		main2 main=new main2();
 						main.setVisible(true);
-						dispose();
+						dispose();*/
 					}
 				});
 				btn_tm.setBounds(752, 10, 120, 23);

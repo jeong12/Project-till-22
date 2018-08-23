@@ -123,9 +123,9 @@ public class ForthView extends JFrame {
 		JButton btn_tom = new JButton("\uBA54\uC778\uC73C\uB85C");
 		btn_tom.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				main2 main=new main2();
+			/*	main2 main=new main2();
 				main.setVisible(true);
-				dispose();
+				dispose();*/
 			}
 		});
 		btn_tom.setBounds(12, 528, 97, 23);

@@ -230,10 +230,10 @@ public class FirstView extends JFrame {
 		btn_tm = new JButton("메인화면으로");
 		btn_tm.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				main2 main=new main2();
+			/*	main2 main=new main2();
 				main.setVisible(true);
 				dispose();
-				
+				*/
 			}
 		});
 		btn_tm.setActionCommand("\uBA54\uC778\uD654\uBA74\uC73C\uB85C");
