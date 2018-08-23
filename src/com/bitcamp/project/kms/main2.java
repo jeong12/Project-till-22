@@ -114,7 +114,7 @@ public class main2 extends JFrame {
 				
 				Delete d = new Delete(dto);
 				d.setVisible(true);
-			}
+			 }
 		});
 		btnNewButton_4.setBounds(201, 194, 109, 23);
 		contentPane.add(btnNewButton_4);
