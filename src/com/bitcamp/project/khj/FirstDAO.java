@@ -59,7 +59,7 @@ public class FirstDAO {
 			
 			sb.append(  "  select aa.tnumber, aa.tname, aa.esname, aa.atime, aa.fsname, aa.btime, bb.fair from  "                     ); 
 			sb.append(  " (select a.tnumber,c.tname,e.sname as esname,a.time as atime,f.sname as fsname, b.time as btime, c.tid  "    );
-			sb.append(	"  from pro3_schedule as a, pro3_schedule as b , pro3_train as c, pro3_station as e, pro3_station as f  "    ); 
+			sb.append(	"  from pro3_schedule as a, pro3_schedule as b , pro3_train as c, pro3_ion as e, pro3_station as f  "    ); 
 			sb.append(  "  where e.snumber=a.snumber and e.sname=?      "   );    
 			sb.append( 	"  and f.snumber=b.snumber and f.sname=?  "   );
 			sb.append( 	"  and a.tnumber = b.tnumber and a.time<b.time             "     );
