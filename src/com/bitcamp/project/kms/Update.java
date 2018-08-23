@@ -142,6 +142,7 @@ public class Update extends JFrame {
 		
 		JRadioButton rdbtnNewRadioButton = new JRadioButton("남자");
 		rdbtnNewRadioButton.setBounds(137, 307, 64, 23);
+		rdbtnNewRadioButton.setSelected(true);
 		contentPane.add(rdbtnNewRadioButton);
 		
 		JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("여자");
@@ -195,6 +196,10 @@ public class Update extends JFrame {
 			   while(em.hasMoreElements()) {
 				   AbstractButton ab = em.nextElement();
 			   JRadioButton jr = (JRadioButton)ab;
+			    
+			   
+			   
+			   
 			   
 			   if(jr.isSelected())
 			   {
