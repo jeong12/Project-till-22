@@ -99,6 +99,8 @@ public class main extends JFrame {
 				
 				join j = new join();
 				j.setVisible(true);
+				
+				dispose();
 			}
 		});
 		btnNewButton_1.setBounds(117, 152, 157, 23);
