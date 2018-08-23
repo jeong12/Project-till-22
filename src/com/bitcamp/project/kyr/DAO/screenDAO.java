@@ -176,8 +176,10 @@ public class screenDAO {
 			}
 			
 			
-			public int retu(screenDTO dto,Connection conn) throws SQLException
+			public int retu(screenDTO dto,Connection conn,int number) throws SQLException
 			{
+				mto.setNumber(number);
+				
 				StringBuilder sbl=new StringBuilder();
 				StringBuilder sb2=new StringBuilder();
 				StringBuilder sb3=new StringBuilder();
@@ -197,19 +199,19 @@ public class screenDAO {
 				try {
 					TimeZone jst =TimeZone.getTimeZone("Asia/Seoul");
 					Calendar Cal = Calendar.getInstance(jst); 
+					
+					sbl.append(" insert into pro3_retu(bnum,number,rdate) values (?,?,now()) ");
+					pstmt=conn.prepareStatement(sbl.toString());
+					pstmt.setFloat(1, dto.getBnum());
+					pstmt.setInt(2, dto.getNumber());
+					r=pstmt.executeUpdate();
 
-					sb2.append(" delete from pro3_rent where round(bnum,2) = round(?,2) ");
-					pstmt2=conn.prepareStatement(sb2.toString());
-					pstmt2.setFloat(1, dto.getBnum());
-					r2=pstmt2.executeUpdate();
-
-					if(r2>0) {
-						sbl.append(" insert into pro3_retu(bnum,number,rdate) values (?,?,now()) ");
-						pstmt=conn.prepareStatement(sbl.toString());
-						pstmt.setFloat(1, dto.getBnum());
-						pstmt.setInt(2, dto.getNumber());
-						r=pstmt.executeUpdate();
-						if(r>0)
+					if(r>0) {
+						sb2.append(" delete from pro3_rent where round(bnum,2) = round(?,2) ");
+						pstmt2=conn.prepareStatement(sb2.toString());
+						pstmt2.setFloat(1, dto.getBnum());
+						r2=pstmt2.executeUpdate();
+						if(r2>0)
 						{
 							sb3.append(" insert into pro3_book(bname,publish,redate,bnum) ");
 							sb3.append(" select bname,publish,redate,bnum ");
@@ -230,11 +232,11 @@ public class screenDAO {
 										+Cal.get(Calendar.DATE)+"일 입니다");
 							}
 							else {
-								JOptionPane.showMessageDialog(null, "반납 할 책이 없으신대 ? ");
+								JOptionPane.showMessageDialog(null, "반납 할 책이 없으시거나 입력을 잘못하셨습니다 ");
 						}
 						}
 						else {
-							JOptionPane.showMessageDialog(null, "반납 할 책이 없으신대 ? ");
+							JOptionPane.showMessageDialog(null, "반납 할 책이 없으시거나 입력을 잘못하셨습니다  ");
 						}
 					}
 					

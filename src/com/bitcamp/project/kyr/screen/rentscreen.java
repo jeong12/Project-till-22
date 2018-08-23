@@ -33,25 +33,12 @@ import javax.swing.JScrollPane;
 import java.awt.BorderLayout;
 
 public class rentscreen extends JFrame implements ActionListener {
-	/*public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					rentscreen frame = new rentscreen();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}*/
+
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField bnum,number;
-	/**
-	 *   Launch the application.
-	 */
+
 	MemberDTO mto=new MemberDTO();
 
 	public JTextField getTextField() {
@@ -77,10 +64,6 @@ public class rentscreen extends JFrame implements ActionListener {
 	private JButton button;
 	private JButton button_1;
 
-	/**
-	 * Create the frame.
-	 */
-	//private String
 	Connection conn=null;
 
 	public rentscreen(int number) {
@@ -115,19 +98,10 @@ public class rentscreen extends JFrame implements ActionListener {
 		label.setBounds(15, 231, 57, 15);
 		contentPane.add(label);
 
-		/*label_1 = new JLabel("회원 번호");
-		label_1.setBounds(15, 261, 57, 15);
-		contentPane.add(label_1);*/
-
 		textField = new JTextField(); //책번호
 		textField.setBounds(84, 229, 116, 21);
 		contentPane.add(textField);
 		textField.setColumns(10);
-		
-/*		textField_1 = new JTextField();  //회원번호
-		textField_1.setBounds(84, 255, 116, 21);
-		contentPane.add(textField_1);
-		textField_1.setColumns(10);*/
 
 		button = new JButton("대여 하기");
 		button.addActionListener(new ActionListener() {
@@ -139,7 +113,7 @@ public class rentscreen extends JFrame implements ActionListener {
 
 					Float bm=(Float.parseFloat(textField.getText()));
 					dto.setBnum(bm);
-					int nm=number; //(Integer.parseInt(textField_1.getText()));
+					int nm=number;
 					dto.setNumber(nm);
 
 					r=dao.rent(dto,conn,number);

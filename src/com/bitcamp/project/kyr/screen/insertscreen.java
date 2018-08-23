@@ -14,7 +14,6 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import com.bitcamp.project.kms.MemberDTO;
-//import com.bitcamp.project.khj.FirstActionGoto;
 import com.bitcamp.project.kyr.screenDTO;
 import com.bitcamp.project.kyr.DAO.screenDAO;
 
@@ -24,19 +23,6 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 
 public class insertscreen extends JFrame{
-
-	/*public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					insertscreen frame = new insertscreen();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}*/
 	
 	private JPanel contentPane;
 	private JTextField textField;
@@ -84,10 +70,7 @@ public class insertscreen extends JFrame{
 	screenDAO dao=new screenDAO();
 	screenDTO dto=new screenDTO();
 	
-	
-	
 	public insertscreen() {
-		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 261, 257);
@@ -117,7 +100,6 @@ public class insertscreen extends JFrame{
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				screenDTO dto=new screenDTO();
-				//dao.insert(dto, conn);
 				int r =0;
 				try {
 					
@@ -140,7 +122,6 @@ public class insertscreen extends JFrame{
 					
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
-					//e1.printStackTrace();
 					JOptionPane.showMessageDialog(null, "형식에 맞게 입력하세요");
 				 }
 				

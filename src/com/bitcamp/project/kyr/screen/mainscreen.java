@@ -17,37 +17,12 @@ public class mainscreen extends JFrame implements ActionListener{
 
 	MemberDTO mto=new MemberDTO();
 	screenDTO dto=new screenDTO();
-	/**
-	 *  Launch the application.
-	 */
-	/*public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					mainscreen frame = new mainscreen();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			  }
-		});
-	}*/
 
-	/**
-	 *  Create the frame.
-	 */
-	
-	
-	
-	
-		
-	
 	public mainscreen(int number) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 228, 328);
 		getContentPane().setLayout(null);
 		
-		//number =mto.getNumber();
 		mto.setNumber(number);
 				
 		JButton button = new JButton("å �뿩");
