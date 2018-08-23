@@ -19,7 +19,7 @@ package com.bitcamp.project.kms;
 		ResultSet rs = null;
 		
 		
-		public MemberDAO()
+		 public MemberDAO()
 		{
 			
 		}
