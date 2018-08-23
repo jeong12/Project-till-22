@@ -14,7 +14,7 @@ public class FirstDTO {
 	private String seat;
 	private String atime;
 	private String tname;
-	private String mid;
+	private int mid;
 	
 	
 	public FirstDTO() {
@@ -95,10 +95,10 @@ public class FirstDTO {
 	public void setTname(String tname) {
 		this.tname = tname;
 	}
-	public String getMid() {
+	public int getMid() {
 		return mid;
 	}
-	public void setMid(String mid) {
+	public void setMid(int mid) {
 		this.mid = mid;
 	}
 	

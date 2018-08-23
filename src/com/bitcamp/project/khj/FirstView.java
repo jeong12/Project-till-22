@@ -44,7 +44,7 @@ public class FirstView extends JFrame {
 	String[] date=fc.day(arr);
 	String[] time=fc.time();
 	String[] person=fc.Person();
-	String mid;
+	int mid;
 	private JButton btn_tm;
 	
 	
@@ -68,7 +68,7 @@ public class FirstView extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public FirstView(String mid) {
+	public FirstView(int mid) {
 		this.mid=mid;
 		fdto.setMid(mid);
 		fdto.setYear(year[0]);
