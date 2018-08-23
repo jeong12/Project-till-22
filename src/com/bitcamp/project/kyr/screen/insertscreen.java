@@ -13,6 +13,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import com.bitcamp.project.kms.MemberDTO;
 //import com.bitcamp.project.khj.FirstActionGoto;
 import com.bitcamp.project.kyr.screenDTO;
 import com.bitcamp.project.kyr.DAO.screenDAO;
@@ -150,7 +151,7 @@ public class insertscreen extends JFrame{
 		JButton btnNewButton_1 = new JButton("뒤로 가기");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				mainscreen mai=new mainscreen(11);
+				mainscreen mai=new mainscreen(dto.getNumber());
 				setVisible(false);
 			}
 		});

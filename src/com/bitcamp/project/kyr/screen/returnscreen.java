@@ -11,6 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import com.bitcamp.project.kms.MemberDTO;
 import com.bitcamp.project.kyr.screenDTO;
 import com.bitcamp.project.kyr.DAO.screenDAO;
 
@@ -63,8 +64,11 @@ public class returnscreen extends JFrame implements ActionListener {
 	screenDAO dao=new screenDAO();
 	Connection conn=null;
 	
+	MemberDTO mto=new MemberDTO();
 	
-	public returnscreen() {
+	public returnscreen(int number) {
+		mto.setNumber(number);
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 363, 125);
 		contentPane = new JPanel();
@@ -72,9 +76,9 @@ public class returnscreen extends JFrame implements ActionListener {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("회원 번호");
+		/*JLabel lblNewLabel = new JLabel("회원 번호");
 		lblNewLabel.setBounds(12, 43, 57, 15);
-		contentPane.add(lblNewLabel);
+		contentPane.add(lblNewLabel);*/
 		
 		JLabel lblNewLabel_1 = new JLabel("책 번호");
 		lblNewLabel_1.setBounds(12, 10, 57, 15);
@@ -90,7 +94,7 @@ public class returnscreen extends JFrame implements ActionListener {
 					
 				Float bm=(Float.parseFloat(textField.getText()));
 				dto.setBnum(bm);
-				int nm=(Integer.parseInt(textField_1.getText()));
+				int nm=number;  //(Integer.parseInt(textField_1.getText()));
 				dto.setNumber(nm);
 				
 				r=dao.retu(dto,conn);
@@ -109,15 +113,15 @@ public class returnscreen extends JFrame implements ActionListener {
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
-		textField_1 = new JTextField();   //회원 번호
+		/*textField_1 = new JTextField();   //회원 번호
 		textField_1.setBounds(96, 40, 91, 21);
 		contentPane.add(textField_1);
-		textField_1.setColumns(10);
+		textField_1.setColumns(10);*/
 		
 		JButton btnNewButton_1 = new JButton("뒤로 가기");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				mainscreen mai=new mainscreen(dto.getNumber());
 				setVisible(false);
 			}
 		});
