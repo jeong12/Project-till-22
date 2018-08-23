@@ -203,8 +203,7 @@ public class Prtview extends JFrame {
 		
 		JButton btn_del = new JButton("\uCD9C\uB825\uD558\uAE30");
 		btn_del.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
+			public void actionPerformed(ActionEvent e) {				
 				Enumeration<AbstractButton> em=bg.getElements();
 				String st=null;
 				while(em.hasMoreElements()) {
@@ -216,10 +215,14 @@ public class Prtview extends JFrame {
 					int r=Integer.parseInt(st);
 					fdto.setRn(r);
 					}						
-			
-					
+			System.out.println(fdto.getRn());
+					System.out.println(r);
 				List<String> p=fdao.Prt(fdto);
 				long time=System.currentTimeMillis();
+				
+				for(String r:p) {
+					System.out.println(r);
+				}
 				
 				String tnumber=p.get(0);
 				String tname=p.get(1);
