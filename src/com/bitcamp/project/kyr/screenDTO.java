@@ -5,7 +5,7 @@ import com.bitcamp.project.kms.MemberDTO;
 public class screenDTO {
 
 	MemberDTO mto=new MemberDTO();
-	
+
 	private String bname; //책이름
 	private String publish; //출판사
 	private float bnum;  //책번호
@@ -27,7 +27,7 @@ public class screenDTO {
 	}
 	public screenDTO()
 	{
-		
+
 	}
 	public String getBname() {
 		return bname;

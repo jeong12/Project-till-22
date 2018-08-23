@@ -72,9 +72,9 @@ public class rentscreen extends JFrame implements ActionListener {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		
+
 		mto.setNumber(number);
-		
+
 		booklist bls=new booklist();
 		Vector header=new Vector();
 		header.add("책이름");
@@ -121,7 +121,7 @@ public class rentscreen extends JFrame implements ActionListener {
 				} catch (SQLException e1) {
 					JOptionPane.showMessageDialog(null, "입력을 잘못하셨거나 대여할 수 있는 책이 없습니다.");
 					e1.printStackTrace();
-				 }
+				}
 			}
 		});
 		button.setBounds(231, 227, 97, 23);
