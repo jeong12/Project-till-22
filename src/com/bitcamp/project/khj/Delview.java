@@ -10,6 +10,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import com.bitcamp.project.kms.main2;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
 public class Delview extends JFrame {
 
 	private JPanel contentPane;
@@ -18,7 +23,7 @@ public class Delview extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -29,12 +34,14 @@ public class Delview extends JFrame {
 				}
 			}
 		});
-	}
+	}*/
 
 	/**
 	 * Create the frame.
+	 * @param fdto 
 	 */
-	public Delview() {
+	public Delview(FirstDTO fdto) {
+		this.fdto=fdto;
 		FirstDAO fdao=new FirstDAO(fdto);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1000, 500);
@@ -51,45 +58,64 @@ public class Delview extends JFrame {
 		btn_del.setBounds(875, 428, 97, 23);
 		contentPane.add(btn_del);
 				
-		JLabel lblNewLabel_1 = new JLabel("New label");
-		lblNewLabel_1.setBounds(131, 121, 57, 15);
+		JLabel lblNewLabel_1 = new JLabel("열차번호");
+		lblNewLabel_1.setBounds(121, 91, 57, 15);
 		contentPane.add(lblNewLabel_1);
 		
-		JLabel lblNewLabel_2 = new JLabel("New label");
-		lblNewLabel_2.setBounds(211, 121, 57, 15);
+		JLabel lblNewLabel_2 = new JLabel("열차명");
+		lblNewLabel_2.setBounds(201, 91, 57, 15);
 		contentPane.add(lblNewLabel_2);
 		
-		JLabel lblNewLabel_3 = new JLabel("New label");
-		lblNewLabel_3.setBounds(293, 121, 57, 15);
+		JLabel lblNewLabel_3 = new JLabel("출발역");
+		lblNewLabel_3.setBounds(283, 91, 57, 15);
 		contentPane.add(lblNewLabel_3);
 		
-		JLabel lblNewLabel_4 = new JLabel("New label");
-		lblNewLabel_4.setBounds(373, 121, 57, 15);
+		JLabel lblNewLabel_4 = new JLabel("출발시간");
+		lblNewLabel_4.setBounds(363, 91, 57, 15);
 		contentPane.add(lblNewLabel_4);
 		
-		JLabel lblNewLabel_5 = new JLabel("New label");
-		lblNewLabel_5.setBounds(459, 121, 57, 15);
+		JLabel lblNewLabel_5 = new JLabel("도착역");
+		lblNewLabel_5.setBounds(449, 91, 57, 15);
 		contentPane.add(lblNewLabel_5);
 		
-		JLabel lblNewLabel_6 = new JLabel("New label");
-		lblNewLabel_6.setBounds(539, 121, 57, 15);
+		JLabel lblNewLabel_6 = new JLabel("도착시간");
+		lblNewLabel_6.setBounds(529, 91, 57, 15);
 		contentPane.add(lblNewLabel_6);
 		
-		JLabel lblNewLabel_7 = new JLabel("New label");
-		lblNewLabel_7.setBounds(618, 121, 57, 15);
+		JLabel lblNewLabel_7 = new JLabel("요금");
+		lblNewLabel_7.setBounds(608, 91, 57, 15);
 		contentPane.add(lblNewLabel_7);
 		
-		JLabel lblNewLabel_8 = new JLabel("New label");
-		lblNewLabel_8.setBounds(708, 121, 57, 15);
+		JLabel lblNewLabel_8 = new JLabel("좌석");
+		lblNewLabel_8.setBounds(698, 91, 57, 15);
 		contentPane.add(lblNewLabel_8);
 		
-		JLabel lblNewLabel_9 = new JLabel("New label");
-		lblNewLabel_9.setBounds(801, 121, 57, 15);
+		JLabel lblNewLabel_9 = new JLabel("일자");
+		lblNewLabel_9.setBounds(791, 91, 162, 15);
 		contentPane.add(lblNewLabel_9);
 		
-		JLabel lblNewLabel_10 = new JLabel("New label");
-		lblNewLabel_10.setBounds(886, 121, 57, 15);
-		contentPane.add(lblNewLabel_10);
+		
+		JButton button = new JButton("\uBA54\uC778\uD654\uBA74\uC73C\uB85C \uB3CC\uC544\uAC00\uAE30");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				main2 m=new main2(fdto.getMid());
+				m.setVisible(true);
+				dispose();
+			}
+		});
+		button.setBounds(801, 10, 171, 23);
+		contentPane.add(button);
+		
+		JButton btnNewButton = new JButton("\uC608\uC57D\uD654\uBA74\uC73C\uB85C \uB3CC\uC544\uAC00\uAE30");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				FirstView fv=new FirstView(fdto.getMid());
+				fv.setVisible(true);
+				dispose();
+			}
+		});
+		btnNewButton.setBounds(12, 10, 176, 23);
+		contentPane.add(btnNewButton);
 		
 		List<String> arr=fdao.getRev();
 		
@@ -121,13 +147,55 @@ public class Delview extends JFrame {
 			date[i]=ar[9];
 		}
 		
-		int y=117;
+		int y=130;
 		for(int j=0;j<rsv.length;j++) {
+			
 		JCheckBox chckbxNewCheckBox = new JCheckBox(rsv[j]);
 		chckbxNewCheckBox.setBounds(8, y, 115, 23);
 		contentPane.add(chckbxNewCheckBox);
+		
+		JLabel lbl = new JLabel(tnumber[j]);
+		lbl.setBounds(121, y, 57, 15);
+		contentPane.add(lbl);
+		
+		JLabel l2 = new JLabel(tname[j]);
+		l2.setBounds(201, y, 57, 15);
+		contentPane.add(l2);
+		
+		JLabel l3 = new JLabel(tname[j]);
+		l3.setBounds(283, y, 57, 15);
+		contentPane.add(l3);
+		
+		JLabel l4 = new JLabel(atime[j]);
+		l4.setBounds(363, y, 57, 15);
+		contentPane.add(l4);
+		
+		JLabel l5 = new JLabel(asname[j]);
+		l5.setBounds(449, y, 57, 15);
+		contentPane.add(l5);
+		
+		JLabel l6 = new JLabel(atime[j]);
+		l6.setBounds(529, y, 57, 15);
+		contentPane.add(l6);
+		
+		JLabel l7 = new JLabel(fair[j]);
+		l7.setBounds(608, y, 57, 15);
+		contentPane.add(l7);
+		
+		JLabel l8 = new JLabel(seat[j]);
+		l8.setBounds(690, y, 57, 15);
+		contentPane.add(l8);
+		
+		JLabel l9 = new JLabel(date[j]);
+		l9.setBounds(800, y, 162, 15);
+		contentPane.add(l9);
+		
 		y+=21;
 		} //checkbox 생성까지 만듬. selected된거 구할 차례.
+		
+		
+		
+		
 		
 		
 	}

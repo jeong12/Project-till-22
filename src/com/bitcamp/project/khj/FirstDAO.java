@@ -318,7 +318,7 @@ public class FirstDAO {
 			sb.append(	"  where mid= ? and date>=sysdate()"    ); 
 
 			pst=conn.prepareStatement(sb.toString());
-			pst.setInt(1, 123456);
+			pst.setInt(1, fdto.getMid());
 
 			rs=pst.executeQuery();
 			
@@ -366,7 +366,50 @@ public class FirstDAO {
 		}
 		return r;
 		}
-}
+
+
+	public List<String> Prt(FirstDTO fdto){
+
+		PreparedStatement pst=null;
+		Connection conn=getConnection();
+		ResultSet rs=null;
+		StringBuilder sb=new StringBuilder();
+		ArrayList<String> prt=new ArrayList<>();		
+		
+		try {
+			
+			sb.append(  "  select tnumber,tname,dsname,dtime,asname,atime,fair,seat,date  "                     ); 
+			sb.append(  "  from pro3_ticketing "    );
+			sb.append(	"  where reservation=? "   ); 
+
+			pst=conn.prepareStatement(sb.toString());
+			pst.setInt(1, fdto.getRn());
+
+			rs=pst.executeQuery();
+			
+			while(rs.next()) {
+				prt.add(String.valueOf(rs.getInt("tnumber")));
+				prt.add(rs.getString("tname"));
+				prt.add(rs.getString("dsname"));
+				prt.add(rs.getString("dtime"));
+				prt.add(rs.getString("asname"));
+				prt.add(rs.getString("atime"));
+				prt.add(String.valueOf(rs.getInt("fair")));
+				prt.add(rs.getString("seat"));
+				prt.add(rs.getString("date"));
+			}
+
+		}catch(SQLException e) {
+			System.out.println(e);
+		}finally {
+			close(conn,pst);
+		}
+		return prt;
+		
+	}
+		
+		
+	}
 
 
 

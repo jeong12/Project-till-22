@@ -256,7 +256,7 @@ public class SecondView extends JFrame {
 					st.setVisible(true);
 			}
 		});
-		Button_next.setBounds(446, 84, 97, 23);
+		Button_next.setBounds(446, 112, 97, 23);
 		contentPane.add(Button_next);
 		
 		JButton btnNewButton_2 = new JButton("\uB2E4\uC74C");

@@ -15,7 +15,7 @@ public class FirstDTO {
 	private String atime;
 	private String tname;
 	private int mid;
-	
+	private int rn;
 	
 	public FirstDTO() {
 		
@@ -100,6 +100,12 @@ public class FirstDTO {
 	}
 	public void setMid(int mid) {
 		this.mid = mid;
+	}
+	public int getRn() {
+		return rn;
+	}
+	public void setRn(int rn) {
+		this.rn = rn;
 	}
 	
 	

@@ -24,14 +24,14 @@ public class FirstCal {
 		Date month=c2.getTime();
 		c1.setTime(today); 
 		c2.setTime(month);
-
+//
 		int index=0;
 		while(c1.compareTo(c2)!=1) {
 			arr.add(index,sdf.format(c1.getTime()));
 			c1.add(Calendar.DATE,1);
 			index++;}
 		return arr;
-	}//
+	}
 
 	public String[] year(List<String> arr){
 		ArrayList<String> y=new ArrayList<>();
