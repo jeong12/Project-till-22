@@ -59,7 +59,7 @@ public class bodydata {
 
 			// 체지방
 
-			fat = (wei*1.10)-(128*(wei*wei)/(hei*hei));
+			fat = (((wei*1.10)-(128*(wei*wei)/(hei*hei)))*100)/wei;
 
 
 
@@ -70,7 +70,7 @@ public class bodydata {
 
 			// 체지방
 
-			fat = (wei*1.07)-(128*(wei*wei)/(hei*hei));
+			fat = (((wei*1.07)-(128*(wei*wei)/(hei*hei)))*100)/wei;
 			
 
 
