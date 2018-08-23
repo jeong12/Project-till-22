@@ -47,7 +47,6 @@ public class FirstDAO {
 
 	}
 	
-	
 	public List<String> getInfor(){
 		
 		PreparedStatement pst=null;
@@ -60,7 +59,7 @@ public class FirstDAO {
 			
 			sb.append(  "  select aa.tnumber, aa.tname, aa.esname, aa.atime, aa.fsname, aa.btime, bb.fair from  "                     ); 
 			sb.append(  " (select a.tnumber,c.tname,e.sname as esname,a.time as atime,f.sname as fsname, b.time as btime, c.tid  "    );
-			sb.append(	"  from pro3_schedule as a, pro3_schedule as b , pro3_train as c, pro3_station as e, pro3_station as f  "    ); 
+			sb.append(	"  from pro3_schedule as a, pro3_schedule as b , pro3_train as c, pro3_ion as e, pro3_station as f  "    ); 
 			sb.append(  "  where e.snumber=a.snumber and e.sname=?      "   );    
 			sb.append( 	"  and f.snumber=b.snumber and f.sname=?  "   );
 			sb.append( 	"  and a.tnumber = b.tnumber and a.time<b.time             "     );
@@ -118,11 +117,12 @@ public class FirstDAO {
 		conn=getConnection();
 		StringBuilder sb=new StringBuilder();
 		sb.append(   "   select count(seat) from pro3_ticketing     "   );
-		sb.append(   "   where tnumber=?                            "   );
-		
+		sb.append(   "   where tnumber=?  and date=?                "   );
+		String date=fdto.getYear()+"-"+fdto.getMonth()+"-"+fdto.getDate();
 		pst=conn.prepareStatement(sb.toString());
 		for(int i=0;i<size;i++) {
 		pst.setString(1, tnumber[i]);
+		pst.setString(2, date);
 		rs=pst.executeQuery();
 		rs.next();
 		empty=rs.getInt("count(seat)");
@@ -313,9 +313,9 @@ public class FirstDAO {
 		
 		try {
 			
-			sb.append(  "  select reservation number,tnumber,tname,dsname,dtime,asname,atime,fair,seat,date  "                     ); 
+			sb.append(  "  select reservation,tnumber,tname,dsname,dtime,asname,atime,fair,seat,date  "                     ); 
 			sb.append(  "  from pro3_ticketing "    );
-			sb.append(	"  where mid= ? "    ); 
+			sb.append(	"  where mid= ? and date>=sysdate()"    ); 
 
 			pst=conn.prepareStatement(sb.toString());
 			pst.setInt(1, 123456);
@@ -323,16 +323,17 @@ public class FirstDAO {
 			rs=pst.executeQuery();
 			
 			while(rs.next()) {
-				rev.add(rs.getString("reservation number"));
-				rev.add(String.valueOf(rs.getInt("tnumber")));
-				rev.add(rs.getString("tname"));
-				rev.add(rs.getString("dsname"));
-				rev.add(rs.getString("dtime"));
-				rev.add(rs.getString("asname"));
-				rev.add(rs.getString("atime"));
-				rev.add(String.valueOf(rs.getInt("fair")));
-				rev.add(rs.getString("seat"));
-				rev.add(rs.getString("date"));
+				String rsv=rs.getString("reservation");
+				String tnum=(String.valueOf(rs.getInt("tnumber")));
+				String tname=rs.getString("tname");
+				String dsname=rs.getString("dsname");
+				String dtime=rs.getString("dtime");
+				String asname=rs.getString("asname");
+				String atime=rs.getString("atime");
+				String fair=String.valueOf(rs.getInt("fair"));
+				String seat=rs.getString("seat");
+				String date=rs.getString("date");
+				rev.add(rsv+","+tnum+","+tname+","+dsname+","+dtime+","+asname+","+atime+","+fair+","+seat+","+date);
 			}
 			
 		}catch(SQLException e) {
@@ -352,7 +353,7 @@ public class FirstDAO {
 		conn=getConnection();
 		StringBuilder sb=new StringBuilder();
 		sb.append(   "   delete from pro3_ticketing    "   );
-		sb.append(   "   where reservation number = ?    "   );
+		sb.append(   "   where reservation = ?    "   );
 		pst=conn.prepareStatement(sb.toString());
 		pst.setString(1, "1");
 		r=pst.executeUpdate();

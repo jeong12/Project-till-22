@@ -1,18 +1,19 @@
 package com.bitcamp.project.khj;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.util.List;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 
 public class Delview extends JFrame {
 
 	private JPanel contentPane;
+	private FirstDTO fdto;
 
 	/**
 	 * Launch the application.
@@ -34,6 +35,7 @@ public class Delview extends JFrame {
 	 * Create the frame.
 	 */
 	public Delview() {
+		FirstDAO fdao=new FirstDAO(fdto);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1000, 500);
 		contentPane = new JPanel();
@@ -48,11 +50,7 @@ public class Delview extends JFrame {
 		JButton btn_del = new JButton("\uC0AD\uC81C\uD558\uAE30");
 		btn_del.setBounds(875, 428, 97, 23);
 		contentPane.add(btn_del);
-		
-		JCheckBox chckbxNewCheckBox = new JCheckBox("New check box");
-		chckbxNewCheckBox.setBounds(8, 117, 115, 23);
-		contentPane.add(chckbxNewCheckBox);
-		
+				
 		JLabel lblNewLabel_1 = new JLabel("New label");
 		lblNewLabel_1.setBounds(131, 121, 57, 15);
 		contentPane.add(lblNewLabel_1);
@@ -92,5 +90,45 @@ public class Delview extends JFrame {
 		JLabel lblNewLabel_10 = new JLabel("New label");
 		lblNewLabel_10.setBounds(886, 121, 57, 15);
 		contentPane.add(lblNewLabel_10);
+		
+		List<String> arr=fdao.getRev();
+		
+		int size=arr.size();
+		String[]rsv=new String[size];
+		String[]tnumber=new String[size];
+		String[]tname=new String[size];
+		String[]dsname=new String[size];
+		String[]dtime=new String[size];
+		String[]asname=new String[size];
+		String[]atime=new String[size];
+		String[]fair=new String[size];
+		String[]seat=new String[size];
+		String[]date=new String[size];
+		
+		int r=0;
+		for(int i=0;i<arr.size();i++) {
+			String s=arr.get(i);
+			String[]ar=s.split(",");
+			rsv[i]=ar[0];
+			tnumber[i]=ar[1];
+			tname[i]=ar[2];
+			dsname[i]=ar[3];
+			dtime[i]=ar[4];
+			asname[i]=ar[5];
+			atime[i]=ar[6];
+			fair[i]=ar[7];
+			seat[i]=ar[8];
+			date[i]=ar[9];
+		}
+		
+		int y=117;
+		for(int j=0;j<rsv.length;j++) {
+		JCheckBox chckbxNewCheckBox = new JCheckBox(rsv[j]);
+		chckbxNewCheckBox.setBounds(8, y, 115, 23);
+		contentPane.add(chckbxNewCheckBox);
+		y+=21;
+		} //checkbox 생성까지 만듬. selected된거 구할 차례.
+		
+		
 	}
 }

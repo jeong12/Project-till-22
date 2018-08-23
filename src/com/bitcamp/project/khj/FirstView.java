@@ -44,6 +44,8 @@ public class FirstView extends JFrame {
 	String[] date=fc.day(arr);
 	String[] time=fc.time();
 	String[] person=fc.Person();
+	static int mid;
+	private JButton btn_tm;
 	
 	
 
@@ -54,7 +56,7 @@ public class FirstView extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					FirstView frame = new FirstView();
+					FirstView frame = new FirstView(mid);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -66,8 +68,9 @@ public class FirstView extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public FirstView() {
-		
+	public FirstView(int mid) {
+		this.mid=mid;
+		fdto.setMid(mid);
 		fdto.setYear(year[0]);
 		fdto.setMonth(month[0]);
 		fdto.setDate(date[0]);
@@ -76,11 +79,13 @@ public class FirstView extends JFrame {
 		
 		this.setTitle("시작은 작은 '경부선'이지만, 차근차근 한반도 구석까지 넓혀가겠습니다 :)");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 900, 400);
+		setBounds(100, 100, 700, 400);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		System.out.println(fdto.getMid());
 		
 		JLabel lblNewLabel = new JLabel("\uCD9C\uBC1C\uC5ED");
 		lblNewLabel.setBounds(130, 61, 41, 15);
@@ -223,6 +228,19 @@ public class FirstView extends JFrame {
 			
 		});				
 		contentPane.add(btnNewButton_g);
+		
+		btn_tm = new JButton("메인화면으로");
+		btn_tm.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			/*	main2 main=new main2();
+				main.setVisible(true);
+				dispose();
+				*/
+			}
+		});
+		btn_tm.setActionCommand("\uBA54\uC778\uD654\uBA74\uC73C\uB85C");
+		btn_tm.setBounds(544, 10, 128, 23);
+		contentPane.add(btn_tm);
 		
 
 	}

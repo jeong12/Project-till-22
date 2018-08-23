@@ -3,6 +3,11 @@ package com.bitcamp.project.kyr.screen;
 
 import java.awt.EventQueue;
 import javax.swing.JFrame;
+
+import com.bitcamp.project.kms.MemberDTO;
+import com.bitcamp.project.kms.main2;
+import com.bitcamp.project.kyr.screenDTO;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -12,7 +17,7 @@ public class mainscreen extends JFrame implements ActionListener{
 	/**
 	 *  Launch the application.
 	 */
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -23,14 +28,21 @@ public class mainscreen extends JFrame implements ActionListener{
 				}
 			 }
 		});
-	}
+	}*/
 
 	/**
 	 *  Create the frame.
 	 */
-	public mainscreen() {
+	
+	MemberDTO mto=new MemberDTO();
+	screenDTO dto=new screenDTO();
+	
+	
+		
+	
+	public mainscreen(int number) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 227, 267);
+		setBounds(100, 100, 228, 328);
 		getContentPane().setLayout(null);
 		
 		JButton button = new JButton("책 대여");
@@ -40,7 +52,7 @@ public class mainscreen extends JFrame implements ActionListener{
 				ren.setVisible(true);
 			}
 		});
-		button.setBounds(12, 20, 187, 62);
+		button.setBounds(12, 26, 187, 62);
 		getContentPane().add(button);
 		
 		JButton button_1 = new JButton("책 반납");
@@ -62,6 +74,18 @@ public class mainscreen extends JFrame implements ActionListener{
 		});
 		button_2.setBounds(12, 145, 187, 62);
 		getContentPane().add(button_2);
+		
+		JButton btnNewButton = new JButton("메인 화면으로");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MemberDTO mto=new MemberDTO();
+				
+				main2 ma2=new main2(mto);
+				ma2.setVisible(true);
+			}
+		});
+		btnNewButton.setBounds(12, 204, 187, 62);
+		getContentPane().add(btnNewButton);
 	}
 
 	@Override
@@ -69,5 +93,4 @@ public class mainscreen extends JFrame implements ActionListener{
 		// TODO Auto-generated method stub
 		
 	}
-
 }

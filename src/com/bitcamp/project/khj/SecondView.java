@@ -7,6 +7,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import com.bitcamp.project.kms.main2;
+
 import javafx.animation.Interpolator;
 
 import java.awt.GridLayout;
@@ -248,6 +250,12 @@ public class SecondView extends JFrame {
 		contentPane.add(lblNewLabel_11);
 		
 		JButton Button_next = new JButton("\uC5ED \uAC80\uC0C9");
+		Button_next.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+					Station st=new Station(fdto);
+					st.setVisible(true);
+			}
+		});
 		Button_next.setBounds(446, 84, 97, 23);
 		contentPane.add(Button_next);
 		
@@ -449,6 +457,17 @@ public class SecondView extends JFrame {
 				
 			});
 				contentPane.add(button);
+				
+				JButton btn_tm = new JButton("\uBA54\uC778\uD654\uBA74\uC73C\uB85C");
+				btn_tm.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+				/*		main2 main=new main2();
+						main.setVisible(true);
+						dispose();*/
+					}
+				});
+				btn_tm.setBounds(752, 10, 120, 23);
+				contentPane.add(btn_tm);
 				
 			
 		
