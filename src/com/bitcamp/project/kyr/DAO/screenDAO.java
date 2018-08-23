@@ -68,7 +68,7 @@ public class screenDAO {
 				vec.add(rs.getString("bname"));
 				vec.add(rs.getString("publish"));
 				vec.add(rs.getString("redate"));
-				vec.add(rs.getString("bnum"));
+				vec.add(rs.getFloat("bnum"));
 				arr.add(vec);
 			}
 		} catch (SQLException e) {
@@ -99,7 +99,7 @@ public class screenDAO {
 			pstmt.setString(1 , dto.getBname());
 			pstmt.setString(2 , dto.getPublish());
 			pstmt.setString(3 , dto.getRedate());
-			pstmt.setDouble(4 , dto.getBnum());
+			pstmt.setFloat(4 , dto.getBnum());
 			
 			r=pstmt.executeUpdate();
 		}catch(SQLException e)
@@ -127,7 +127,7 @@ public class screenDAO {
 					TimeZone jst =TimeZone.getTimeZone("Asia/Seoul");
 					Calendar Cal = Calendar.getInstance(jst);
 					
-					sbl.append(" insert into pro3_rent values (?,?,now()) ");
+					sbl.append(" insert into pro3_rent(bnum,number,rtdate) values (round(?,2),?,now()) ");
 					pstmt=conn.prepareStatement(sbl.toString());
 					pstmt.setFloat(1, dto.getBnum());
 					pstmt.setInt(2, dto.getNumber());
