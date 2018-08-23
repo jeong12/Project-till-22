@@ -56,7 +56,7 @@ public class Station extends JFrame {
 		
 		JList jl=new JList(station);
 		jl.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		jl.setBounds(10, 10, 300, 280);
+		jl.setBounds(10, 10, 300, 200);
 		contentPane.add(jl);
 		JScrollPane scrollPane = new JScrollPane(jl);
 		scrollPane.setBounds(10, 10, 300, 280);
