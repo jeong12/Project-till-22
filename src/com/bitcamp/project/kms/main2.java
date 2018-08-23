@@ -89,7 +89,7 @@ public class main2 extends JFrame {
 				fv.setVisible(true);
 				
 				dispose();
-			}
+			} 
 		});
 		btnNewButton_1.setBounds(146, 54, 97, 57);
 		contentPane.add(btnNewButton_1);

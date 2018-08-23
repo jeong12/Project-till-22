@@ -129,7 +129,7 @@ public class join extends JFrame {
 		ButtonGroup grp = new ButtonGroup();
 		grp.add(rdbtnNewRadioButton);
 		grp.add(rdbtnNewRadioButton_1);
-		
+		 
 		textField_6 = new JTextField();
 		textField_6.setBounds(137, 347, 116, 21);
 		contentPane.add(textField_6);
