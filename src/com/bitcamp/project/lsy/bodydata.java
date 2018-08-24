@@ -17,7 +17,7 @@ public class bodydata {
 
 	public String getData(String id) {
 		
-		System.out.println("getData ID :::"+id);
+//		System.out.println("getData ID :::"+id);
 		
 		bodyDAO dao = new bodyDAO();
 		bodyDTO dto = dao.getBodyList(id);
@@ -37,14 +37,15 @@ public class bodydata {
 		System.out.println(wei);
 		System.out.println(hei);
 		int today = dao.gettodayList(id);
-		double cm = hei/100;//키를 m로 변환 
 		
-		
+		double cm = hei/100.0;//키를 m로 변환 
+		System.out.println(cm);
 		fat = wei/(cm*cm);
 		
 		if(fat<18.5) {
 			big = "저체중";
 
+		System.out.println(fat);	
 		}else if (fat>=18.5 && fat<23) {
 			big = "정상";
 		}else if (fat>=23 && fat<25) {
