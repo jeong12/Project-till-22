@@ -225,7 +225,7 @@ import javax.swing.JOptionPane;
 			try{
 			con = getCon();
 			
-			String sql = "insert into pro3_userinfo values ( ?,?,?,?,?,?, now(),?,?,?,? ) ";
+             String sql = "insert into pro3_userinfo values ( ?,?,?,?,?,?, now(),?,?,?,? ) ";
 			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, dto.getId());
@@ -238,6 +238,7 @@ import javax.swing.JOptionPane;
 			pstmt.setString(8, dto.getGender());
             pstmt.setString(9, dto.getHeight());
 			pstmt.setString(10, dto.getWeight());
+			
 			pstmt.executeUpdate();
 			
 			
@@ -322,7 +323,7 @@ import javax.swing.JOptionPane;
 			try {
 				con = getCon();
 				
-				String sql = "Delete from practice where id=? && pw=?";
+				String sql = "Delete from pro3_userinfo where id=? && pw=?";
 				
 
 				pstmt = con.prepareStatement(sql);
@@ -333,7 +334,7 @@ import javax.swing.JOptionPane;
 				
 			}catch(SQLException e)
 			{
-				JOptionPane.showMessageDialog(null, "아이디와 비밀번호를 확인하세요");
+				e.printStackTrace();
 			}finally {
 				if(pstmt!=null)
 					try {
