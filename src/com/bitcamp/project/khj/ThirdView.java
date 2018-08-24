@@ -160,7 +160,7 @@ public class ThirdView extends JFrame {
 						dispose();
 					}
 					else {
-						dispose();
+						dispose(); //
 					}
 					
 				}
