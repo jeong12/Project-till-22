@@ -155,7 +155,7 @@ public class FirstDAO {
 	rs=pst2.executeQuery();
 	rs.next();
 	rev=rs.getInt("count(seat)");
-
+	
 	rev++;
 	StringBuilder sb=new StringBuilder();
 	sb.append(   "   insert   into   pro3_ticketing     "   );

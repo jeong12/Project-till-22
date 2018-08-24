@@ -138,7 +138,7 @@ public class ThirdView extends JFrame {
 		bnt_back.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				SecondView sv=new SecondView(fdto);
+				FirstView sv=new FirstView(fdto.getMid());
 				sv.setVisible(true);
 				dispose();
 			}
