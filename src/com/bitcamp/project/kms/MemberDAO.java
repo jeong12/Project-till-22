@@ -240,9 +240,10 @@ import javax.swing.JOptionPane;
 			pstmt.setString(10, dto.getWeight());
 			pstmt.executeUpdate();
 			
+			
 			}catch(SQLException e)
 			{
-				JOptionPane.showMessageDialog(null, "중복된 ID입니다.");
+				e.printStackTrace();
 			}finally
 			{ 
 				if(pstmt!=null)
@@ -289,6 +290,7 @@ import javax.swing.JOptionPane;
 				
 				pstmt.executeUpdate();
 				
+				
 			   }catch(SQLException e)
 			{
 				   e.printStackTrace();
@@ -328,10 +330,10 @@ import javax.swing.JOptionPane;
 				pstmt.setString(2, dto.getPw());
 				
 				pstmt.executeUpdate();
-
+				
 			}catch(SQLException e)
 			{
-				e.printStackTrace();
+				JOptionPane.showMessageDialog(null, "아이디와 비밀번호를 확인하세요");
 			}finally {
 				if(pstmt!=null)
 					try {
