@@ -243,7 +243,7 @@ import javax.swing.JOptionPane;
 			
 			}catch(SQLException e)
 			{
-				JOptionPane.showMessageDialog(null, "중복된 ID입니다.");
+				e.printStackTrace();
 			}finally
 			{ 
 				if(pstmt!=null)
