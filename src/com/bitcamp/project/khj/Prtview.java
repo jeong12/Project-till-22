@@ -151,16 +151,20 @@ public class Prtview extends JFrame {
 			date[i]=ar[9];
 		}
 		
+		for(String r1:rsv) {
+			System.out.println(r1);
+		}
+		
 		int y=130;
 			
-		JRadioButton[]rb=new JRadioButton[size];
+		JRadioButton[]rb1=new JRadioButton[size];
 		ButtonGroup bg=new ButtonGroup();
 		
-		for(int j=0; j<rsv.length;j++) {
-		rb[j]=new JRadioButton(rsv[j]);
-		rb[j].setBounds(8, y, 115, 23);
-		bg.add(rb[j]);
-		contentPane.add(rb[j]);
+		for(int j=0; j<size;j++) {
+		JRadioButton rb=new JRadioButton(rsv[j]);
+		rb.setBounds(8, y, 115, 23);
+		bg.add(rb);
+		contentPane.add(rb);
 		
 		JLabel lbl = new JLabel(tnumber[j]);
 		lbl.setBounds(121, y, 57, 15);
@@ -201,9 +205,11 @@ public class Prtview extends JFrame {
 		y+=21;
 		} //checkbox 생성까지 만듬. selected된거 구할 차례.
 		
+		
 		JButton btn_del = new JButton("\uCD9C\uB825\uD558\uAE30");
 		btn_del.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {				
+			
 				Enumeration<AbstractButton> em=bg.getElements();
 				String st=null;
 				while(em.hasMoreElements()) {
@@ -212,17 +218,17 @@ public class Prtview extends JFrame {
 					
 					if(jr.isSelected()) {
 					st=jr.getText();
-					int r=Integer.parseInt(st);
-					fdto.setRn(r);
-					}						
-			System.out.println(fdto.getRn());
-					System.out.println(r);
-				List<String> p=fdao.Prt(fdto);
-				long time=System.currentTimeMillis();
-				
-				for(String r:p) {
-					System.out.println(r);
+					int rs=Integer.parseInt(st);
+					fdto.setRn(rs);
+					}		
 				}
+					System.out.println(st);
+					System.out.println(fdto.getRn());
+				
+				
+				
+				List<String> p=fdao.Prt(fdto);
+				long time=System.currentTimeMillis();			
 				
 				String tnumber=p.get(0);
 				String tname=p.get(1);
@@ -257,14 +263,14 @@ public class Prtview extends JFrame {
 					JOptionPane.showMessageDialog(contentPane, "출력을 실패했습니다", "출력실패!",JOptionPane.WARNING_MESSAGE);
 					dispose();
 				}
-				
-				
-				}}
+				}
 			
 		});
 		btn_del.setBounds(875, 428, 97, 23);
 		contentPane.add(btn_del);
 				
 		
+	
+
 	}
 }

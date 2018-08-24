@@ -155,8 +155,7 @@ public class FirstDAO {
 	rs=pst2.executeQuery();
 	rs.next();
 	rev=rs.getInt("count(seat)");
-	System.out.println(":::::::");
-	System.out.println(rev);
+
 	rev++;
 	StringBuilder sb=new StringBuilder();
 	sb.append(   "   insert   into   pro3_ticketing     "   );
@@ -211,7 +210,7 @@ public class FirstDAO {
 		rs=pst.executeQuery();
 		rs.next();
 		sc=rs.getInt("count(seat)");
-		System.out.println(sc); //0±îÁö ³ª¿È
+	 //0±îÁö ³ª¿È
 		
 		int k=sc;
 		int e=0;
@@ -226,9 +225,6 @@ public class FirstDAO {
 		rs2.next();
 		count.add(e, rs2.getString("seat"));
 		e++;
-		}
-		for(String r:count) {
-			System.out.println(r);
 		}
 		
 		}catch(SQLException e) {
@@ -315,7 +311,7 @@ public class FirstDAO {
 			
 			sb.append(  "  select reservation,tnumber,tname,dsname,dtime,asname,atime,fair,seat,date  "                     ); 
 			sb.append(  "  from pro3_ticketing "    );
-			sb.append(	"  where mid= ? and date>=sysdate()"    ); 
+			sb.append(	"  where mid= ?"    ); 
 
 			pst=conn.prepareStatement(sb.toString());
 			pst.setInt(1, fdto.getMid());
@@ -336,6 +332,7 @@ public class FirstDAO {
 				rev.add(rsv+","+tnum+","+tname+","+dsname+","+dtime+","+asname+","+atime+","+fair+","+seat+","+date);
 			}
 			
+			
 		}catch(SQLException e) {
 			System.out.println(e);
 		}finally {
@@ -355,7 +352,7 @@ public class FirstDAO {
 		sb.append(   "   delete from pro3_ticketing    "   );
 		sb.append(   "   where reservation = ?    "   );
 		pst=conn.prepareStatement(sb.toString());
-		pst.setString(1, "1");
+		pst.setInt(1, fdto.getRn());
 		r=pst.executeUpdate();
 
 		}catch(SQLException e) {

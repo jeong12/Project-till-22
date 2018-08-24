@@ -1,13 +1,18 @@
 package com.bitcamp.project.khj;
 
 import java.awt.EventQueue;
+import java.util.Enumeration;
 import java.util.List;
 
+import javax.swing.AbstractButton;
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.border.EmptyBorder;
 
 import com.bitcamp.project.kms.main2;
@@ -54,9 +59,6 @@ public class Delview extends JFrame {
 		lblNewLabel.setBounds(343, 36, 238, 15);
 		contentPane.add(lblNewLabel);
 		
-		JButton btn_del = new JButton("\uC0AD\uC81C\uD558\uAE30");
-		btn_del.setBounds(875, 428, 97, 23);
-		contentPane.add(btn_del);
 				
 		JLabel lblNewLabel_1 = new JLabel("열차번호");
 		lblNewLabel_1.setBounds(121, 91, 57, 15);
@@ -148,11 +150,14 @@ public class Delview extends JFrame {
 		}
 		
 		int y=130;
-		for(int j=0;j<rsv.length;j++) {
-			
-		JCheckBox chckbxNewCheckBox = new JCheckBox(rsv[j]);
-		chckbxNewCheckBox.setBounds(8, y, 115, 23);
-		contentPane.add(chckbxNewCheckBox);
+		JRadioButton[]rb1=new JRadioButton[size];
+		ButtonGroup bg=new ButtonGroup();
+		
+		for(int j=0; j<size;j++) {
+		JRadioButton rb=new JRadioButton(rsv[j]);
+		rb.setBounds(8, y, 115, 23);
+		bg.add(rb);
+		contentPane.add(rb);
 		
 		JLabel lbl = new JLabel(tnumber[j]);
 		lbl.setBounds(121, y, 57, 15);
@@ -192,11 +197,37 @@ public class Delview extends JFrame {
 		
 		y+=21;
 		} //checkbox 생성까지 만듬. selected된거 구할 차례.
-		
-		
-		
-		
-		
+
+		JButton btn_del = new JButton("\uC0AD\uC81C\uD558\uAE30");
+		btn_del.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {				
+			
+				Enumeration<AbstractButton> em=bg.getElements();
+				String st=null;
+				while(em.hasMoreElements()) {
+					AbstractButton ab=em.nextElement();
+					JRadioButton jr=(JRadioButton)ab;
+					
+					if(jr.isSelected()) {
+					st=jr.getText();
+					int rs=Integer.parseInt(st);
+					fdto.setRn(rs);
+					}		
+				}
+				
+				int rs=fdao.del();
+				
+				if(rs>0) {
+					JOptionPane.showMessageDialog(contentPane, "삭제를 성공하였습니다.", "삭제성공!",JOptionPane.PLAIN_MESSAGE);
+					dispose();
+				}
+				else {
+					JOptionPane.showMessageDialog(contentPane, "삭제를 실패했니다.", "삭제실패!",JOptionPane.PLAIN_MESSAGE);
+				}
+			}
+		});
+		btn_del.setBounds(875, 428, 97, 23);
+		contentPane.add(btn_del);
 		
 	}
 }
