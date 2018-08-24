@@ -45,7 +45,7 @@ public class outputView extends JFrame implements ActionListener{
 		
 		dayDTO dto = new dayDTO();
 		dayDAO dao = new dayDAO();
-		dto = dao.getdayList();
+		dto = dao.getdayList(id);
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 475, 600);

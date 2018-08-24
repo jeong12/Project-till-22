@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class dayDAO {
+	String id = "";
+
 
 private Connection getConnection() {
 		
@@ -35,8 +37,9 @@ private Connection getConnection() {
 
 	
 	// select 
-		public dayDTO getdayList(){
-			String id ="";
+		public dayDTO getdayList(String id){
+			this.id = id;
+			
 			Connection conn = null;
 			PreparedStatement pst = null;
 			ResultSet rs = null;
@@ -70,6 +73,7 @@ private Connection getConnection() {
 					dto.setSat(rs.getInt("sumSat"));
 					dto.setSun(rs.getInt("sumSun"));
 					
+					System.out.println(dto.getMon());
 					
 				}
 				
@@ -79,7 +83,7 @@ private Connection getConnection() {
 				if(rs!=null) try {rs.close();} catch(SQLException e) {}
 				close(conn,pst);
 			}
-//			System.out.println(dto.getTue());
+			System.out.println(dto.getTue());
 			return dto;
 			
 		}
