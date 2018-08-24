@@ -37,8 +37,10 @@ public class bodydata {
 		System.out.println(wei);
 		System.out.println(hei);
 		int today = dao.gettodayList(id);
+		double cm = hei/100;//키를 m로 변환 
 		
-		fat = wei/((hei*hei)/10000);
+		
+		fat = wei/(cm*cm);
 		
 		if(fat<18.5) {
 			big = "저체중";
@@ -56,7 +58,7 @@ public class bodydata {
 		
 
 		if(dto.getGender().equals("남")){
-			int mkg = ((hei*hei)/10000)*22;
+			
 			// 기초대사량
 
 			basic = 66.47 + (13.75*wei)+(5*hei)-(6.76*age);
