@@ -5,6 +5,8 @@ package com.bitcamp.project.kms;
 	import java.sql.PreparedStatement;
 	import java.sql.ResultSet;
 	import java.sql.SQLException;
+
+import javax.swing.JOptionPane;
 	
 	
 	public class MemberDAO {
@@ -240,7 +242,7 @@ package com.bitcamp.project.kms;
 			
 			}catch(SQLException e)
 			{
-				e.printStackTrace();
+				JOptionPane.showMessageDialog(null, "중복된 ID입니다.");
 			}finally
 			{ 
 				if(pstmt!=null)
