@@ -126,7 +126,7 @@ public class main2 extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				Delete d = new Delete(dto);
-				d.setVisible(true);
+				d.setVisible(true);//
 			 }
 		});
 		btnNewButton_4.setBounds(201, 194, 120, 23);
