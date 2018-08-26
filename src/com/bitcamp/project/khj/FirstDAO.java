@@ -149,12 +149,12 @@ public class FirstDAO {
 	try {
 	conn=getConnection();
 	StringBuilder sb2=new StringBuilder();
-	sb2.append(   "   select count(seat)     "   );
+	sb2.append(   "   select max(reservation)     "   );
 	sb2.append(   "   from pro3_ticketing   "   );
 	pst2=conn.prepareStatement(sb2.toString());
 	rs=pst2.executeQuery();
 	rs.next();
-	rev=rs.getInt("count(seat)");
+	rev=rs.getInt("max(reservation)");
 	
 	rev++;
 	StringBuilder sb=new StringBuilder();
